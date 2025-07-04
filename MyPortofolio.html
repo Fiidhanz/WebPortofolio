@@ -1,196 +1,211 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portofolio Hafiidh Y. Ramadhani – Mahasiswa Informatika & Web Developer | UI/UX Designer">
-  <meta property="og:image" content="https://img.icons8.com/ios-filled/100/ffffff/user-male-circle.png">
-  <title>Hafiidh Yupiza Ramadhani • Portfolio Profesional</title>
-  <link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/user.png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          animation: {
-            fadeInUp: 'fadeInUp 1s ease-out',
-            bounceIn: 'bounceIn 1s ease-out',
-            pulseSlow: 'pulse 4s infinite',
-            fadeIn: 'fadeIn 1.2s ease-in-out',
-            zoomIn: 'zoomIn 1s ease-in-out',
-            float: 'float 4s ease-in-out infinite'
-          },
-          keyframes: {
-            fadeInUp: {
-              '0%': { opacity: 0, transform: 'translateY(20px)' },
-              '100%': { opacity: 1, transform: 'translateY(0)' }
+  <!DOCTYPE html>
+  <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portofolio Hafiidh Y. Ramadhani – Mahasiswa Informatika & Web Developer | UI/UX Designer">
+    <meta property="og:image" content="https://img.icons8.com/ios-filled/100/ffffff/user-male-circle.png">
+    <title>Hafiidh Yupiza Ramadhani • Portfolio Profesional</title>
+    <link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/user.png" />
+      <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ['Poppins', 'sans-serif'],
+              body: ['Inter', 'sans-serif']
             },
-            bounceIn: {
-              '0%': { transform: 'scale(0.9)', opacity: 0 },
-              '100%': { transform: 'scale(1)', opacity: 1 }
+            colors: {
+              primary: '#3B82F6',
+              secondary: '#6366F1'
             },
-            fadeIn: {
-              '0%': { opacity: 0 },
-              '100%': { opacity: 1 }
+            animation: {
+              fadeInUp: 'fadeInUp 1s ease-out',
+              bounceIn: 'bounceIn 1s ease-out',
+              pulseSlow: 'pulse 4s infinite',
+              fadeIn: 'fadeIn 1.2s ease-in-out',
+              zoomIn: 'zoomIn 1s ease-in-out',
+              float: 'float 4s ease-in-out infinite'
             },
-            zoomIn: {
-              '0%': { transform: 'scale(0.95)', opacity: 0 },
-              '100%': { transform: 'scale(1)', opacity: 1 }
-            },
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' }
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: 0, transform: 'translateY(20px)' },
+                '100%': { opacity: 1, transform: 'translateY(0)' }
+              },
+              bounceIn: {
+                '0%': { transform: 'scale(0.9)', opacity: 0 },
+                '100%': { transform: 'scale(1)', opacity: 1 }
+              },
+              fadeIn: {
+                '0%': { opacity: 0 },
+                '100%': { opacity: 1 }
+              },
+              zoomIn: {
+                '0%': { transform: 'scale(0.95)', opacity: 0 },
+                '100%': { transform: 'scale(1)', opacity: 1 }
+              },
             }
           }
         }
       }
-    }
-  </script>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    .decorative-shape {
-      position: absolute;
-      border-radius: 9999px;
-      filter: blur(80px);
-      opacity: 0.2;
-      z-index: 0;
-    }
-    section {
-      animation: fadeInUp 1s ease-out;
-    }
-  </style>
-</head>
-<body class="bg-gradient-to-br from-slate-50 to-blue-50 text-gray-800 font-sans relative overflow-x-hidden">
-  <div class="decorative-shape w-96 h-96 bg-blue-200 top-10 left-10 animate-float"></div>
-  <div class="decorative-shape w-80 h-80 bg-pink-100 bottom-20 right-10 animate-float"></div>
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .floating {
+        animation: float 4s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      .decorative-shape {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(80px);
+        opacity: 0.2;
+        z-index: 0;
+      }
+      section {
+        animation: fadeInUp 1s ease-out;
+      }
+      .hero-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: white;
+        padding: 0.75rem;
+        box-shadow: 0 0 30px rgba(255,255,255,0.1);
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-gradient-to-br from-slate-50 to-blue-50 text-gray-800 font-sans overflow-x-hidden">
 
-  <!-- Navbar -->
-  <header class="sticky top-0 bg-white shadow z-10 animate-fadeIn">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-400">H.Y. Rama</h1>
-      <nav class="space-x-4 text-sm font-medium animate-fadeInUp">
-        <a href="#about" class="hover:text-blue-600 transition">Tentang</a>
-        <a href="#experience" class="hover:text-blue-600 transition">Pengalaman</a>
-        <a href="#projects" class="hover:text-blue-600 transition">Proyek</a>
-        <a href="#certifications" class="hover:text-blue-600 transition">Sertifikasi</a>
-        <a href="#skills" class="hover:text-blue-600 transition">Keahlian</a>
-        <a href="#contact" class="hover:text-blue-600 transition">Kontak</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Decorative Background Shapes -->
+    <div class="absolute w-96 h-96 bg-blue-300 opacity-20 rounded-full blur-3xl top-0 -left-32 floating"></div>
+    <div class="absolute w-80 h-80 bg-pink-200 opacity-20 rounded-full blur-3xl bottom-0 -right-20 floating"></div>
 
-  <!-- Hero -->
-  <section class="relative overflow-hidden text-white py-24 bg-gradient-to-br from-blue-800 via-blue-600 to-blue-500 text-center animate-zoomIn">
-    <div class="absolute top-0 left-0 w-96 h-96 bg-blue-300 opacity-20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-    <div class="relative z-10 container mx-auto px-6">
-      <img src="https://img.icons8.com/ios-filled/100/ffffff/user-male-circle.png" class="mx-auto mb-4 animate-fadeInUp" alt="Profil" />
-      <h2 class="text-4xl md:text-5xl font-extrabold mb-3 animate-fadeInUp">Hafiidh Yupiza Ramadhani</h2>
-      <p class="text-lg md:text-xl animate-fadeInUp">Mahasiswa Informatika • Web Developer • UI/UX Enthusiast</p>
-      <div class="mt-6 flex flex-wrap justify-center gap-4 animate-fadeInUp">
-        <a href="https://www.linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" class="bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-gray-100 font-semibold shadow-md transition">LinkedIn</a>
-        <a href="https://github.com/Fiidhanz" target="_blank" class="bg-gray-100 text-blue-600 px-6 py-2 rounded-full hover:bg-white font-semibold shadow-md transition">GitHub</a>
-        <a href="https://instagram.com/upza.sign_" target="_blank" class="bg-pink-100 text-pink-600 px-6 py-2 rounded-full hover:bg-pink-200 font-semibold shadow-md transition">Instagram</a>
-        <a href="/CV_Hafiidh.pdf" download class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full hover:opacity-90 font-semibold shadow-md transition">Download CV</a>
+    <!-- Navbar -->
+    <header class="sticky top-0 bg-white shadow z-10 animate-fadeIn backdrop-blur-sm bg-opacity-90">
+      <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-3xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-400">H.Y. Rama</h1>
+        <nav class="space-x-4 text-sm font-medium animate-fadeInUp">
+          <a href="#about" class="hover:text-blue-600 transition">Tentang</a>
+          <a href="#experience" class="hover:text-blue-600 transition">Pengalaman</a>
+          <a href="#projects" class="hover:text-blue-600 transition">Proyek</a>
+          <a href="#certifications" class="hover:text-blue-600 transition">Sertifikasi</a>
+          <a href="#skills" class="hover:text-blue-600 transition">Keahlian</a>
+          <a href="#contact" class="hover:text-blue-600 transition">Kontak</a>
+        </nav>
       </div>
-    </div>
-  </section>
+    </header>
 
+    <!-- Hero -->
+    <section class="relative overflow-hidden text-white py-28 bg-gradient-to-br from-blue-800 via-blue-600 to-blue-500 text-center animate-zoomIn">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-blue-300 opacity-20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+      <div class="relative z-10 container mx-auto px-6">
+        <div class="hero-icon">
+          <img src="https://img.icons8.com/ios-filled/100/3b82f6/user-male-circle.png" alt="Profil" />
+        </div>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-3 animate-fadeInUp mt-6">Hafiidh Yupiza Ramadhani</h2>
+        <p class="text-lg md:text-xl animate-fadeInUp">Mahasiswa Informatika • Web Developer • UI/UX Enthusiast</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-4 animate-fadeInUp">
+          <a href="https://www.linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" class="bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-gray-100 font-semibold shadow-md transition">LinkedIn</a>
+          <a href="https://github.com/Fiidhanz" target="_blank" class="bg-gray-100 text-blue-600 px-6 py-2 rounded-full hover:bg-white font-semibold shadow-md transition">GitHub</a>
+          <a href="https://instagram.com/upza.sign_" target="_blank" class="bg-pink-100 text-pink-600 px-6 py-2 rounded-full hover:bg-pink-200 font-semibold shadow-md transition">Instagram</a>
+          <a href="/CV_Hafiidh.pdf" download class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full hover:opacity-90 font-semibold shadow-md transition">Download CV</a>
+        </div>
+      </div>
+    </section>
   <!-- About -->
-  <section id="about" class="py-20 bg-white text-center animate-fadeInUp">
-    <div class="container mx-auto px-6 md:w-2/3">
-      <h2 class="text-3xl font-extrabold text-blue-700 mb-4">Tentang Saya</h2>
-      <p class="text-gray-700 leading-relaxed text-lg animate-fadeIn">
-        Saya adalah mahasiswa Teknik Informatika di Institut Teknologi Nasional Malang dengan minat besar pada pengembangan web, desain UI/UX, dan visualisasi data. Saya berpengalaman membangun solusi digital berbasis design thinking yang interaktif dan berdampak, baik dari proyek akademik maupun freelance.
-      </p>
-    </div>
-  </section>
-
+    <section id="about" class="py-20 text-center" data-aos="fade-up">
+      <div class="container mx-auto px-6 md:w-2/3">
+        <h2 class="text-4xl font-extrabold text-blue-700 mb-4">Tentang Saya</h2>
+        <p class="text-gray-700 leading-relaxed text-lg">Saya adalah mahasiswa Teknik Informatika di Institut Teknologi Nasional Malang dengan minat besar pada pengembangan web, desain UI/UX, Animasi, Game dan visualisasi data. Saya berpengalaman membangun solusi digital berbasis design thinking yang interaktif dan berdampak, baik dari proyek akademik maupun freelance.</p>
+      </div>
+    </section>
 
     <!-- Experience -->
-    <section id="experience" class="py-16 bg-gray-100">
+    <section id="experience" class="py-20 bg-gradient-to-br from-gray-100 to-white" data-aos="fade-up">
       <div class="container mx-auto px-6 md:w-2/3">
-        <h2 class="text-2xl font-bold mb-6 text-blue-700">Pengalaman</h2>
-        <div class="space-y-6">
-          <div>
+        <h2 class="text-3xl font-bold mb-6 text-blue-700 flex items-center gap-2"><i data-feather="briefcase"></i> Pengalaman</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="bg-white shadow-md p-5 rounded-xl">
             <h3 class="font-semibold text-lg">Asisten Praktikum</h3>
-            <p class="text-sm text-gray-600">Membimbing mahasiswa dalam praktikum Multimedia, Animasi, Game Developer dan pengolahan citra.</p>
+            <p class="text-sm text-gray-600 mt-1">Membimbing mahasiswa dalam praktikum Multimedia, Animasi, Game Developer dan pengolahan citra.</p>
           </div>
-          <div>
+          <div class="bg-white shadow-md p-5 rounded-xl">
             <h3 class="font-semibold text-lg">Proyek Akademik & Freelance</h3>
-            <p class="text-sm text-gray-600">Mengembangkan aplikasi web interaktif dan konten visual grafis untuk klien kampus dan lokal.</p>
+            <p class="text-sm text-gray-600 mt-1">Mengembangkan aplikasi web interaktif dan konten visual grafis untuk klien kampus dan lokal.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="py-16 bg-gray-50">
+    <section id="projects" class="py-20 bg-gray-50" data-aos="fade-up">
       <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-blue-700 mb-10 text-center">Proyek Unggulan</h2>
+        <h2 class="text-4xl font-bold text-blue-700 mb-10 text-center">Proyek Unggulan</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          <!-- Project Template Example -->
-          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition transform hover:-translate-y-1 duration-300 border-t-4 border-blue-500" data-aos="zoom-in">
             <h3 class="text-xl font-semibold mb-2 text-gray-800">KostLaundry</h3>
             <p class="text-sm text-gray-600 mb-4">Aplikasi laundry on-demand berbasis web dengan dark mode, animasi gelembung, dan integrasi WhatsApp.</p>
             <p class="text-xs text-blue-500 mb-2">CSS • Public • Updated: Jun 2025</p>
             <a href="https://github.com/Fiidhanz/KostLaundry" target="_blank" class="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">Lihat di GitHub</a>
           </div>
-
-          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition transform hover:-translate-y-1 duration-300 border-t-4 border-red-500">
             <h3 class="text-xl font-semibold mb-2 text-gray-800">TokoSuryaElektrik (SI CRM)</h3>
             <p class="text-sm text-gray-600 mb-4">Sistem CRM toko elektronik berbasis Laravel Blade dengan fitur transaksi dan pengelolaan pelanggan.</p>
             <p class="text-xs text-red-500">Blade • Private • Updated: Feb 2025</p>
           </div>
-
-          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition transform hover:-translate-y-1 duration-300 border-t-4 border-red-500">
             <h3 class="text-xl font-semibold mb-2 text-gray-800">4Petto</h3>
             <p class="text-sm text-gray-600 mb-4">Sistem monitoring kesehatan hewan. Termasuk fitur reminder dan laporan kondisi berbasis Laravel.</p>
             <p class="text-xs text-red-500 mb-2">Blade • Public • Updated: Feb 2025</p>
             <a href="https://github.com/Fiidhanz/4Petto" target="_blank" class="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">Lihat di GitHub</a>
           </div>
-
-          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition transform hover:-translate-y-1 duration-300 border-t-4 border-pink-500">
             <h3 class="text-xl font-semibold mb-2 text-gray-800">ECollage-Laravel</h3>
             <p class="text-sm text-gray-600 mb-4">Sistem Sidosen untuk evaluasi dan pengumpulan tugas. Dibangun dengan Laravel & HTML.</p>
             <p class="text-xs text-pink-500 mb-2">HTML • Public • Updated: Jun 2024</p>
             <a href="https://github.com/Fiidhanz/ECollage-Laravel" target="_blank" class="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">Lihat di GitHub</a>
           </div>
-
-          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition transform hover:-translate-y-1 duration-300 border-t-4 border-indigo-500">
             <h3 class="text-xl font-semibold mb-2 text-gray-800">Herbari</h3>
             <p class="text-sm text-gray-600 mb-4">Desain UI/UX aplikasi tanaman herbal edukatif. Menggunakan pendekatan design thinking dan tools Figma.</p>
             <p class="text-xs text-indigo-500">Figma • Illustrator • UI/UX</p>
           </div>
-
         </div>
       </div>
     </section>
 
     <!-- Certifications -->
-    <section id="certifications" class="py-16">
+    <section id="certifications" class="py-20 bg-white" data-aos="fade-up">
       <div class="container mx-auto px-6 md:w-2/3">
-        <h2 class="text-2xl font-bold mb-6 text-blue-700">Sertifikasi & Lisensi</h2>
+        <h2 class="text-3xl font-bold mb-6 text-blue-700">Sertifikasi & Lisensi</h2>
         <div class="space-y-6">
-          <!-- Sertifikat 1 -->
-          <div class="bg-white shadow rounded-lg p-4">
+          <div class="bg-gray-50 shadow rounded-lg p-4">
             <h3 class="font-semibold text-lg">Wireframing in UI/UX Design</h3>
             <p class="text-sm text-gray-600">MySkill • Diterbitkan: Nov 2024</p>
             <p class="text-xs text-blue-600 mt-1">ID: 197666</p>
             <p class="text-sm text-gray-700 mt-2">Dasar-dasar wireframing dengan Figma untuk rancangan UI/UX modern dan user-friendly.</p>
           </div>
-          <!-- Sertifikat 2 -->
-          <div class="bg-white shadow rounded-lg p-4">
+          <div class="bg-gray-50 shadow rounded-lg p-4">
             <h3 class="font-semibold text-lg">Belajar Dasar Pemrograman Web</h3>
             <p class="text-sm text-gray-600">Dicoding Indonesia • Diterbitkan: Jun 2024</p>
             <p class="text-xs text-blue-600 mt-1">ID: 4EXGQ17E1ZRL</p>
             <p class="text-sm text-gray-700 mt-2">Struktur HTML, dasar CSS, dan praktik membuat halaman web statis.</p>
           </div>
-          <!-- Sertifikat 3 -->
-          <div class="bg-white shadow rounded-lg p-4">
+          <div class="bg-gray-50 shadow rounded-lg p-4">
             <h3 class="font-semibold text-lg">Seminar Google Developer Roadshow "Build with AI"</h3>
             <p class="text-sm text-gray-600">Google Developers • 2024</p>
             <p class="text-sm text-gray-700 mt-2">Seminar AI generatif, ML, dan pengembangan aplikasi berbasis AI.</p>
@@ -200,33 +215,43 @@
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="py-16 bg-gray-100">
+    <section id="skills" class="py-20 bg-gray-100" data-aos="fade-up">
       <div class="container mx-auto px-6 md:w-2/3">
-        <h2 class="text-2xl font-bold mb-4 text-blue-700">Keahlian Teknis</h2>
+        <h2 class="text-3xl font-bold mb-4 text-blue-700 flex items-center gap-2"><i data-feather="code"></i> Keahlian Teknis</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-700">
-          <span>Pengembangan Web (HTML, Tailwind, PHP, Laravel)</span>
-          <span>UI/UX Design (Figma, Wireframing)</span>
-          <span>Adobe Illustrator & Graphic Design</span>
-          <span>2D Animation (Animate)</span>
-          <span>Time & Project Management</span>
-          <span>Frontend Development</span>
-          <span>Backend Development</span>
+          <span class="bg-white p-2 rounded shadow">Pengembangan Web (HTML, Tailwind, PHP, Laravel)</span>
+          <span class="bg-white p-2 rounded shadow">UI/UX Design (Figma, Wireframing)</span>
+          <span class="bg-white p-2 rounded shadow">Adobe Illustrator & Graphic Design</span>
+          <span class="bg-white p-2 rounded shadow">2D Animation (Animate)</span>
+          <span class="bg-white p-2 rounded shadow">Time & Project Management</span>
+          <span class="bg-white p-2 rounded shadow">Frontend & Backend Development</span>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-16">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-2xl font-bold mb-4 text-blue-700">Hubungi Saya</h2>
-        <p class="mb-6 text-gray-600">Mari berdiskusi atau kolaborasi? Kirim email ke:</p>
-        <a href="mailto:hafiidh@example.com" class="text-blue-600 font-semibold text-lg hover:underline">hafiidhramadhani@gmail.com</a>
+    <section id="contact" class="py-20 bg-blue-700 text-white text-center" data-aos="fade-up">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-4 flex items-center justify-center gap-2"><i data-feather="mail"></i> Hubungi Saya</h2>
+        <p class="mb-6 text-lg">Mari berdiskusi atau kolaborasi? Kirim email ke:</p>
+        <a href="mailto:hafiidhramadhani@gmail.com" class="text-white underline text-lg hover:text-blue-200">hafiidhramadhani@gmail.com</a>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center py-4">
-      &copy; 2025 H.Y. Rama
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init();
+      feather.replace();
+    </script>
+
+      <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-6 mt-10">
+      <p class="text-sm">&copy; 2025 Hafiidh Yupiza Ramadhani. All rights reserved.</p>
+      <div class="mt-2 space-x-4 text-sm">
+        <a href="mailto:hafiidhramadhani@gmail.com" class="hover:underline">hafiidhramadhani@gmail.com</a>
+        <a href="https://github.com/Fiidhanz" target="_blank" class="hover:underline">GitHub</a>
+        <a href="https://www.linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" class="hover:underline">LinkedIn</a>
+      </div>
     </footer>
 
   </body>
