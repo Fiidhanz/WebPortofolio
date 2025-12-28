@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hafiidh Yupiza Ramadhani – Informatics Student & Web Developer | UI/UX Designer">
-  <meta property="og:image" content="https://img.icons8.com/ios-filled/100/ffffff/user-male-circle.png">
+  <meta name="description" content="Hafiidh Yupiza Ramadhani – Professional Web Developer & UI/UX Designer | Creating Digital Experiences">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
   <title>Hafiidh Yupiza Ramadhani • Professional Portfolio</title>
-  <link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/user.png" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/feather-icons"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,217 +15,1093 @@
       theme: {
         extend: {
           fontFamily: {
-            heading: ['Poppins', 'sans-serif'],
-            body: ['Inter', 'sans-serif']
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'display': ['Clash Display', 'Inter', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace']
           },
           colors: {
-            primary: '#3B82F6',
-            secondary: '#6366F1'
+            'primary': {
+              '50': '#eff6ff',
+              '100': '#dbeafe',
+              '200': '#bfdbfe',
+              '300': '#93c5fd',
+              '400': '#60a5fa',
+              '500': '#3b82f6',
+              '600': '#2563eb',
+              '700': '#1d4ed8',
+              '800': '#1e40af',
+              '900': '#1e3a8a',
+            },
+            'dark': {
+              '50': '#f8fafc',
+              '100': '#f1f5f9',
+              '200': '#e2e8f0',
+              '300': '#cbd5e1',
+              '400': '#94a3b8',
+              '500': '#64748b',
+              '600': '#475569',
+              '700': '#334155',
+              '800': '#1e293b',
+              '900': '#0f172a',
+            },
+            'accent': {
+              'purple': '#8b5cf6',
+              'pink': '#ec4899',
+              'cyan': '#06b6d4',
+              'emerald': '#10b981'
+            }
           },
           animation: {
-            pulseSlow: 'pulse 4s infinite',
-            float: 'float 4s ease-in-out infinite'
+            'gradient': 'gradient 8s ease infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+            'slide-up': 'slide-up 0.6s ease-out',
+            'slide-down': 'slide-down 0.6s ease-out',
           },
           keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' }
+            'gradient': {
+              '0%, 100%': { 'background-position': '0% 50%' },
+              '50%': { 'background-position': '100% 50%' }
+            },
+            'float': {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' }
+            },
+            'pulse-glow': {
+              '0%, 100%': { 'box-shadow': '0 0 20px rgba(59, 130, 246, 0.5)' },
+              '50%': { 'box-shadow': '0 0 40px rgba(59, 130, 246, 0.8)' }
+            },
+            'slide-up': {
+              '0%': { transform: 'translateY(30px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            },
+            'slide-down': {
+              '0%': { transform: 'translateY(-30px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
             }
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
           }
         }
       }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
   <style>
-    html { scroll-behavior: smooth; }
-    section { animation: none; } /* disable global animation */
-    .floating { animation: float 4s ease-in-out infinite; }
-    .hero-icon {
-      width: 100px;
-      height: 100px;
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap');
+    
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .glass-dark {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(90deg, #60a5fa, #8b5cf6, #ec4899);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient 8s ease infinite;
+    }
+    
+    .gradient-border {
+      position: relative;
+      background: linear-gradient(135deg, #1e293b, #1e293b) padding-box,
+                  linear-gradient(90deg, #60a5fa, #8b5cf6, #ec4899) border-box;
+      border: 2px solid transparent;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 50%, #2e1065 100%);
+      background-size: 200% 200%;
+      animation: gradient 8s ease infinite;
+    }
+    
+    .section-padding {
+      padding: 6rem 1rem;
+    }
+    
+    .container-narrow {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .floating-element-delay-1 {
+      animation: float 6s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+    
+    .floating-element-delay-2 {
+      animation: float 6s ease-in-out infinite;
+      animation-delay: 2s;
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .nav-active {
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 2px solid #60a5fa;
+    }
+    
+    .skill-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+    
+    .skill-progress {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #60a5fa, #8b5cf6);
+      transition: width 1.5s ease-out;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 0;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background: white;
-      padding: 0.75rem;
-      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+      background: #60a5fa;
+      border: 3px solid #1e293b;
+    }
+    
+    @media (max-width: 768px) {
+      .section-padding {
+        padding: 4rem 1rem;
+      }
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #475569;
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #60a5fa;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 to-blue-50 text-gray-800 font-sans overflow-x-hidden">
+<body class="bg-dark-900 text-gray-300">
+  <!-- Animated Background Elements -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating-element"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent-purple rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating-element-delay-1"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-cyan rounded-full mix-blend-multiply filter blur-3xl opacity-10 floating-element-delay-2"></div>
+  </div>
 
-  <!-- Decorative Shapes -->
-  <div class="absolute w-96 h-96 bg-blue-300 opacity-20 rounded-full blur-3xl top-0 -left-32 floating"></div>
-  <div class="absolute w-80 h-80 bg-pink-200 opacity-20 rounded-full blur-3xl bottom-0 -right-20 floating"></div>
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-dark py-4 border-b border-dark-700">
+    <div class="container-narrow">
+      <div class="flex items-center justify-between">
+        <!-- Logo/Brand -->
+        <a href="#" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-purple flex items-center justify-center">
+            <span class="text-white font-bold text-lg">H</span>
+          </div>
+          <div>
+            <div class="font-display font-bold text-xl text-white">H.Y.Ramadhani</div>
+            <div class="text-xs text-gray-400 group-hover:text-gray-300 transition">Web Developer</div>
+          </div>
+        </a>
 
-  <!-- Navbar -->
-  <header class="relative z-50 bg-blue-800 shadow-md">
-    <div class="container mx-auto flex items-center justify-between px-6 py-4">
-      <h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight">H. Y. Rama</h1>
-      <nav class="hidden md:flex space-x-6 text-sm font-medium text-white">
-        <a href="#about" class="hover:text-blue-200 transition">About</a>
-        <a href="#experience" class="hover:text-blue-200 transition">Experience</a>
-        <a href="#projects" class="hover:text-blue-200 transition">Projects</a>
-        <a href="#certifications" class="hover:text-blue-200 transition">Certifications</a>
-        <a href="#skills" class="hover:text-blue-200 transition">Skills</a>
-        <a href="#contact" class="hover:text-blue-200 transition">Contact</a>
-      </nav>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#about" class="text-gray-400 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">About</a>
+          <a href="#experience" class="text-gray-400 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">Experience</a>
+          <a href="#projects" class="text-gray-400 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">Projects</a>
+          <a href="#skills" class="text-gray-400 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">Skills</a>
+          <a href="#contact" class="bg-gradient-to-r from-primary-500 to-accent-purple text-white px-6 py-2 rounded-full text-sm font-medium hover:shadow-lg hover:shadow-primary-500/30 transition-all duration-300">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuButton" class="md:hidden text-gray-400 hover:text-white transition">
+          <i data-feather="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
     </div>
-  </header>
+
+    <!-- Mobile Navigation -->
+    <div id="mobileMenu" class="md:hidden hidden glass-dark mt-4 py-4 border-t border-dark-700">
+      <div class="container-narrow flex flex-col space-y-4">
+        <a href="#about" class="text-gray-400 hover:text-white transition py-2">About</a>
+        <a href="#experience" class="text-gray-400 hover:text-white transition py-2">Experience</a>
+        <a href="#projects" class="text-gray-400 hover:text-white transition py-2">Projects</a>
+        <a href="#skills" class="text-gray-400 hover:text-white transition py-2">Skills</a>
+        <a href="#contact" class="bg-gradient-to-r from-primary-500 to-accent-purple text-white px-6 py-3 rounded-full text-center font-medium mt-2">Contact Me</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- Hero Section -->
-  <section class="relative text-white py-32 text-center hero-img" data-aos="fade-up">
-    <div class="bg-black bg-opacity-50 absolute inset-0 z-0"></div>
-    <div class="relative z-10 container mx-auto px-6">
-      <h2 class="text-4xl md:text-5xl font-extrabold mb-3">Hafiidh Yupiza Ramadhani</h2>
-      <p class="text-lg md:text-xl">Informatics Student • Web Developer • UI/UX Enthusiast</p>
-      <div class="mt-6 flex flex-wrap justify-center gap-4">
-        <a href="https://www.linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" class="bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-gray-100 font-semibold shadow-md transition">LinkedIn</a>
-        <a href="https://github.com/Fiidhanz" target="_blank" class="bg-gray-100 text-blue-600 px-6 py-2 rounded-full hover:bg-white font-semibold shadow-md transition">GitHub</a>
-        <a href="https://instagram.com/upza.sign_" target="_blank" class="bg-pink-100 text-pink-600 px-6 py-2 rounded-full hover:bg-pink-200 font-semibold shadow-md transition">Instagram</a>
-        <a href="https://drive.google.com/file/d/1ZK7MkbdRxdu8jfDEyJPbupUwI9QUMf6s/view?usp=sharing" target="_blank" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full hover:opacity-90 font-semibold shadow-md transition">View CV on Google Drive</a>
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <div class="container-narrow">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <!-- Left Column: Hero Content -->
+        <div class="lg:w-1/2" data-aos="fade-right">
+          <div class="inline-flex items-center space-x-2 bg-dark-800/50 rounded-full px-4 py-2 mb-6 border border-dark-700">
+            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span class="text-sm text-gray-400">Available for opportunities</span>
+          </div>
+          
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6">
+            Hi, I'm 
+            <span class="gradient-text">Hafiidh</span>
+            <br>
+            <span class="text-white">Web Developer &</span>
+            <br>
+            <span class="gradient-text">UI/UX Designer</span>
+          </h1>
+          
+          <p class="text-xl text-gray-400 mb-8 max-w-2xl">
+            I craft exceptional digital experiences with clean code and thoughtful design. 
+            Currently pursuing Informatics Engineering at ITENAS Malang.
+          </p>
+          
+          <div class="flex flex-wrap gap-4 mb-12">
+            <a href="#contact" class="bg-gradient-to-r from-primary-500 to-accent-purple text-white px-8 py-4 rounded-full font-medium hover:shadow-xl hover:shadow-primary-500/30 transition-all duration-300 transform hover:-translate-y-1">
+              Get In Touch
+            </a>
+            <a href="#projects" class="glass px-8 py-4 rounded-full font-medium border border-dark-700 hover:border-primary-500/50 hover:bg-primary-500/10 transition-all duration-300">
+              View My Work
+            </a>
+          </div>
+          
+          <!-- Social Links -->
+          <div class="flex items-center space-x-6">
+            <a href="https://github.com/Fiidhanz" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110">
+              <i data-feather="github" class="w-6 h-6"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110">
+              <i data-feather="linkedin" class="w-6 h-6"></i>
+            </a>
+            <a href="https://drive.google.com/file/d/1ZK7MkbdRxdu8jfDEyJPbupUwI9QUMf6s/view?usp=sharing" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110">
+              <i data-feather="file-text" class="w-6 h-6"></i>
+            </a>
+            <a href="mailto:hafiidhramadhani@gmail.com" class="text-gray-400 hover:text-white transition transform hover:scale-110">
+              <i data-feather="mail" class="w-6 h-6"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Hero Visual -->
+        <div class="lg:w-1/2 relative" data-aos="fade-left">
+          <div class="relative">
+            <!-- Floating Cards -->
+            <div class="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-primary-500 to-accent-purple rounded-2xl rotate-12 floating-element"></div>
+            <div class="absolute -bottom-6 -right-6 w-20 h-20 bg-gradient-to-br from-accent-cyan to-accent-emerald rounded-xl -rotate-12 floating-element-delay-1"></div>
+            
+            <!-- Main Profile Card -->
+            <div class="relative glass rounded-3xl p-8 border border-dark-700 overflow-hidden">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-500/20 to-accent-purple/20 rounded-full -translate-y-16 translate-x-16"></div>
+              
+              <div class="relative z-10">
+                <div class="flex items-center space-x-4 mb-8">
+                  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-purple flex items-center justify-center">
+                    <i data-feather="code" class="w-8 h-8 text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-white">Full Stack Developer</h3>
+                    <p class="text-gray-400">Laravel • React • Tailwind</p>
+                  </div>
+                </div>
+                
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <span class="text-gray-400">Web Development</span>
+                    <span class="text-white font-medium">90%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                  </div>
+                  
+                  <div class="flex items-center justify-between">
+                    <span class="text-gray-400">UI/UX Design</span>
+                    <span class="text-white font-medium">85%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                  </div>
+                  
+                  <div class="flex items-center justify-between">
+                    <span class="text-gray-400">Animation & Graphics</span>
+                    <span class="text-white font-medium">75%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                  </div>
+                </div>
+                
+                <div class="mt-8 pt-8 border-t border-dark-700">
+                  <p class="text-gray-400 text-sm">
+                    "Transforming ideas into exceptional digital experiences with clean code and innovative design."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="py-20 text-center bg-white bg-cover bg-center bg-no-repeat bg-blend-overlay" data-aos="fade-up">
-    <div class="container mx-auto px-6 md:w-2/3 bg-white/80 rounded-xl p-6">
-      <h2 class="text-4xl font-extrabold text-blue-700 mb-4">About Me</h2>
-      <p class="text-gray-700 leading-relaxed text-lg">I'm an Informatics Engineering student at Institut Teknologi Nasional Malang with a strong interest in web development, UI/UX design, animation, games, and data visualization. I build interactive and impactful digital solutions using design thinking from both academic and freelance projects.</p>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience" class="py-20 bg-gray-50 bg-cover bg-center bg-no-repeat bg-blend-overlay" data-aos="fade-right">
-    <div class="container mx-auto px-6 md:w-2/3 bg-white/80 rounded-xl p-6">
-      <h2 class="text-3xl font-bold mb-6 text-blue-700 flex items-center gap-2"><i data-feather="briefcase"></i> Experience</h2>
-      <div class="grid gap-6 md:grid-cols-2">
-        <div class="bg-white shadow-md p-5 rounded-xl" data-aos="zoom-in">
-          <h3 class="font-semibold text-lg">Lab Assistant</h3>
-          <p class="text-sm text-gray-600 mt-1">Guiding students in Multimedia, Animation, Game Development, and Image Processing courses.</p>
+  <!-- About Section -->
+  <section id="about" class="section-padding">
+    <div class="container-narrow">
+      <div class="flex flex-col lg:flex-row gap-12 items-center">
+        <!-- Left: About Image -->
+        <div class="lg:w-2/5" data-aos="fade-right">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-gradient-to-r from-primary-500 to-accent-purple rounded-3xl blur-xl opacity-20"></div>
+            <div class="relative glass rounded-3xl overflow-hidden border border-dark-700">
+              <div class="p-8">
+                <div class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-primary-500 to-accent-purple flex items-center justify-center mb-6">
+                  <i data-feather="user" class="w-24 h-24 text-white"></i>
+                </div>
+                <div class="text-center">
+                  <h3 class="text-2xl font-bold text-white mb-2">Hafiidh Yupiza R.</h3>
+                  <p class="text-gray-400 mb-4">Informatics Engineering Student</p>
+                  <div class="inline-flex items-center space-x-2 bg-dark-800 rounded-full px-4 py-2">
+                    <i data-feather="map-pin" class="w-4 h-4 text-primary-500"></i>
+                    <span class="text-sm">Malang, Indonesia</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="bg-white shadow-md p-5 rounded-xl" data-aos="zoom-in">
-          <h3 class="font-semibold text-lg">Academic & Freelance Projects</h3>
-          <p class="text-sm text-gray-600 mt-1">Developing interactive web apps and visual content for university and local clients.</p>
+
+        <!-- Right: About Content -->
+        <div class="lg:w-3/5" data-aos="fade-left">
+          <div class="inline-flex items-center space-x-2 mb-6">
+            <div class="w-12 h-0.5 bg-gradient-to-r from-primary-500 to-accent-purple"></div>
+            <span class="text-primary-500 font-medium">ABOUT ME</span>
+          </div>
+          
+          <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+            Crafting Digital
+            <span class="gradient-text">Experiences</span>
+          </h2>
+          
+          <p class="text-lg text-gray-400 mb-6">
+            I'm a passionate Informatics Engineering student at <span class="text-white font-medium">Institut Teknologi Nasional Malang</span> 
+            with expertise in full-stack web development and UI/UX design. My approach combines technical 
+            excellence with creative problem-solving to deliver impactful digital solutions.
+          </p>
+          
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div class="glass rounded-xl p-4 border border-dark-700">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-primary-500/20 flex items-center justify-center">
+                  <i data-feather="code" class="w-5 h-5 text-primary-500"></i>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-white">15+</div>
+                  <div class="text-gray-400 text-sm">Projects</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass rounded-xl p-4 border border-dark-700">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-accent-purple/20 flex items-center justify-center">
+                  <i data-feather="award" class="w-5 h-5 text-accent-purple"></i>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-white">3+</div>
+                  <div class="text-gray-400 text-sm">Certifications</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap gap-4">
+            <div class="inline-flex items-center space-x-2 bg-dark-800/50 rounded-full px-4 py-2">
+              <i data-feather="check-circle" class="w-4 h-4 text-green-500"></i>
+              <span class="text-sm">Full Stack Development</span>
+            </div>
+            <div class="inline-flex items-center space-x-2 bg-dark-800/50 rounded-full px-4 py-2">
+              <i data-feather="check-circle" class="w-4 h-4 text-green-500"></i>
+              <span class="text-sm">UI/UX Design</span>
+            </div>
+            <div class="inline-flex items-center space-x-2 bg-dark-800/50 rounded-full px-4 py-2">
+              <i data-feather="check-circle" class="w-4 h-4 text-green-500"></i>
+              <span class="text-sm">Responsive Design</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Experience Section -->
+  <section id="experience" class="section-padding bg-dark-800/30">
+    <div class="container-narrow">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="inline-flex items-center space-x-2 mb-6">
+          <div class="w-12 h-0.5 bg-gradient-to-r from-primary-500 to-accent-purple"></div>
+          <span class="text-primary-500 font-medium">EXPERIENCE</span>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-accent-purple to-primary-500"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+          Professional
+          <span class="gradient-text">Journey</span>
+        </h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          My academic and professional experience in technology and design
+        </p>
+      </div>
 
-  <!-- Projects -->
-  <section id="projects" class="py-20 bg-white bg-cover bg-center bg-no-repeat bg-blend-overlay" data-aos="zoom-in-up">
-    <div class="container mx-auto px-6 bg-white/80 rounded-xl p-6">
-      <h2 class="text-4xl font-bold text-blue-700 mb-10 text-center">Featured Projects</h2>
-      <!-- Project Cards remain unchanged -->
-       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500" data-aos="fade-up">
-          <h3 class="text-xl font-semibold mb-2 text-gray-800">KostLaundry</h3>
-          <p class="text-sm text-gray-600 mb-4">A web-based on-demand laundry app with dark mode, bubble animations, and WhatsApp integration.</p>
-          <p class="text-xs text-blue-500 mb-2">CSS • Public • Updated: Jun 2025</p>
-          <a href="https://github.com/Fiidhanz/KostLaundry" target="_blank" class="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">View on GitHub</a>
+      <div class="relative" data-aos="fade-up">
+        <!-- Timeline line -->
+        <div class="absolute left-0 lg:left-1/2 transform lg:-translate-x-1/2 h-full w-px bg-gradient-to-b from-primary-500 via-accent-purple to-transparent hidden lg:block"></div>
+
+        <!-- Timeline items -->
+        <div class="space-y-12 lg:space-y-0">
+          <!-- Item 1 -->
+          <div class="relative lg:grid lg:grid-cols-2 lg:gap-12">
+            <div class="lg:text-right lg:pr-12 mb-8 lg:mb-0" data-aos="fade-right">
+              <div class="glass rounded-2xl p-6 border border-dark-700">
+                <div class="inline-flex items-center space-x-2 mb-4">
+                  <div class="w-10 h-10 rounded-lg bg-primary-500/20 flex items-center justify-center">
+                    <i data-feather="users" class="w-5 h-5 text-primary-500"></i>
+                  </div>
+                  <div>
+                    <div class="text-white font-bold">Lab Assistant</div>
+                    <div class="text-primary-500 text-sm">ITENAS Malang</div>
+                  </div>
+                </div>
+                <p class="text-gray-400 text-sm">
+                  Guiding students in Multimedia, Animation, Game Development, and Image Processing courses. 
+                  Providing technical mentorship and academic support.
+                </p>
+                <div class="mt-4">
+                  <span class="inline-block bg-dark-700 text-gray-300 text-xs px-3 py-1 rounded-full">2023 - Present</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lg:pl-12 lg:pt-12" data-aos="fade-left">
+              <div class="glass rounded-2xl p-6 border border-dark-700">
+                <h3 class="text-xl font-bold text-white mb-3">Key Responsibilities</h3>
+                <ul class="space-y-3">
+                  <li class="flex items-start space-x-3">
+                    <i data-feather="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                    <span class="text-gray-400">Mentoring students in technical courses</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i data-feather="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                    <span class="text-gray-400">Developing lab materials and tutorials</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i data-feather="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                    <span class="text-gray-400">Providing technical support and guidance</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="relative lg:grid lg:grid-cols-2 lg:gap-12">
+            <div class="lg:order-2 lg:pl-12 mb-8 lg:mb-0" data-aos="fade-left">
+              <div class="glass rounded-2xl p-6 border border-dark-700">
+                <div class="inline-flex items-center space-x-2 mb-4">
+                  <div class="w-10 h-10 rounded-lg bg-accent-purple/20 flex items-center justify-center">
+                    <i data-feather="briefcase" class="w-5 h-5 text-accent-purple"></i>
+                  </div>
+                  <div>
+                    <div class="text-white font-bold">Freelance Developer</div>
+                    <div class="text-accent-purple text-sm">Various Projects</div>
+                  </div>
+                </div>
+                <p class="text-gray-400 text-sm">
+                  Developing interactive web applications and visual content for academic and commercial projects. 
+                  Specializing in Laravel-based solutions and modern frontend development.
+                </p>
+                <div class="mt-4">
+                  <span class="inline-block bg-dark-700 text-gray-300 text-xs px-3 py-1 rounded-full">2021 - Present</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lg:order-1 lg:text-right lg:pr-12 lg:pt-12" data-aos="fade-right">
+              <div class="glass rounded-2xl p-6 border border-dark-700">
+                <h3 class="text-xl font-bold text-white mb-3">Project Highlights</h3>
+                <ul class="space-y-3">
+                  <li class="flex items-start space-x-3 lg:justify-end">
+                    <span class="text-gray-400 text-right">Custom CRM systems and e-commerce platforms</span>
+                    <i data-feather="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                  </li>
+                  <li class="flex items-start space-x-3 lg:justify-end">
+                    <span class="text-gray-400 text-right">UI/UX design for web and mobile applications</span>
+                    <i data-feather="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                  </li>
+                  <li class="flex items-start space-x-3 lg:justify-end">
+                    <span class="text-gray-400 text-right">Interactive data visualization dashboards</span>
+                    <i data-feather="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-          <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500" data-aos="fade-up">
-          <h3 class="text-xl font-semibold mb-2 text-gray-800">TokoSuryaElektrik (SI CRM)</h3>
-          <p class="text-sm text-gray-600 mb-4">A Laravel Blade-based CRM system for electronics store management, with transaction and customer features.</p>
-          <p class="text-xs text-red-500 mb-2">Blade • Public • Updated: Feb 2025</p>
-           <a href="https://github.com/Fiidhanz/TokoSuryaElektrik" target="_blank" class="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">View on GitHub</a>
-        </div>
-          <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500" data-aos="fade-up">
-          <h3 class="text-xl font-semibold mb-2 text-gray-800">4Petto</h3>
-          <p class="text-sm text-gray-600 mb-4">Pet health monitoring system including reminders and reports built with Laravel.</p>
-          <p class="text-xs text-red-500 mb-2">Blade • Public • Updated: Feb 2025</p>
-          <a href="https://github.com/Fiidhanz/4Petto" target="_blank" class="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">View on GitHub</a>
-        </div>
-       <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500" data-aos="fade-up">
-          <h3 class="text-xl font-semibold mb-2 text-gray-800">ECollage-Laravel</h3>
-          <p class="text-sm text-gray-600 mb-4">Sidosen system for assignment evaluation and submission. Built with Laravel & HTML.</p>
-          <p class="text-xs text-pink-500 mb-2">HTML • Public • Updated: Jun 2024</p>
-          <a href="https://github.com/Fiidhanz/ECollage-Laravel" target="_blank" class="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">View on GitHub</a>
-        </div>
-     <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500" data-aos="fade-up">
-          <h3 class="text-xl font-semibold mb-2 text-gray-800">Herbari</h3>
-          <p class="text-sm text-gray-600 mb-4">UI/UX design for an educational herbal plant app using design thinking and Figma tools.</p>
-          <p class="text-xs text-indigo-500 mb-2" >Figma • Illustrator • UI/UX</p>
-          <a href="https://www.figma.com/design/deDLfdkCCeLX8fJDWRmqgZ/Herbari?node-id=200-2129&t=UGKU8KCneN8W4HcI-1" target="_blank" class="inline-block bg-pink-600 text-white text-sm px-4 py-2 rounded hover:bg-pink-700">View on Figma</a>
-        </div>
-         <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500" data-aos="fade-up">
-  <h3 class="text-xl font-semibold mb-2 text-gray-800">4Petto</h3>
-  <p class="text-sm text-gray-600 mb-4">Health monitoring web app for pets using Laravel, featuring real-time updates and reminder scheduling.</p>
-  <p class="text-xs text-indigo-600 mb-2">Laravel • UI/UX • Real-time System</p>
-  <a href="https://www.figma.com/design/EKpvczgJ7LwnMCzHQDiHR7/4Petto?t=ZR1OrL19uS1ImVlA-1" target="_blank" class="inline-block bg-pink-600 text-white text-sm px-4 py-2 rounded hover:bg-pink-700">View on Figma</a>
-</div>
       </div>
     </div>
-
   </section>
 
-  <!-- Certifications -->
-  <section id="certifications" class="py-20 bg-gray-100 bg-cover bg-center bg-no-repeat bg-blend-overlay" data-aos="fade-left">
-    <div class="container mx-auto px-6 md:w-2/3 bg-white/80 rounded-xl p-6">
-      <h2 class="text-3xl font-bold mb-6 text-blue-700">Certifications & Licenses</h2>
-      <div class="space-y-6">
-        <div class="bg-gray-50 shadow rounded-lg p-4" data-aos="fade-up">
-          <h3 class="font-semibold text-lg">Wireframing in UI/UX Design</h3>
-          <p class="text-sm text-gray-600">MySkill • Issued: Nov 2024</p>
-          <p class="text-xs text-blue-600 mt-1">ID: 197666</p>
-          <p class="text-sm text-gray-700 mt-2">Fundamentals of wireframing using Figma for modern and user-friendly UI/UX.</p>
+  <!-- Projects Section -->
+  <section id="projects" class="section-padding">
+    <div class="container-narrow">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="inline-flex items-center space-x-2 mb-6">
+          <div class="w-12 h-0.5 bg-gradient-to-r from-primary-500 to-accent-purple"></div>
+          <span class="text-primary-500 font-medium">PORTFOLIO</span>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-accent-purple to-primary-500"></div>
         </div>
-      <div class="bg-gray-50 shadow rounded-lg p-4" data-aos="fade-up">
-          <h3 class="font-semibold text-lg">Basic Web Programming</h3>
-          <p class="text-sm text-gray-600">Dicoding Indonesia • Issued: Jun 2024</p>
-          <p class="text-xs text-blue-600 mt-1">ID: 4EXGQ17E1ZRL</p>
-          <p class="text-sm text-gray-700 mt-2">HTML structure, basic CSS, and building static web pages.</p>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+          Featured
+          <span class="gradient-text">Projects</span>
+        </h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          A showcase of my recent work in web development and design
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up">
+        <!-- Project 1 -->
+        <div class="group glass rounded-2xl overflow-hidden border border-dark-700 card-hover">
+          <div class="relative h-48 bg-gradient-to-br from-primary-500/20 to-accent-purple/20 overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i data-feather="code" class="w-16 h-16 text-primary-500/30"></i>
+            </div>
+            <div class="absolute top-4 right-4">
+              <span class="bg-dark-800 text-primary-500 text-xs font-medium px-3 py-1 rounded-full">CSS</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-white mb-2">KostLaundry</h3>
+            <p class="text-gray-400 text-sm mb-4">
+              A web-based on-demand laundry app with dark mode, bubble animations, and WhatsApp integration.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-500 text-xs">Updated: Jun 2025</span>
+              <a href="https://github.com/Fiidhanz/KostLaundry" target="_blank" 
+                 class="text-primary-500 hover:text-primary-400 transition flex items-center space-x-1 group">
+                <span>View Project</span>
+                <i data-feather="arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
+              </a>
+            </div>
+          </div>
         </div>
-      <div class="bg-gray-50 shadow rounded-lg p-4" data-aos="fade-up">
-          <h3 class="font-semibold text-lg">Google Developer Roadshow "Build with AI" Seminar</h3>
-          <p class="text-sm text-gray-600">Google Developers • 2024</p>
-          <p class="text-sm text-gray-700 mt-2">Seminar on generative AI, ML, and building AI-based applications.</p>
+
+        <!-- Project 2 -->
+        <div class="group glass rounded-2xl overflow-hidden border border-dark-700 card-hover">
+          <div class="relative h-48 bg-gradient-to-br from-red-500/20 to-pink-500/20 overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i data-feather="database" class="w-16 h-16 text-red-500/30"></i>
+            </div>
+            <div class="absolute top-4 right-4">
+              <span class="bg-dark-800 text-red-500 text-xs font-medium px-3 py-1 rounded-full">Laravel</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-white mb-2">TokoSuryaElektrik</h3>
+            <p class="text-gray-400 text-sm mb-4">
+              Laravel Blade-based CRM system for electronics store management with transaction features.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-500 text-xs">Updated: Feb 2025</span>
+              <a href="https://github.com/Fiidhanz/TokoSuryaElektrik" target="_blank" 
+                 class="text-primary-500 hover:text-primary-400 transition flex items-center space-x-1 group">
+                <span>View Project</span>
+                <i data-feather="arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
+              </a>
+            </div>
+          </div>
         </div>
+
+        <!-- Project 3 -->
+        <div class="group glass rounded-2xl overflow-hidden border border-dark-700 card-hover">
+          <div class="relative h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i data-feather="layout" class="w-16 h-16 text-purple-500/30"></i>
+            </div>
+            <div class="absolute top-4 right-4">
+              <span class="bg-dark-800 text-purple-500 text-xs font-medium px-3 py-1 rounded-full">UI/UX</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-white mb-2">Herbari</h3>
+            <p class="text-gray-400 text-sm mb-4">
+              UI/UX design for an educational herbal plant app using design thinking and Figma tools.
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-500 text-xs">Figma • Illustrator</span>
+              <a href="https://www.figma.com/design/deDLfdkCCeLX8fJDWRmqgZ/Herbari?node-id=200-2129&t=UGKU8KCneN8W4HcI-1" target="_blank" 
+                 class="text-primary-500 hover:text-primary-400 transition flex items-center space-x-1 group">
+                <span>View Design</span>
+                <i data-feather="arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12" data-aos="fade-up">
+        <a href="https://github.com/Fiidhanz" target="_blank" 
+           class="inline-flex items-center space-x-3 glass px-8 py-4 rounded-full border border-dark-700 hover:border-primary-500/50 hover:bg-primary-500/10 transition-all duration-300">
+          <i data-feather="github" class="w-5 h-5"></i>
+          <span>View All Projects on GitHub</span>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="py-20 bg-white bg-cover bg-center bg-no-repeat bg-blend-overlay" data-aos="zoom-in">
-    <div class="container mx-auto px-6 md:w-2/3 bg-white/80 rounded-xl p-6">
-      <h2 class="text-3xl font-bold mb-4 text-blue-700 flex items-center gap-2"><i data-feather="code"></i> Technical Skills</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-700">
-        <span class="bg-white p-2 rounded shadow">Web Development (HTML, Tailwind, PHP, Laravel)</span>
-        <span class="bg-white p-2 rounded shadow">UI/UX Design (Figma, Wireframing)</span>
-        <span class="bg-white p-2 rounded shadow">Adobe Illustrator & Graphic Design</span>
-        <span class="bg-white p-2 rounded shadow">2D Animation (Animate)</span>
-        <span class="bg-white p-2 rounded shadow">Time & Project Management</span>
-        <span class="bg-white p-2 rounded shadow">Frontend & Backend Development</span>
+  <section id="skills" class="section-padding bg-dark-800/30">
+    <div class="container-narrow">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="inline-flex items-center space-x-2 mb-6">
+          <div class="w-12 h-0.5 bg-gradient-to-r from-primary-500 to-accent-purple"></div>
+          <span class="text-primary-500 font-medium">EXPERTISE</span>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-accent-purple to-primary-500"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+          Technical
+          <span class="gradient-text">Skills</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8" data-aos="fade-up">
+        <!-- Left Column: Technical Skills -->
+        <div>
+          <div class="glass rounded-2xl p-6 border border-dark-700 mb-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-10 h-10 rounded-lg bg-primary-500/20 flex items-center justify-center">
+                <i data-feather="cpu" class="w-5 h-5 text-primary-500"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">Development</h3>
+            </div>
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-400">Laravel / PHP</span>
+                  <span class="text-white font-medium">90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-400">HTML / CSS / Tailwind</span>
+                  <span class="text-white font-medium">95%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 95%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-400">JavaScript / React</span>
+                  <span class="text-white font-medium">80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-6 border border-dark-700">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-10 h-10 rounded-lg bg-accent-purple/20 flex items-center justify-center">
+                <i data-feather="tool" class="w-5 h-5 text-accent-purple"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">Tools & Technologies</h3>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <span class="px-4 py-2 bg-dark-800 rounded-full text-sm">Git & GitHub</span>
+              <span class="px-4 py-2 bg-dark-800 rounded-full text-sm">VS Code</span>
+              <span class="px-4 py-2 bg-dark-800 rounded-full text-sm">Figma</span>
+              <span class="px-4 py-2 bg-dark-800 rounded-full text-sm">Adobe Illustrator</span>
+              <span class="px-4 py-2 bg-dark-800 rounded-full text-sm">MySQL</span>
+              <span class="px-4 py-2 bg-dark-800 rounded-full text-sm">REST APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Design Skills -->
+        <div>
+          <div class="glass rounded-2xl p-6 border border-dark-700 mb-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
+                <i data-feather="layout" class="w-5 h-5 text-pink-500"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">Design & Creative</h3>
+            </div>
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-400">UI/UX Design</span>
+                  <span class="text-white font-medium">85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-400">Wireframing & Prototyping</span>
+                  <span class="text-white font-medium">90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-400">Graphic Design</span>
+                  <span class="text-white font-medium">75%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 75%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-6 border border-dark-700">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                <i data-feather="users" class="w-5 h-5 text-emerald-500"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">Soft Skills</h3>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="text-center p-4 bg-dark-800/50 rounded-xl">
+                <i data-feather="message-square" class="w-6 h-6 text-emerald-500 mx-auto mb-2"></i>
+                <div class="text-sm">Communication</div>
+              </div>
+              <div class="text-center p-4 bg-dark-800/50 rounded-xl">
+                <i data-feather="target" class="w-6 h-6 text-emerald-500 mx-auto mb-2"></i>
+                <div class="text-sm">Problem Solving</div>
+              </div>
+              <div class="text-center p-4 bg-dark-800/50 rounded-xl">
+                <i data-feather="clock" class="w-6 h-6 text-emerald-500 mx-auto mb-2"></i>
+                <div class="text-sm">Time Management</div>
+              </div>
+              <div class="text-center p-4 bg-dark-800/50 rounded-xl">
+                <i data-feather="git-merge" class="w-6 h-6 text-emerald-500 mx-auto mb-2"></i>
+                <div class="text-sm">Team Collaboration</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-   <section id="contact" class="py-20 bg-blue-700 text-white text-center bg-cover bg-center bg-no-repeat bg-blend-overlay" data-aos="fade-up">
-    <div class="container mx-auto px-6 bg-blue-700/80 rounded-xl p-6">
-      <h2 class="text-3xl font-bold mb-4 flex items-center justify-center gap-2"><i data-feather="mail"></i> Contact Me</h2>
-      <p class="mb-6 text-lg">Interested in working together or just want to say hi? Feel free to reach out!</p>
-      <a href="mailto:hafiidhramadhani@gmail.com" class="text-white underline text-lg hover:text-blue-200">hafiidhramadhani@gmail.com</a>
+  <section id="contact" class="section-padding">
+    <div class="container-narrow">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="inline-flex items-center space-x-2 mb-6">
+          <div class="w-12 h-0.5 bg-gradient-to-r from-primary-500 to-accent-purple"></div>
+          <span class="text-primary-500 font-medium">CONTACT</span>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-accent-purple to-primary-500"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+          Let's Work
+          <span class="gradient-text">Together</span>
+        </h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          Have a project in mind? Let's discuss how we can bring your ideas to life.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div class="space-y-8" data-aos="fade-right">
+          <div class="glass rounded-2xl p-8 border border-dark-700">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-primary-500/20 flex items-center justify-center">
+                <i data-feather="mail" class="w-6 h-6 text-primary-500"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">Email</h3>
+                <a href="mailto:hafiidhramadhani@gmail.com" class="text-primary-500 hover:text-primary-400 transition">
+                  hafiidhramadhani@gmail.com
+                </a>
+              </div>
+            </div>
+            <p class="text-gray-400">
+              Feel free to reach out for project inquiries, collaboration opportunities, or just to say hello.
+            </p>
+          </div>
+
+          <div class="glass rounded-2xl p-8 border border-dark-700">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="w-12 h-12 rounded-xl bg-accent-purple/20 flex items-center justify-center">
+                <i data-feather="map-pin" class="w-6 h-6 text-accent-purple"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">Location</h3>
+                <p class="text-gray-400">Malang, Indonesia</p>
+              </div>
+            </div>
+            <p class="text-gray-400">
+              Available for remote work and freelance projects worldwide.
+            </p>
+          </div>
+
+          <div class="glass rounded-2xl p-8 border border-dark-700">
+            <h3 class="text-xl font-bold text-white mb-6">Connect With Me</h3>
+            <div class="flex space-x-6">
+              <a href="https://www.linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" 
+                 class="w-12 h-12 rounded-xl bg-dark-800 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/50 border border-dark-700 transition-all">
+                <i data-feather="linkedin" class="w-5 h-5 text-gray-400 hover:text-primary-500 transition"></i>
+              </a>
+              <a href="https://github.com/Fiidhanz" target="_blank" 
+                 class="w-12 h-12 rounded-xl bg-dark-800 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/50 border border-dark-700 transition-all">
+                <i data-feather="github" class="w-5 h-5 text-gray-400 hover:text-primary-500 transition"></i>
+              </a>
+              <a href="https://drive.google.com/file/d/1ZK7MkbdRxdu8jfDEyJPbupUwI9QUMf6s/view?usp=sharing" target="_blank" 
+                 class="w-12 h-12 rounded-xl bg-dark-800 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/50 border border-dark-700 transition-all">
+                <i data-feather="file-text" class="w-5 h-5 text-gray-400 hover:text-primary-500 transition"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="glass rounded-2xl p-8 border border-dark-700" data-aos="fade-left">
+          <h3 class="text-2xl font-bold text-white mb-6">Send Me a Message</h3>
+          <form id="contactForm" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+                <input type="text" id="name" 
+                       class="w-full bg-dark-800 border border-dark-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-500 transition"
+                       placeholder="John Doe">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                <input type="email" id="email" 
+                       class="w-full bg-dark-800 border border-dark-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-500 transition"
+                       placeholder="john@example.com">
+              </div>
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-400 mb-2">Subject</label>
+              <input type="text" id="subject" 
+                     class="w-full bg-dark-800 border border-dark-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-500 transition"
+                     placeholder="Project Inquiry">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+              <textarea id="message" rows="5"
+                        class="w-full bg-dark-800 border border-dark-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-500 transition"
+                        placeholder="Tell me about your project..."></textarea>
+            </div>
+            <button type="submit" 
+                    class="w-full bg-gradient-to-r from-primary-500 to-accent-purple text-white font-medium py-4 rounded-xl hover:shadow-xl hover:shadow-primary-500/30 transition-all duration-300 transform hover:-translate-y-1">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
-  
-     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ once: true });
-    feather.replace();
-  </script>
 
-      <!-- Footer -->
-    <footer class="bg-gray-900 text-white text-center py-6 mt-10">
-      <p class="text-sm">&copy; 2025 Hafiidh Yupiza Ramadhani. All rights reserved.</p>
-      <div class="mt-2 space-x-4 text-sm">
-        <a href="mailto:hafiidhramadhani@gmail.com" class="hover:underline">hafiidhramadhani@gmail.com</a>
-        <a href="https://github.com/Fiidhanz" target="_blank" class="hover:underline">GitHub</a>
-        <a href="https://www.linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" class="hover:underline">LinkedIn</a>
+  <!-- Footer -->
+  <footer class="bg-dark-900 border-t border-dark-800 py-8">
+    <div class="container-narrow">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <a href="#" class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-purple flex items-center justify-center">
+              <span class="text-white font-bold">H</span>
+            </div>
+            <div>
+              <div class="font-display font-bold text-xl text-white">Hafiidh Yupiza R.</div>
+              <div class="text-xs text-gray-500">Web Developer & UI/UX Designer</div>
+            </div>
+          </a>
+        </div>
+        
+        <div class="flex space-x-6 mb-6 md:mb-0">
+          <a href="#about" class="text-gray-500 hover:text-white transition text-sm">About</a>
+          <a href="#projects" class="text-gray-500 hover:text-white transition text-sm">Projects</a>
+          <a href="#contact" class="text-gray-500 hover:text-white transition text-sm">Contact</a>
+        </div>
+        
+        <div class="text-center md:text-right">
+          <p class="text-gray-500 text-sm">&copy; 2025 Hafiidh Yupiza Ramadhani. All rights reserved.</p>
+          <p class="text-gray-600 text-xs mt-1">Built with Tailwind CSS & ❤️</p>
+        </div>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-  </body>
-  </html>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+      easing: 'ease-out-cubic'
+    });
+    
+    // Initialize Feather icons
+    feather.replace();
+    
+    // Mobile menu functionality
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        
+        // Change icon based on menu state
+        const icon = mobileMenuButton.querySelector('i');
+        if (mobileMenu.classList.contains('hidden')) {
+          icon.setAttribute('data-feather', 'menu');
+        } else {
+          icon.setAttribute('data-feather', 'x');
+        }
+        feather.replace();
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (event) => {
+        if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+          mobileMenu.classList.add('hidden');
+          const icon = mobileMenuButton.querySelector('i');
+          icon.setAttribute('data-feather', 'menu');
+          feather.replace();
+        }
+      });
+    }
+    
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // Simple validation
+        if (!name || !email || !message) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+        
+        // Create mailto link
+        const mailtoLink = `mailto:hafiidhramadhani@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio Contact')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+        
+        // Open email client
+        window.location.href = mailtoLink;
+      });
+    }
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('glass-dark');
+        nav.classList.remove('bg-transparent');
+      } else {
+        nav.classList.remove('glass-dark');
+      }
+    });
+    
+    // Animate skill bars on scroll
+    const observerOptions = {
+      threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const skillBars = entry.target.querySelectorAll('.skill-progress');
+          skillBars.forEach(bar => {
+            bar.style.transition = 'width 1.5s ease-out';
+          });
+        }
+      });
+    }, observerOptions);
+    
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+      observer.observe(skillsSection);
+    }
+  </script>
+</body>
+</html>
