@@ -48,7 +48,9 @@
               'cyan': '#00f3ff',
               'purple': '#b967ff',
               'pink': '#ff2d95',
-              'blue': '#0066ff'
+              'blue': '#0066ff',
+              'green': '#00ff88',
+              'yellow': '#ffd700'
             },
             'glass': {
               'light': 'rgba(255, 255, 255, 0.05)',
@@ -66,7 +68,14 @@
             'fade-in': 'fade-in 1s ease-out',
             'marquee': 'marquee 25s linear infinite',
             'typing': 'typing 3.5s steps(40, end)',
-            'blink-caret': 'blink-caret .75s step-end infinite'
+            'blink-caret': 'blink-caret .75s step-end infinite',
+            'spin-slow': 'spin 20s linear infinite',
+            'pulse-strong': 'pulse 1.5s ease-in-out infinite',
+            'bounce-slow': 'bounce 3s infinite',
+            'float-3d': 'float3d 8s ease-in-out infinite',
+            'particle-flow': 'particleFlow 20s linear infinite',
+            'ripple': 'ripple 2s linear infinite',
+            'orbit': 'orbit 15s linear infinite'
           },
           keyframes: {
             'gradient': {
@@ -76,6 +85,11 @@
             'float': {
               '0%, 100%': { transform: 'translateY(0px)' },
               '50%': { transform: 'translateY(-20px)' }
+            },
+            'float3d': {
+              '0%, 100%': { transform: 'translateY(0px) rotateX(0deg) rotateY(0deg)' },
+              '33%': { transform: 'translateY(-20px) rotateX(5deg) rotateY(5deg)' },
+              '66%': { transform: 'translateY(-10px) rotateX(-5deg) rotateY(-5deg)' }
             },
             'pulse-glow': {
               '0%, 100%': { 
@@ -114,13 +128,28 @@
             'blink-caret': {
               'from, to': { 'border-color': 'transparent' },
               '50%': { 'border-color': '#00f3ff' }
+            },
+            'particleFlow': {
+              '0%': { transform: 'translateY(100vh) translateX(0)' },
+              '100%': { transform: 'translateY(-100vh) translateX(100px)' }
+            },
+            'ripple': {
+              '0%': { transform: 'scale(0.8)', opacity: '1' },
+              '100%': { transform: 'scale(2)', opacity: '0' }
+            },
+            'orbit': {
+              '0%': { transform: 'rotate(0deg) translateX(150px) rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg) translateX(150px) rotate(-360deg)' }
             }
           },
           backgroundImage: {
             'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
             'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')",
-            'grid': "url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23000000%22 fill-opacity=%220.05%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
+            'grid': "url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23000000%22 fill-opacity=%220.05%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+            'circuit': "url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
+            'code-bg': "url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
+            'gradient-space': "linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #f093fb 100%)"
           }
         }
       }
@@ -140,6 +169,8 @@
       --neon-purple: #b967ff;
       --neon-pink: #ff2d95;
       --neon-blue: #0066ff;
+      --neon-green: #00ff88;
+      --neon-yellow: #ffd700;
       --dark-bg: #0a0a0f;
       --darker-bg: #050508;
     }
@@ -160,7 +191,46 @@
       background: var(--dark-bg);
       color: #f0f0f0;
       overflow-x: hidden;
-      cursor: default;
+      cursor: none;
+    }
+    
+    /* Enhanced Cursor System */
+    .cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--neon-cyan);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transition: transform 0.1s ease;
+      box-shadow: 0 0 20px var(--neon-cyan);
+    }
+    
+    .cursor-ring {
+      width: 30px;
+      height: 30px;
+      border: 2px solid var(--neon-cyan);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      mix-blend-mode: difference;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+    }
+    
+    .cursor-trail {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+      pointer-events: none;
+      z-index: 9997;
+      opacity: 0;
+      mix-blend-mode: difference;
     }
     
     /* Custom Scrollbar */
@@ -180,6 +250,7 @@
     
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(180deg, var(--neon-pink), var(--neon-blue));
+      box-shadow: 0 0 20px rgba(255, 45, 149, 0.5);
     }
     
     /* Glass Effects */
@@ -197,13 +268,6 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
     
-    .glass-light {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-    }
-    
     /* Gradient Text */
     .gradient-text {
       background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink), var(--neon-blue));
@@ -214,23 +278,77 @@
       animation: text-gradient 6s ease infinite;
     }
     
-    .gradient-text-static {
-      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* Background Layers */
+    .bg-layered {
+      position: relative;
     }
     
-    /* Neon Glow */
-    .neon-glow {
-      filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.3))
-             drop-shadow(0 0 40px rgba(185, 103, 255, 0.2));
+    .bg-layered::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.1;
+      z-index: -2;
     }
     
-    .neon-glow-hover:hover {
-      filter: drop-shadow(0 0 30px rgba(0, 243, 255, 0.5))
-             drop-shadow(0 0 60px rgba(185, 103, 255, 0.3));
-      transition: filter 0.3s ease;
+    .bg-layered::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(10,10,15,0.9), rgba(10,10,15,0.7));
+      z-index: -1;
+    }
+    
+    /* Particle System */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Floating Code Elements */
+    .floating-code {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      color: rgba(0, 243, 255, 0.3);
+      font-size: 14px;
+      user-select: none;
+      pointer-events: none;
+      animation: float 20s linear infinite;
+    }
+    
+    /* Neon Grid */
+    .neon-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(185, 103, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -1;
+      pointer-events: none;
+      animation: float 60s linear infinite;
+    }
+    
+    /* 3D Floating Elements */
+    .float-3d {
+      animation: float3d 8s ease-in-out infinite;
+      transform-style: preserve-3d;
+      perspective: 1000px;
     }
     
     /* Animated Background */
@@ -240,187 +358,54 @@
       animation: gradient 15s ease infinite;
     }
     
-    /* Noise Texture */
-    .noise-texture {
-      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><filter id="a"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23a)" opacity=".03"/></svg>');
-      pointer-events: none;
-    }
-    
-    /* Grid Background */
-    .grid-bg {
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-    }
-    
-    /* Floating Elements */
-    .floating {
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    .floating-delay-1 {
-      animation: float 6s ease-in-out infinite;
-      animation-delay: -2s;
-    }
-    
-    .floating-delay-2 {
-      animation: float 6s ease-in-out infinite;
-      animation-delay: -4s;
-    }
-    
-    /* Particle Container */
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-    
-    /* Typewriter Effect */
-    .typewriter {
-      overflow: hidden;
-      border-right: .15em solid var(--neon-cyan);
-      white-space: nowrap;
-      animation: 
-        typing 3.5s steps(40, end),
-        blink-caret .75s step-end infinite;
-    }
-    
-    /* Shimmer Effect */
-    .shimmer {
-      background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 255, 255, 0.1) 50%, 
-        transparent 100%);
-      background-size: 1000px 100%;
-      animation: shimmer 2s infinite;
-    }
-    
-    /* Custom Cursor */
-    .cursor-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--neon-cyan);
+    /* Ripple Effect */
+    .ripple {
+      position: absolute;
       border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: difference;
-      transition: transform 0.2s ease;
-    }
-    
-    .cursor-ring {
-      width: 40px;
-      height: 40px;
-      border: 2px solid rgba(0, 243, 255, 0.5);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      mix-blend-mode: difference;
-      transition: all 0.3s ease;
-    }
-    
-    /* Section Styles */
-    .section-padding {
-      padding: 8rem 0;
-    }
-    
-    .container-narrow {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    
-    /* Card Hover Effects */
-    .card-3d {
-      transform-style: preserve-3d;
-      perspective: 1000px;
-    }
-    
-    .card-hover {
-      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    .card-hover:hover {
-      transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
-      box-shadow: 
-        0 50px 100px rgba(0, 0, 0, 0.5),
-        0 0 100px rgba(0, 243, 255, 0.1),
-        inset 0 0 50px rgba(185, 103, 255, 0.05);
-    }
-    
-    /* Gradient Border */
-    .gradient-border {
-      position: relative;
-      background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
-                  linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink)) border-box;
-      border: 2px solid transparent;
-    }
-    
-    /* Marquee */
-    .marquee-container {
-      mask-image: linear-gradient(
-        to right,
-        transparent,
-        black 20%,
-        black 80%,
-        transparent
-      );
-    }
-    
-    /* Loading Animation */
-    .loading-dots::after {
-      content: '';
-      animation: dots 1.5s steps(4, end) infinite;
-    }
-    
-    @keyframes dots {
-      0%, 20% { content: '.'; }
-      40% { content: '..'; }
-      60% { content: '...'; }
-      80%, 100% { content: ''; }
+      border: 2px solid var(--neon-cyan);
+      animation: ripple 2s linear infinite;
     }
     
     /* Responsive */
     @media (max-width: 768px) {
-      .section-padding {
-        padding: 4rem 0;
+      body {
+        cursor: auto;
       }
       
-      .container-narrow {
-        padding: 0 1.5rem;
+      .cursor-dot,
+      .cursor-ring,
+      .cursor-trail {
+        display: none;
       }
       
-      .typewriter {
-        animation: none;
-        border-right: none;
-        white-space: normal;
+      .bg-layered::before {
+        background-attachment: scroll;
       }
     }
   </style>
 </head>
 
 <body class="relative overflow-x-hidden">
-  <!-- Custom Cursor -->
+  <!-- Enhanced Cursor System -->
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
   
-  <!-- Particle Background -->
+  <!-- Background Layers -->
+  <div class="fixed inset-0 bg-layered"></div>
+  
+  <!-- Neon Grid -->
+  <div class="neon-grid"></div>
+  
+  <!-- Particle Container -->
   <div id="particles-js"></div>
   
-  <!-- Noise Overlay -->
-  <div class="fixed inset-0 noise-texture pointer-events-none z-0"></div>
+  <!-- Floating Code Elements -->
+  <div id="floating-code"></div>
   
-  <!-- Grid Overlay -->
-  <div class="fixed inset-0 grid-bg pointer-events-none z-0 opacity-10"></div>
-  
-  <!-- Animated Background -->
-  <div class="fixed inset-0 animated-bg opacity-50"></div>
+  <!-- Animated Orbs -->
+  <div class="absolute w-96 h-96 bg-gradient-to-r from-neon-cyan/20 to-neon-purple/20 rounded-full blur-3xl floating -left-48 -top-48"></div>
+  <div class="absolute w-96 h-96 bg-gradient-to-r from-neon-pink/20 to-neon-blue/20 rounded-full blur-3xl floating-delay-1 -right-48 -bottom-48"></div>
+  <div class="absolute w-64 h-64 bg-gradient-to-r from-neon-green/20 to-neon-yellow/20 rounded-full blur-3xl float-3d top-1/2 left-1/4"></div>
   
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 glass-heavy py-5">
@@ -429,9 +414,9 @@
         <!-- Logo -->
         <a href="#" class="group flex items-center space-x-3">
           <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-xl blur opacity-70 group-hover:opacity-100 transition-opacity"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-xl blur opacity-70 group-hover:opacity-100 transition-opacity animate-pulse"></div>
             <div class="relative w-10 h-10 rounded-xl bg-dark-bg flex items-center justify-center">
-              <span class="text-2xl font-bold gradient-text-static">H</span>
+              <span class="text-2xl font-bold gradient-text">H</span>
             </div>
           </div>
           <div>
@@ -443,52 +428,52 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-10">
           <div class="flex space-x-8">
-            <a href="#hero" class="text-sm text-gray-400 hover:text-neon-cyan transition-all duration-300 group">
+            <a href="#hero" class="text-sm text-gray-400 hover:text-neon-cyan transition-all duration-300 group relative">
               <span class="relative">
                 Home
                 <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-cyan group-hover:w-full transition-all duration-300"></span>
               </span>
             </a>
-            <a href="#about" class="text-sm text-gray-400 hover:text-neon-cyan transition-all duration-300 group">
+            <a href="#about" class="text-sm text-gray-400 hover:text-neon-purple transition-all duration-300 group relative">
               <span class="relative">
                 About
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-cyan group-hover:w-full transition-all duration-300"></span>
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-purple group-hover:w-full transition-all duration-300"></span>
               </span>
             </a>
-            <a href="#work" class="text-sm text-gray-400 hover:text-neon-cyan transition-all duration-300 group">
+            <a href="#work" class="text-sm text-gray-400 hover:text-neon-pink transition-all duration-300 group relative">
               <span class="relative">
                 Work
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-cyan group-hover:w-full transition-all duration-300"></span>
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-pink group-hover:w-full transition-all duration-300"></span>
               </span>
             </a>
-            <a href="#projects" class="text-sm text-gray-400 hover:text-neon-cyan transition-all duration-300 group">
+            <a href="#projects" class="text-sm text-gray-400 hover:text-neon-blue transition-all duration-300 group relative">
               <span class="relative">
                 Projects
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-cyan group-hover:w-full transition-all duration-300"></span>
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-blue group-hover:w-full transition-all duration-300"></span>
               </span>
             </a>
-            <a href="#contact" class="text-sm text-gray-400 hover:text-neon-cyan transition-all duration-300 group">
+            <a href="#contact" class="text-sm text-gray-400 hover:text-neon-green transition-all duration-300 group relative">
               <span class="relative">
                 Contact
-                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-cyan group-hover:w-full transition-all duration-300"></span>
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-green group-hover:w-full transition-all duration-300"></span>
               </span>
             </a>
           </div>
           
           <div class="flex items-center space-x-4">
-            <div class="w-20 h-8 rounded-full glass flex items-center justify-center">
-              <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse-glow"></div>
-              <span class="ml-2 text-xs text-gray-300">AVAILABLE</span>
+            <div class="w-20 h-8 rounded-full glass flex items-center justify-center group">
+              <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse-glow group-hover:animate-pulse-strong"></div>
+              <span class="ml-2 text-xs text-gray-300 group-hover:text-neon-green transition">AVAILABLE</span>
             </div>
-            <a href="#contact" class="px-6 py-2 rounded-full bg-gradient-to-r from-neon-cyan to-neon-purple text-dark-bg font-semibold text-sm hover:shadow-xl hover:shadow-neon-cyan/30 transition-all duration-300 transform hover:-translate-y-0.5">
+            <a href="#contact" class="px-6 py-2 rounded-full bg-gradient-to-r from-neon-cyan to-neon-purple text-dark-bg font-semibold text-sm hover:shadow-xl hover:shadow-neon-cyan/30 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-105">
               Let's Talk
             </a>
           </div>
         </div>
         
         <!-- Mobile Menu Button -->
-        <button id="mobileMenuButton" class="md:hidden glass w-12 h-12 rounded-xl flex items-center justify-center">
-          <i data-feather="menu" class="w-6 h-6 text-white"></i>
+        <button id="mobileMenuButton" class="md:hidden glass w-12 h-12 rounded-xl flex items-center justify-center group">
+          <i data-feather="menu" class="w-6 h-6 text-white group-hover:text-neon-cyan transition"></i>
         </button>
       </div>
     </div>
@@ -496,14 +481,14 @@
 
   <!-- Hero Section -->
   <section id="hero" class="min-h-screen relative flex items-center justify-center overflow-hidden section-padding pt-20">
-    <!-- Animated Orbs -->
-    <div class="absolute w-96 h-96 bg-gradient-to-r from-neon-cyan/20 to-neon-purple/20 rounded-full blur-3xl floating -left-48 -top-48"></div>
-    <div class="absolute w-96 h-96 bg-gradient-to-r from-neon-pink/20 to-neon-blue/20 rounded-full blur-3xl floating-delay-1 -right-48 -bottom-48"></div>
+    <!-- 3D Animated Elements -->
+    <div class="absolute w-64 h-64 border border-neon-cyan/30 rounded-full float-3d left-10 top-20"></div>
+    <div class="absolute w-80 h-80 border border-neon-purple/30 rounded-full float-3d right-20 bottom-32" style="animation-delay: -2s;"></div>
     
     <div class="container-narrow relative z-10">
       <div class="max-w-6xl mx-auto">
         <!-- Hero Badge -->
-        <div class="inline-flex items-center glass px-4 py-2 rounded-full mb-8 animate-slide-up">
+        <div class="inline-flex items-center glass px-4 py-2 rounded-full mb-8 animate-slide-up hover:scale-105 transition-transform">
           <div class="w-2 h-2 rounded-full bg-neon-cyan animate-pulse-glow mr-2"></div>
           <span class="text-sm text-gray-300">Full Stack Developer • UI/UX Designer • Digital Creator</span>
         </div>
@@ -511,13 +496,13 @@
         <!-- Main Heading -->
         <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 animate-slide-up" style="animation-delay: 0.1s">
           <span class="block text-white">CREATING</span>
-          <span class="gradient-text">DIGITAL</span>
-          <span class="block text-white">EXPERIENCES<span class="text-neon-cyan">_</span></span>
+          <span class="gradient-text animate-pulse">DIGITAL</span>
+          <span class="block text-white">EXPERIENCES<span class="text-neon-cyan animate-blink-caret">_</span></span>
         </h1>
         
         <!-- Subheading -->
         <div class="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12 animate-slide-up" style="animation-delay: 0.2s">
-          <p class="mb-4">I transform <span class="text-neon-cyan font-semibold">ideas</span> into immersive digital experiences through</p>
+          <p class="mb-4">I transform <span class="text-neon-cyan font-semibold animate-pulse">ideas</span> into immersive digital experiences through</p>
           <div class="typewriter-container">
             <span class="typewriter text-neon-purple font-mono font-bold">Code • Design • Innovation • Excellence</span>
           </div>
@@ -525,23 +510,25 @@
         
         <!-- CTA Buttons -->
         <div class="flex flex-wrap gap-6 animate-slide-up" style="animation-delay: 0.3s">
-          <a href="#projects" class="group relative px-8 py-4 rounded-xl bg-gradient-to-r from-neon-cyan to-neon-purple text-dark-bg font-bold text-lg overflow-hidden">
+          <a href="#projects" class="group relative px-8 py-4 rounded-xl bg-gradient-to-r from-neon-cyan to-neon-purple text-dark-bg font-bold text-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
             <span class="relative z-10">Explore My Work</span>
             <div class="absolute inset-0 bg-gradient-to-r from-neon-purple to-neon-pink opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute inset-0 shimmer opacity-0 group-hover:opacity-30"></div>
           </a>
           
-          <a href="#contact" class="group relative px-8 py-4 rounded-xl glass border border-gray-800 hover:border-neon-cyan/50 text-white font-bold text-lg overflow-hidden">
+          <a href="#contact" class="group relative px-8 py-4 rounded-xl glass border border-gray-800 hover:border-neon-cyan/50 text-white font-bold text-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
             <span class="relative z-10">Get In Touch</span>
             <div class="absolute inset-0 bg-gradient-to-r from-neon-cyan/10 to-neon-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
         </div>
         
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#about" class="flex flex-col items-center">
-            <span class="text-xs text-gray-500 mb-2">SCROLL</span>
-            <div class="w-6 h-10 rounded-full glass border border-gray-800 flex justify-center">
-              <div class="w-1 h-3 bg-neon-cyan rounded-full mt-2 animate-pulse"></div>
+        <!-- Animated Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+          <a href="#about" class="flex flex-col items-center group">
+            <span class="text-xs text-gray-500 mb-2 group-hover:text-neon-cyan transition">SCROLL</span>
+            <div class="w-6 h-10 rounded-full glass border border-gray-800 group-hover:border-neon-cyan transition flex justify-center relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-b from-neon-cyan/0 via-neon-cyan/50 to-neon-cyan/0 animate-particle-flow"></div>
+              <div class="w-1 h-3 bg-neon-cyan rounded-full mt-2 animate-pulse z-10"></div>
             </div>
           </a>
         </div>
@@ -551,45 +538,59 @@
 
   <!-- About Section -->
   <section id="about" class="relative section-padding">
-    <!-- Section Background -->
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-dark-bg/50 to-dark-bg"></div>
+    <!-- Animated Background Image -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 bg-code-bg bg-cover bg-center bg-fixed"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-bg/80 to-dark-bg"></div>
+    </div>
     
     <div class="container-narrow relative z-10">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Left Column - Visual -->
+        <!-- Left Column - Enhanced Visual -->
         <div class="relative">
-          <!-- Floating Elements -->
-          <div class="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-br from-neon-cyan/10 to-neon-purple/10 rounded-full blur-2xl floating"></div>
-          <div class="absolute -bottom-10 -right-10 w-60 h-60 bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 rounded-full blur-2xl floating-delay-1"></div>
-          
-          <!-- Main Card -->
-          <div class="relative card-3d">
-            <div class="gradient-border rounded-3xl p-8 card-hover">
-              <div class="aspect-square rounded-2xl overflow-hidden mb-6">
-                <div class="w-full h-full bg-gradient-to-br from-neon-cyan/20 via-neon-purple/20 to-neon-pink/20 flex items-center justify-center">
-                  <div class="text-center">
-                    <div class="text-8xl mb-4">👨‍💻</div>
-                    <div class="text-2xl font-bold text-white">HAFIIDH</div>
-                    <div class="text-neon-cyan">Digital Architect</div>
+          <!-- Floating 3D Card -->
+          <div class="relative card-3d group">
+            <div class="gradient-border rounded-3xl p-8 card-hover transform-gpu">
+              <div class="aspect-square rounded-2xl overflow-hidden mb-6 relative">
+                <!-- Animated Background -->
+                <div class="absolute inset-0 bg-gradient-space animate-gradient"></div>
+                
+                <!-- Profile Visual -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-center relative">
+                    <div class="text-8xl mb-4 animate-float">👨‍💻</div>
+                    <div class="text-2xl font-bold text-white bg-dark-bg/80 px-6 py-2 rounded-full">HAFIIDH</div>
+                    <div class="text-neon-cyan mt-2 font-mono">Digital Architect</div>
                   </div>
                 </div>
+                
+                <!-- Floating Particles -->
+                <div class="absolute top-4 left-4 w-3 h-3 bg-neon-cyan rounded-full animate-float" style="animation-delay: -1s;"></div>
+                <div class="absolute bottom-4 right-4 w-4 h-4 bg-neon-purple rounded-full animate-float" style="animation-delay: -2s;"></div>
+                <div class="absolute top-4 right-4 w-2 h-2 bg-neon-pink rounded-full animate-float" style="animation-delay: -3s;"></div>
               </div>
               
-              <!-- Stats -->
+              <!-- Animated Stats -->
               <div class="grid grid-cols-3 gap-4">
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-neon-cyan mb-1">20+</div>
-                  <div class="text-xs text-gray-400">PROJECTS</div>
+                <div class="text-center group">
+                  <div class="text-3xl font-bold text-neon-cyan mb-1 animate-count" data-target="20">0+</div>
+                  <div class="text-xs text-gray-400 group-hover:text-neon-cyan transition">PROJECTS</div>
                 </div>
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-neon-purple mb-1">3+</div>
-                  <div class="text-xs text-gray-400">YEARS</div>
+                <div class="text-center group">
+                  <div class="text-3xl font-bold text-neon-purple mb-1 animate-count" data-target="3">0+</div>
+                  <div class="text-xs text-gray-400 group-hover:text-neon-purple transition">YEARS</div>
                 </div>
-                <div class="text-center">
+                <div class="text-center group">
                   <div class="text-3xl font-bold text-neon-pink mb-1">100%</div>
-                  <div class="text-xs text-gray-400">SATISFACTION</div>
+                  <div class="text-xs text-gray-400 group-hover:text-neon-pink transition">SATISFACTION</div>
                 </div>
               </div>
+            </div>
+            
+            <!-- Orbiting Elements -->
+            <div class="absolute -inset-4">
+              <div class="absolute w-6 h-6 border border-neon-cyan/30 rounded-full animate-orbit"></div>
+              <div class="absolute w-4 h-4 border border-neon-purple/30 rounded-full animate-orbit" style="animation-delay: -5s; animation-duration: 12s;"></div>
             </div>
           </div>
         </div>
@@ -597,46 +598,61 @@
         <!-- Right Column - Content -->
         <div>
           <div class="inline-flex items-center mb-8">
-            <div class="w-16 h-0.5 bg-gradient-to-r from-neon-cyan to-neon-purple"></div>
-            <span class="mx-4 text-neon-cyan font-mono text-sm">ABOUT ME</span>
-            <div class="w-16 h-0.5 bg-gradient-to-r from-neon-purple to-neon-cyan"></div>
+            <div class="w-16 h-0.5 bg-gradient-to-r from-neon-cyan to-neon-purple animate-gradient"></div>
+            <span class="mx-4 text-neon-cyan font-mono text-sm animate-pulse">ABOUT ME</span>
+            <div class="w-16 h-0.5 bg-gradient-to-r from-neon-purple to-neon-cyan animate-gradient"></div>
           </div>
           
           <h2 class="text-4xl md:text-5xl font-display font-bold mb-8">
             Crafting The
-            <span class="gradient-text">Future</span>
+            <span class="gradient-text animate-pulse-strong">Future</span>
             Of Digital
           </h2>
           
           <div class="space-y-6 text-gray-300 mb-10">
             <p class="text-lg">
-              I'm <span class="text-neon-cyan font-semibold">Hafiidh Yupiza Ramadhani</span>, a passionate Informatics Engineering student at ITENAS Malang who breathes life into digital visions through code and design.
+              I'm <span class="text-neon-cyan font-semibold animate-pulse">Hafiidh Yupiza Ramadhani</span>, a passionate Informatics Engineering student at ITENAS Malang who breathes life into digital visions through code and design.
             </p>
             <p>
-              My expertise spans across <span class="text-neon-purple">full-stack development</span>, <span class="text-neon-pink">UI/UX design</span>, and creating immersive digital experiences that not only look stunning but perform exceptionally.
+              My expertise spans across <span class="text-neon-purple font-semibold">full-stack development</span>, <span class="text-neon-pink font-semibold">UI/UX design</span>, and creating immersive digital experiences that not only look stunning but perform exceptionally.
             </p>
             <p>
               I believe in the power of technology to transform ideas into reality, and I'm dedicated to pushing the boundaries of what's possible in the digital realm.
             </p>
           </div>
           
-          <!-- Tech Stack -->
+          <!-- Animated Tech Stack -->
           <div class="mb-10">
-            <h3 class="text-xl font-bold mb-4 text-white">Tech Stack</h3>
+            <h3 class="text-xl font-bold mb-4 text-white flex items-center">
+              Tech Stack
+              <span class="ml-2 text-xs px-2 py-1 bg-neon-cyan/20 text-neon-cyan rounded-full animate-pulse">HOVER</span>
+            </h3>
             <div class="flex flex-wrap gap-3">
-              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-cyan transition">Laravel</span>
-              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-purple transition">React</span>
-              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-pink transition">Tailwind CSS</span>
-              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-cyan transition">Figma</span>
-              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-purple transition">Three.js</span>
-              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-pink transition">MySQL</span>
+              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300 transform hover:scale-105 group">
+                <span class="group-hover:animate-pulse">Laravel</span>
+              </span>
+              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-purple hover:bg-neon-purple/10 transition-all duration-300 transform hover:scale-105 group">
+                <span class="group-hover:animate-pulse">React</span>
+              </span>
+              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-pink hover:bg-neon-pink/10 transition-all duration-300 transform hover:scale-105 group">
+                <span class="group-hover:animate-pulse">Tailwind CSS</span>
+              </span>
+              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300 transform hover:scale-105 group">
+                <span class="group-hover:animate-pulse">Figma</span>
+              </span>
+              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-purple hover:bg-neon-purple/10 transition-all duration-300 transform hover:scale-105 group">
+                <span class="group-hover:animate-pulse">Three.js</span>
+              </span>
+              <span class="px-4 py-2 glass rounded-full text-sm border border-gray-800 hover:border-neon-pink hover:bg-neon-pink/10 transition-all duration-300 transform hover:scale-105 group">
+                <span class="group-hover:animate-pulse">MySQL</span>
+              </span>
             </div>
           </div>
           
-          <a href="#contact" class="inline-flex items-center group">
-            <span class="mr-3 text-neon-cyan font-semibold">Let's Create Together</span>
-            <div class="w-8 h-8 rounded-full glass border border-neon-cyan flex items-center justify-center group-hover:bg-neon-cyan/10 transition">
-              <i data-feather="arrow-right" class="w-4 h-4 text-neon-cyan group-hover:translate-x-1 transition"></i>
+          <a href="#contact" class="inline-flex items-center group animate-float">
+            <span class="mr-3 text-neon-cyan font-semibold group-hover:animate-pulse">Let's Create Together</span>
+            <div class="w-8 h-8 rounded-full glass border border-neon-cyan flex items-center justify-center group-hover:bg-neon-cyan/20 transition-all duration-300 group-hover:scale-110">
+              <i data-feather="arrow-right" class="w-4 h-4 text-neon-cyan group-hover:translate-x-1 transition-transform"></i>
             </div>
           </a>
         </div>
@@ -645,8 +661,14 @@
   </section>
 
   <!-- Featured Work -->
-  <section id="work" class="relative section-padding">
-    <!-- Marquee -->
+  <section id="work" class="relative section-padding overflow-hidden">
+    <!-- Animated Background -->
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-bg/50 to-dark-bg"></div>
+      <div class="absolute inset-0 opacity-5 bg-circuit bg-cover bg-center"></div>
+    </div>
+    
+    <!-- Animated Marquee -->
     <div class="absolute top-0 left-0 right-0 overflow-hidden py-8">
       <div class="marquee-container">
         <div class="flex space-x-12 animate-marquee">
@@ -659,45 +681,47 @@
     <div class="container-narrow relative z-10 mt-20">
       <div class="text-center mb-16">
         <div class="inline-flex items-center mb-8">
-          <div class="w-16 h-0.5 bg-gradient-to-r from-neon-cyan to-neon-purple"></div>
-          <span class="mx-4 text-neon-cyan font-mono text-sm">FEATURED WORK</span>
-          <div class="w-16 h-0.5 bg-gradient-to-r from-neon-purple to-neon-cyan"></div>
+          <div class="w-16 h-0.5 bg-gradient-to-r from-neon-cyan to-neon-purple animate-gradient"></div>
+          <span class="mx-4 text-neon-cyan font-mono text-sm animate-pulse">FEATURED WORK</span>
+          <div class="w-16 h-0.5 bg-gradient-to-r from-neon-purple to-neon-cyan animate-gradient"></div>
         </div>
         
         <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">
           Selected
-          <span class="gradient-text">Projects</span>
+          <span class="gradient-text animate-pulse-strong">Projects</span>
         </h2>
         <p class="text-xl text-gray-400 max-w-2xl mx-auto">
           A showcase of my most impactful digital creations
         </p>
       </div>
       
-      <!-- Project Cards -->
+      <!-- Project Cards with Enhanced Animation -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Project 1 -->
         <div class="group relative card-hover">
-          <div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative glass rounded-3xl overflow-hidden h-full">
-            <div class="h-48 bg-gradient-to-br from-neon-cyan/30 to-neon-purple/30 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+          <div class="relative glass rounded-3xl overflow-hidden h-full transform-gpu">
+            <div class="h-48 bg-gradient-to-br from-neon-cyan/30 to-neon-purple/30 relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
               <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-5xl">💻</div>
+                <div class="text-5xl animate-float">💻</div>
               </div>
               <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 glass rounded-full text-xs font-medium text-neon-cyan">WEB APP</span>
+                <span class="px-3 py-1 glass rounded-full text-xs font-medium text-neon-cyan animate-pulse">WEB APP</span>
               </div>
+              <!-- Animated Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-bold text-white mb-3">KostLaundry</h3>
+              <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-neon-cyan transition">KostLaundry</h3>
               <p class="text-gray-400 mb-4">
                 Modern laundry service platform with real-time tracking, dark mode, and seamless WhatsApp integration.
               </p>
               <div class="flex items-center justify-between">
                 <div class="flex space-x-2">
-                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-neon-cyan">CSS3</span>
-                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-neon-purple">JavaScript</span>
+                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-neon-cyan animate-pulse">CSS3</span>
+                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-neon-purple animate-pulse">JavaScript</span>
                 </div>
-                <a href="https://github.com/Fiidhanz/KostLaundry" target="_blank" class="text-neon-cyan hover:text-neon-purple transition">
+                <a href="https://github.com/Fiidhanz/KostLaundry" target="_blank" class="text-neon-cyan hover:text-neon-purple transition transform hover:scale-125">
                   <i data-feather="arrow-up-right" class="w-5 h-5"></i>
                 </a>
               </div>
@@ -707,27 +731,28 @@
         
         <!-- Project 2 -->
         <div class="group relative card-hover">
-          <div class="absolute inset-0 bg-gradient-to-br from-neon-purple/20 to-neon-pink/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative glass rounded-3xl overflow-hidden h-full">
-            <div class="h-48 bg-gradient-to-br from-neon-purple/30 to-neon-pink/30 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-neon-purple/20 to-neon-pink/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+          <div class="relative glass rounded-3xl overflow-hidden h-full transform-gpu">
+            <div class="h-48 bg-gradient-to-br from-neon-purple/30 to-neon-pink/30 relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
               <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-5xl">🏪</div>
+                <div class="text-5xl animate-float" style="animation-delay: -1s;">🏪</div>
               </div>
               <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 glass rounded-full text-xs font-medium text-neon-purple">CRM SYSTEM</span>
+                <span class="px-3 py-1 glass rounded-full text-xs font-medium text-neon-purple animate-pulse">CRM SYSTEM</span>
               </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-bold text-white mb-3">TokoSuryaElektrik</h3>
+              <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-neon-purple transition">TokoSuryaElektrik</h3>
               <p class="text-gray-400 mb-4">
                 Comprehensive CRM system for electronics retail with inventory management and customer relationship features.
               </p>
               <div class="flex items-center justify-between">
                 <div class="flex space-x-2">
-                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-red-400">Laravel</span>
-                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-blue-400">MySQL</span>
+                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-red-400 animate-pulse">Laravel</span>
+                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-blue-400 animate-pulse">MySQL</span>
                 </div>
-                <a href="https://github.com/Fiidhanz/TokoSuryaElektrik" target="_blank" class="text-neon-cyan hover:text-neon-purple transition">
+                <a href="https://github.com/Fiidhanz/TokoSuryaElektrik" target="_blank" class="text-neon-cyan hover:text-neon-purple transition transform hover:scale-125">
                   <i data-feather="arrow-up-right" class="w-5 h-5"></i>
                 </a>
               </div>
@@ -737,27 +762,28 @@
         
         <!-- Project 3 -->
         <div class="group relative card-hover">
-          <div class="absolute inset-0 bg-gradient-to-br from-neon-pink/20 to-neon-blue/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative glass rounded-3xl overflow-hidden h-full">
-            <div class="h-48 bg-gradient-to-br from-neon-pink/30 to-neon-blue/30 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-neon-pink/20 to-neon-blue/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+          <div class="relative glass rounded-3xl overflow-hidden h-full transform-gpu">
+            <div class="h-48 bg-gradient-to-br from-neon-pink/30 to-neon-blue/30 relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
               <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-5xl">🎨</div>
+                <div class="text-5xl animate-float" style="animation-delay: -2s;">🎨</div>
               </div>
               <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 glass rounded-full text-xs font-medium text-neon-pink">UI/UX DESIGN</span>
+                <span class="px-3 py-1 glass rounded-full text-xs font-medium text-neon-pink animate-pulse">UI/UX DESIGN</span>
               </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-bold text-white mb-3">Herbari</h3>
+              <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-neon-pink transition">Herbari</h3>
               <p class="text-gray-400 mb-4">
                 Beautifully designed educational platform for herbal plants with interactive learning features and modern UI.
               </p>
               <div class="flex items-center justify-between">
                 <div class="flex space-x-2">
-                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-purple-400">Figma</span>
-                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-pink-400">Illustrator</span>
+                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-purple-400 animate-pulse">Figma</span>
+                  <span class="text-xs px-2 py-1 bg-dark-bg rounded text-pink-400 animate-pulse">Illustrator</span>
                 </div>
-                <a href="https://www.figma.com/design/deDLfdkCCeLX8fJDWRmqgZ/Herbari" target="_blank" class="text-neon-cyan hover:text-neon-purple transition">
+                <a href="https://www.figma.com/design/deDLfdkCCeLX8fJDWRmqgZ/Herbari" target="_blank" class="text-neon-cyan hover:text-neon-purple transition transform hover:scale-125">
                   <i data-feather="arrow-up-right" class="w-5 h-5"></i>
                 </a>
               </div>
@@ -766,12 +792,12 @@
         </div>
       </div>
       
-      <!-- View All Button -->
+      <!-- View All Button with Animation -->
       <div class="text-center mt-16">
-        <a href="#projects" class="inline-flex items-center group">
+        <a href="#projects" class="inline-flex items-center group animate-float">
           <span class="mr-4 text-lg text-gray-400 group-hover:text-white transition">View All Projects</span>
-          <div class="w-12 h-12 rounded-full glass border border-gray-800 group-hover:border-neon-cyan flex items-center justify-center group-hover:bg-neon-cyan/10 transition">
-            <i data-feather="arrow-down" class="w-5 h-5 text-gray-400 group-hover:text-neon-cyan group-hover:translate-y-1 transition"></i>
+          <div class="w-12 h-12 rounded-full glass border border-gray-800 group-hover:border-neon-cyan flex items-center justify-center group-hover:bg-neon-cyan/10 transition-all duration-300 group-hover:scale-110">
+            <i data-feather="arrow-down" class="w-5 h-5 text-gray-400 group-hover:text-neon-cyan group-hover:translate-y-1 transition-all"></i>
           </div>
         </a>
       </div>
@@ -781,25 +807,32 @@
   <!-- Contact Section -->
   <section id="contact" class="relative section-padding overflow-hidden">
     <!-- Animated Background -->
-    <div class="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-bg/95 to-dark-bg"></div>
-    <div class="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-neon-cyan/5 to-transparent"></div>
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-bg/95 to-dark-bg"></div>
+      <div class="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-neon-cyan/5 to-transparent"></div>
+      <div class="absolute inset-0 opacity-10 bg-circuit bg-cover bg-center"></div>
+    </div>
     
-    <!-- Floating Elements -->
-    <div class="absolute w-96 h-96 bg-gradient-to-r from-neon-cyan/10 to-neon-purple/10 rounded-full blur-3xl -left-48 top-1/4 floating"></div>
-    <div class="absolute w-96 h-96 bg-gradient-to-r from-neon-pink/10 to-neon-blue/10 rounded-full blur-3xl -right-48 bottom-1/4 floating-delay-1"></div>
+    <!-- Floating 3D Elements -->
+    <div class="absolute w-96 h-96 bg-gradient-to-r from-neon-cyan/10 to-neon-purple/10 rounded-full blur-3xl -left-48 top-1/4 float-3d"></div>
+    <div class="absolute w-96 h-96 bg-gradient-to-r from-neon-pink/10 to-neon-blue/10 rounded-full blur-3xl -right-48 bottom-1/4 float-3d" style="animation-delay: -4s;"></div>
+    
+    <!-- Animated Rings -->
+    <div class="absolute w-64 h-64 border border-neon-cyan/20 rounded-full top-1/3 left-1/4 animate-spin-slow"></div>
+    <div class="absolute w-80 h-80 border border-neon-purple/20 rounded-full bottom-1/3 right-1/4 animate-spin-slow" style="animation-direction: reverse; animation-duration: 25s;"></div>
     
     <div class="container-narrow relative z-10">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-20">
           <div class="inline-flex items-center mb-8">
-            <div class="w-16 h-0.5 bg-gradient-to-r from-neon-cyan to-neon-purple"></div>
-            <span class="mx-4 text-neon-cyan font-mono text-sm">GET IN TOUCH</span>
-            <div class="w-16 h-0.5 bg-gradient-to-r from-neon-purple to-neon-cyan"></div>
+            <div class="w-16 h-0.5 bg-gradient-to-r from-neon-cyan to-neon-purple animate-gradient"></div>
+            <span class="mx-4 text-neon-cyan font-mono text-sm animate-pulse">GET IN TOUCH</span>
+            <div class="w-16 h-0.5 bg-gradient-to-r from-neon-purple to-neon-cyan animate-gradient"></div>
           </div>
           
           <h2 class="text-4xl md:text-6xl font-display font-bold mb-8">
             Let's Create
-            <span class="gradient-text">Something</span>
+            <span class="gradient-text animate-pulse-strong">Something</span>
             Amazing
           </h2>
           
@@ -809,20 +842,21 @@
         </div>
         
         <div class="grid lg:grid-cols-2 gap-16">
-          <!-- Contact Info -->
+          <!-- Contact Info with Enhanced Animation -->
           <div class="space-y-8">
             <!-- Contact Card 1 -->
             <div class="group relative card-hover">
               <div class="absolute inset-0 bg-gradient-to-r from-neon-cyan/10 to-neon-purple/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative glass rounded-2xl p-8 border border-gray-800 group-hover:border-neon-cyan/50 transition">
+              <div class="relative glass rounded-2xl p-8 border border-gray-800 group-hover:border-neon-cyan/50 transition transform-gpu group-hover:scale-[1.02]">
                 <div class="flex items-start space-x-4">
-                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center flex-shrink-0">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center flex-shrink-0 animate-pulse-glow">
                     <i data-feather="mail" class="w-6 h-6 text-dark-bg"></i>
                   </div>
                   <div>
                     <h3 class="text-xl font-bold text-white mb-2">Email</h3>
-                    <a href="mailto:hafiidhramadhani@gmail.com" class="text-neon-cyan hover:text-neon-purple transition text-lg">
+                    <a href="mailto:hafiidhramadhani@gmail.com" class="text-neon-cyan hover:text-neon-purple transition text-lg group/link inline-block">
                       hafiidhramadhani@gmail.com
+                      <span class="block h-0.5 bg-neon-cyan scale-x-0 group-hover/link:scale-x-100 transition-transform origin-left"></span>
                     </a>
                     <p class="text-gray-400 mt-2">Usually respond within 24 hours</p>
                   </div>
@@ -833,9 +867,9 @@
             <!-- Contact Card 2 -->
             <div class="group relative card-hover">
               <div class="absolute inset-0 bg-gradient-to-r from-neon-purple/10 to-neon-pink/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative glass rounded-2xl p-8 border border-gray-800 group-hover:border-neon-purple/50 transition">
+              <div class="relative glass rounded-2xl p-8 border border-gray-800 group-hover:border-neon-purple/50 transition transform-gpu group-hover:scale-[1.02]">
                 <div class="flex items-start space-x-4">
-                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-purple to-neon-pink flex items-center justify-center flex-shrink-0">
+                  <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-purple to-neon-pink flex items-center justify-center flex-shrink-0 animate-pulse-glow" style="animation-delay: -0.5s;">
                     <i data-feather="map-pin" class="w-6 h-6 text-dark-bg"></i>
                   </div>
                   <div>
@@ -847,68 +881,69 @@
               </div>
             </div>
             
-            <!-- Social Links -->
-            <div class="glass rounded-2xl p-8 border border-gray-800">
+            <!-- Social Links with Hover Effects -->
+            <div class="glass rounded-2xl p-8 border border-gray-800 group hover:border-neon-cyan/30 transition">
               <h3 class="text-xl font-bold text-white mb-6">Connect With Me</h3>
               <div class="flex space-x-4">
                 <a href="https://github.com/Fiidhanz" target="_blank" 
-                   class="w-14 h-14 rounded-xl glass border border-gray-800 hover:border-neon-cyan flex items-center justify-center hover:bg-neon-cyan/10 transition-all duration-300 group">
-                  <i data-feather="github" class="w-6 h-6 text-gray-400 group-hover:text-neon-cyan transition"></i>
+                   class="w-14 h-14 rounded-xl glass border border-gray-800 hover:border-neon-cyan flex items-center justify-center hover:bg-neon-cyan/10 transition-all duration-300 group/link transform hover:scale-110 hover:rotate-12">
+                  <i data-feather="github" class="w-6 h-6 text-gray-400 group-hover/link:text-neon-cyan transition"></i>
                 </a>
                 <a href="https://www.linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" 
-                   class="w-14 h-14 rounded-xl glass border border-gray-800 hover:border-neon-purple flex items-center justify-center hover:bg-neon-purple/10 transition-all duration-300 group">
-                  <i data-feather="linkedin" class="w-6 h-6 text-gray-400 group-hover:text-neon-purple transition"></i>
+                   class="w-14 h-14 rounded-xl glass border border-gray-800 hover:border-neon-purple flex items-center justify-center hover:bg-neon-purple/10 transition-all duration-300 group/link transform hover:scale-110 hover:-rotate-12">
+                  <i data-feather="linkedin" class="w-6 h-6 text-gray-400 group-hover/link:text-neon-purple transition"></i>
                 </a>
                 <a href="https://instagram.com/upza.sign_" target="_blank" 
-                   class="w-14 h-14 rounded-xl glass border border-gray-800 hover:border-neon-pink flex items-center justify-center hover:bg-neon-pink/10 transition-all duration-300 group">
-                  <i data-feather="instagram" class="w-6 h-6 text-gray-400 group-hover:text-neon-pink transition"></i>
+                   class="w-14 h-14 rounded-xl glass border border-gray-800 hover:border-neon-pink flex items-center justify-center hover:bg-neon-pink/10 transition-all duration-300 group/link transform hover:scale-110 hover:rotate-12">
+                  <i data-feather="instagram" class="w-6 h-6 text-gray-400 group-hover/link:text-neon-pink transition"></i>
                 </a>
                 <a href="https://drive.google.com/file/d/1ZK7MkbdRxdu8jfDEyJPbupUwI9QUMf6s/view" target="_blank" 
-                   class="w-14 h-14 rounded-xl glass border border-gray-800 hover:border-neon-blue flex items-center justify-center hover:bg-neon-blue/10 transition-all duration-300 group">
-                  <i data-feather="file-text" class="w-6 h-6 text-gray-400 group-hover:text-neon-blue transition"></i>
+                   class="w-14 h-14 rounded-xl glass border border-gray-800 hover:border-neon-blue flex items-center justify-center hover:bg-neon-blue/10 transition-all duration-300 group/link transform hover:scale-110 hover:-rotate-12">
+                  <i data-feather="file-text" class="w-6 h-6 text-gray-400 group-hover/link:text-neon-blue transition"></i>
                 </a>
               </div>
             </div>
           </div>
           
-          <!-- Contact Form -->
+          <!-- Contact Form with Enhanced Animation -->
           <div class="group relative card-hover">
             <div class="absolute inset-0 bg-gradient-to-r from-neon-cyan/10 via-neon-purple/10 to-neon-pink/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="relative glass rounded-3xl p-8 border border-gray-800 group-hover:border-neon-cyan/30 transition">
+            <div class="relative glass rounded-3xl p-8 border border-gray-800 group-hover:border-neon-cyan/30 transition transform-gpu group-hover:scale-[1.02]">
               <h3 class="text-2xl font-bold text-white mb-2">Send a Message</h3>
               <p class="text-gray-400 mb-8">Let's start a conversation about your project</p>
               
               <form id="contactForm" class="space-y-6">
                 <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+                  <div class="group/input">
+                    <label for="name" class="block text-sm font-medium text-gray-400 mb-2 group-hover/input:text-neon-cyan transition">Your Name</label>
                     <input type="text" id="name" required
-                           class="w-full bg-dark-bg/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-cyan transition placeholder-gray-600"
+                           class="w-full bg-dark-bg/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-cyan transition placeholder-gray-600 focus:scale-[1.02] focus:bg-dark-bg/70 group-hover/input:border-neon-cyan/50"
                            placeholder="John Doe">
                   </div>
-                  <div>
-                    <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                  <div class="group/input">
+                    <label for="email" class="block text-sm font-medium text-gray-400 mb-2 group-hover/input:text-neon-purple transition">Email Address</label>
                     <input type="email" id="email" required
-                           class="w-full bg-dark-bg/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-purple transition placeholder-gray-600"
+                           class="w-full bg-dark-bg/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-purple transition placeholder-gray-600 focus:scale-[1.02] focus:bg-dark-bg/70 group-hover/input:border-neon-purple/50"
                            placeholder="john@example.com">
                   </div>
                 </div>
-                <div>
-                  <label for="subject" class="block text-sm font-medium text-gray-400 mb-2">Subject</label>
+                <div class="group/input">
+                  <label for="subject" class="block text-sm font-medium text-gray-400 mb-2 group-hover/input:text-neon-pink transition">Subject</label>
                   <input type="text" id="subject"
-                         class="w-full bg-dark-bg/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-pink transition placeholder-gray-600"
+                         class="w-full bg-dark-bg/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-pink transition placeholder-gray-600 focus:scale-[1.02] focus:bg-dark-bg/70 group-hover/input:border-neon-pink/50"
                          placeholder="Project Inquiry">
                 </div>
-                <div>
-                  <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                <div class="group/input">
+                  <label for="message" class="block text-sm font-medium text-gray-400 mb-2 group-hover/input:text-neon-cyan transition">Message</label>
                   <textarea id="message" rows="5" required
-                            class="w-full bg-dark-bg/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-cyan transition placeholder-gray-600 resize-none"
+                            class="w-full bg-dark-bg/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-cyan transition placeholder-gray-600 resize-none focus:scale-[1.02] focus:bg-dark-bg/70 group-hover/input:border-neon-cyan/50"
                             placeholder="Tell me about your project..."></textarea>
                 </div>
                 <button type="submit" 
-                        class="w-full bg-gradient-to-r from-neon-cyan to-neon-purple text-dark-bg font-bold py-4 rounded-xl hover:shadow-xl hover:shadow-neon-cyan/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group">
-                  <span class="relative z-10">Send Message</span>
-                  <div class="absolute inset-0 bg-gradient-to-r from-neon-purple to-neon-pink opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        class="w-full bg-gradient-to-r from-neon-cyan to-neon-purple text-dark-bg font-bold py-4 rounded-xl hover:shadow-xl hover:shadow-neon-cyan/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] relative overflow-hidden group/btn">
+                  <span class="relative z-10 group-hover/btn:animate-pulse">Send Message</span>
+                  <div class="absolute inset-0 bg-gradient-to-r from-neon-purple to-neon-pink opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                  <div class="absolute inset-0 shimmer opacity-0 group-hover/btn:opacity-30"></div>
                 </button>
               </form>
             </div>
@@ -919,29 +954,44 @@
   </section>
 
   <!-- Footer -->
-  <footer class="relative border-t border-gray-900 py-12">
-    <div class="container-narrow">
+  <footer class="relative border-t border-gray-900 py-12 overflow-hidden">
+    <!-- Animated Background -->
+    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg to-transparent"></div>
+    
+    <div class="container-narrow relative z-10">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="mb-8 md:mb-0">
           <a href="#" class="flex items-center space-x-3 group">
             <div class="relative">
-              <div class="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-xl blur opacity-70 group-hover:opacity-100 transition-opacity"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-xl blur opacity-70 group-hover:opacity-100 transition-opacity animate-pulse"></div>
               <div class="relative w-10 h-10 rounded-xl bg-dark-bg flex items-center justify-center">
-                <span class="text-2xl font-bold gradient-text-static">H</span>
+                <span class="text-2xl font-bold gradient-text">H</span>
               </div>
             </div>
             <div>
               <div class="font-display font-bold text-xl text-white">HAFIIDH</div>
-              <div class="text-xs text-gray-500">Digital Creator & Developer</div>
+              <div class="text-xs text-gray-500 group-hover:text-neon-cyan transition">Digital Creator & Developer</div>
             </div>
           </a>
         </div>
         
         <div class="flex space-x-8 mb-8 md:mb-0">
-          <a href="#hero" class="text-gray-500 hover:text-neon-cyan transition text-sm">Home</a>
-          <a href="#about" class="text-gray-500 hover:text-neon-purple transition text-sm">About</a>
-          <a href="#work" class="text-gray-500 hover:text-neon-pink transition text-sm">Work</a>
-          <a href="#contact" class="text-gray-500 hover:text-neon-blue transition text-sm">Contact</a>
+          <a href="#hero" class="text-gray-500 hover:text-neon-cyan transition text-sm group relative">
+            Home
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-cyan group-hover:w-full transition-all"></span>
+          </a>
+          <a href="#about" class="text-gray-500 hover:text-neon-purple transition text-sm group relative">
+            About
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-purple group-hover:w-full transition-all"></span>
+          </a>
+          <a href="#work" class="text-gray-500 hover:text-neon-pink transition text-sm group relative">
+            Work
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-pink group-hover:w-full transition-all"></span>
+          </a>
+          <a href="#contact" class="text-gray-500 hover:text-neon-blue transition text-sm group relative">
+            Contact
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-blue group-hover:w-full transition-all"></span>
+          </a>
         </div>
         
         <div class="text-center md:text-right">
@@ -950,11 +1000,12 @@
         </div>
       </div>
       
-      <!-- Back to Top -->
+      <!-- Back to Top with Animation -->
       <div class="text-center mt-12">
-        <a href="#hero" class="inline-flex items-center group">
-          <div class="w-12 h-12 rounded-full glass border border-gray-800 group-hover:border-neon-cyan flex items-center justify-center group-hover:bg-neon-cyan/10 transition">
-            <i data-feather="arrow-up" class="w-5 h-5 text-gray-400 group-hover:text-neon-cyan group-hover:-translate-y-1 transition"></i>
+        <a href="#hero" class="inline-flex items-center group animate-bounce-slow">
+          <div class="w-12 h-12 rounded-full glass border border-gray-800 group-hover:border-neon-cyan flex items-center justify-center group-hover:bg-neon-cyan/10 transition-all duration-300 group-hover:scale-110 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-neon-cyan/0 via-neon-cyan/20 to-neon-cyan/0 animate-particle-flow"></div>
+            <i data-feather="arrow-up" class="w-5 h-5 text-gray-400 group-hover:text-neon-cyan group-hover:-translate-y-1 transition-all relative z-10"></i>
           </div>
         </a>
       </div>
@@ -977,68 +1028,230 @@
     // Initialize Feather icons
     feather.replace();
     
-    // Custom Cursor
+    // Enhanced Custom Cursor System
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorRing = document.querySelector('.cursor-ring');
+    const cursorTrails = [];
+    let mouseX = 0, mouseY = 0;
+    let trailCount = 0;
     
+    // Enhanced cursor movement
     document.addEventListener('mousemove', (e) => {
-      cursorDot.style.left = `${e.clientX}px`;
-      cursorDot.style.top = `${e.clientY}px`;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
       
-      setTimeout(() => {
-        cursorRing.style.left = `${e.clientX}px`;
-        cursorRing.style.top = `${e.clientY}px`;
-      }, 50);
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+      
+      // Smooth ring movement
+      gsap.to(cursorRing, {
+        left: mouseX,
+        top: mouseY,
+        duration: 0.2,
+        ease: "power2.out"
+      });
+      
+      // Create trail effect
+      if (trailCount % 3 === 0) {
+        createTrail(mouseX, mouseY);
+      }
+      trailCount++;
     });
     
+    function createTrail(x, y) {
+      const trail = document.createElement('div');
+      trail.className = 'cursor-trail';
+      trail.style.left = `${x}px`;
+      trail.style.top = `${y}px`;
+      trail.style.background = `linear-gradient(45deg, 
+        hsl(${Math.random() * 60 + 180}, 100%, 50%), 
+        hsl(${Math.random() * 60 + 270}, 100%, 50%))`;
+      
+      document.body.appendChild(trail);
+      
+      gsap.to(trail, {
+        x: (Math.random() - 0.5) * 40,
+        y: (Math.random() - 0.5) * 40,
+        scale: 0,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        onComplete: () => trail.remove()
+      });
+    }
+    
     // Interactive cursor effects
-    document.querySelectorAll('a, button, .card-hover').forEach(el => {
+    const interactiveElements = document.querySelectorAll('a, button, .card-hover, input, textarea');
+    
+    interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => {
-        cursorRing.style.transform = 'scale(1.5)';
-        cursorRing.style.borderColor = 'var(--neon-cyan)';
+        cursorRing.style.borderColor = getRandomNeonColor();
+        cursorRing.style.boxShadow = `0 0 40px ${getRandomNeonColor()}80`;
+        gsap.to(cursorRing, {
+          scale: 1.8,
+          duration: 0.3,
+          ease: "back.out(1.7)"
+        });
+        
+        // Add ripple effect
+        createRipple(el.getBoundingClientRect());
       });
       
       el.addEventListener('mouseleave', () => {
-        cursorRing.style.transform = 'scale(1)';
-        cursorRing.style.borderColor = 'rgba(0, 243, 255, 0.5)';
+        cursorRing.style.borderColor = 'var(--neon-cyan)';
+        cursorRing.style.boxShadow = '0 0 30px rgba(0, 243, 255, 0.5)';
+        gsap.to(cursorRing, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
       });
     });
     
-    // Particle Background
+    function getRandomNeonColor() {
+      const colors = ['#00f3ff', '#b967ff', '#ff2d95', '#0066ff', '#00ff88', '#ffd700'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    function createRipple(rect) {
+      const ripple = document.createElement('div');
+      ripple.className = 'ripple';
+      ripple.style.left = `${rect.left + rect.width/2}px`;
+      ripple.style.top = `${rect.top + rect.height/2}px`;
+      ripple.style.borderColor = getRandomNeonColor();
+      
+      document.body.appendChild(ripple);
+      
+      setTimeout(() => ripple.remove(), 2000);
+    }
+    
+    // Enhanced Particle Background
     particlesJS('particles-js', {
       particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: ["#00f3ff", "#b967ff", "#ff2d95", "#0066ff"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.5, random: true },
-        size: { value: 3, random: true },
+        number: { 
+          value: 120, 
+          density: { 
+            enable: true, 
+            value_area: 800 
+          } 
+        },
+        color: { 
+          value: ["#00f3ff", "#b967ff", "#ff2d95", "#0066ff", "#00ff88", "#ffd700"] 
+        },
+        shape: { 
+          type: ["circle", "triangle", "polygon"],
+          polygon: { nb_sides: 6 }
+        },
+        opacity: { 
+          value: 0.7, 
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: { 
+          value: 4, 
+          random: true,
+          anim: { enable: true, speed: 2, size_min: 0.1, sync: false }
+        },
         line_linked: {
           enable: true,
-          distance: 150,
+          distance: 200,
           color: "#00f3ff",
-          opacity: 0.2,
-          width: 1
+          opacity: 0.4,
+          width: 2,
+          shadow: {
+            enable: true,
+            blur: 5,
+            color: "#00f3ff"
+          }
         },
         move: {
           enable: true,
-          speed: 2,
+          speed: 3,
           direction: "none",
           random: true,
           straight: false,
           out_mode: "out",
-          bounce: false
+          bounce: false,
+          attract: { enable: true, rotateX: 600, rotateY: 1200 }
         }
       },
       interactivity: {
         detect_on: "canvas",
         events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" },
+          onhover: { 
+            enable: true, 
+            mode: ["grab", "bubble"],
+            parallax: { enable: true, force: 60, smooth: 10 }
+          },
+          onclick: { 
+            enable: true, 
+            mode: "push",
+            push: { particles_nb: 6 }
+          },
           resize: true
+        },
+        modes: {
+          grab: { distance: 200, line_linked: { opacity: 1 } },
+          bubble: { distance: 200, size: 10, duration: 2, opacity: 0.8 },
+          push: { particles_nb: 4 }
         }
       },
       retina_detect: true
     });
+    
+    // Create floating code elements
+    const codeSnippets = [
+      "console.log('Hello World!')",
+      "const innovation = creativity + technology;",
+      "function createMagic() { return '✨'; }",
+      "while(alive) { code(); }",
+      "<div class='awesome'></div>",
+      "export const brilliance = () => '🚀';",
+      "async function buildFuture() { await dream(); }"
+    ];
+    
+    const floatingCodeContainer = document.getElementById('floating-code');
+    
+    for (let i = 0; i < 15; i++) {
+      const codeEl = document.createElement('div');
+      codeEl.className = 'floating-code';
+      codeEl.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+      codeEl.style.left = `${Math.random() * 100}%`;
+      codeEl.style.top = `${Math.random() * 100}%`;
+      codeEl.style.animationDelay = `-${Math.random() * 20}s`;
+      codeEl.style.animationDuration = `${20 + Math.random() * 30}s`;
+      codeEl.style.opacity = Math.random() * 0.3 + 0.1;
+      floatingCodeContainer.appendChild(codeEl);
+    }
+    
+    // Animated counting for stats
+    const counters = document.querySelectorAll('.animate-count');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = parseInt(entry.target.getAttribute('data-target'));
+          animateCount(entry.target, target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => observer.observe(counter));
+    
+    function animateCount(element, target) {
+      let current = 0;
+      const increment = target / 50;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target + '+';
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current) + '+';
+        }
+      }, 30);
+    }
     
     // Mobile Menu
     const mobileMenuButton = document.getElementById('mobileMenuButton');
@@ -1046,21 +1259,40 @@
       const icon = mobileMenuButton.querySelector('i');
       if (icon.getAttribute('data-feather') === 'menu') {
         icon.setAttribute('data-feather', 'x');
+        // Show mobile menu
+        showMobileMenu();
       } else {
         icon.setAttribute('data-feather', 'menu');
+        // Hide mobile menu
+        hideMobileMenu();
       }
       feather.replace();
-      
-      // Add your mobile menu logic here
-      alert('Mobile menu would open here');
     });
     
-    // Form Submission
+    function showMobileMenu() {
+      const menu = document.createElement('div');
+      menu.className = 'fixed inset-0 z-40 bg-dark-bg/95 backdrop-blur-xl flex flex-col items-center justify-center md:hidden';
+      menu.innerHTML = `
+        <div class="space-y-8 text-center">
+          <a href="#hero" class="block text-2xl text-gray-300 hover:text-neon-cyan transition">Home</a>
+          <a href="#about" class="block text-2xl text-gray-300 hover:text-neon-purple transition">About</a>
+          <a href="#work" class="block text-2xl text-gray-300 hover:text-neon-pink transition">Work</a>
+          <a href="#projects" class="block text-2xl text-gray-300 hover:text-neon-blue transition">Projects</a>
+          <a href="#contact" class="block text-2xl text-gray-300 hover:text-neon-green transition">Contact</a>
+        </div>
+        <button class="absolute top-8 right-8 p-4" onclick="this.parentElement.remove(); feather.replace();">
+          <i data-feather="x" class="w-8 h-8 text-white"></i>
+        </button>
+      `;
+      document.body.appendChild(menu);
+      feather.replace();
+    }
+    
+    // Form Submission with Animation
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
-      // Get form values
       const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
@@ -1068,30 +1300,52 @@
         message: document.getElementById('message').value
       };
       
-      // Simple validation
       if (!formData.name || !formData.email || !formData.message) {
-        alert('Please fill in all required fields.');
+        // Animate error
+        const inputs = document.querySelectorAll('#contactForm input, #contactForm textarea');
+        inputs.forEach(input => {
+          if (!input.value && input.id !== 'subject') {
+            gsap.to(input, {
+              borderColor: '#ff2d95',
+              duration: 0.3,
+              yoyo: true,
+              repeat: 2
+            });
+          }
+        });
         return;
       }
+      
+      // Create success animation
+      const button = contactForm.querySelector('button');
+      const originalText = button.textContent;
+      button.innerHTML = '<span class="relative z-10">✓ Sent!</span>';
+      button.classList.add('bg-gradient-to-r', 'from-neon-green', 'to-neon-cyan');
       
       // Create mailto link
       const mailtoLink = `mailto:hafiidhramadhani@gmail.com?subject=${encodeURIComponent(formData.subject || 'Portfolio Contact')}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
       
-      // Open email client
-      window.location.href = mailtoLink;
+      // Open email client after delay
+      setTimeout(() => {
+        window.location.href = mailtoLink;
+      }, 1000);
       
-      // Reset form
-      contactForm.reset();
+      // Reset form after delay
+      setTimeout(() => {
+        contactForm.reset();
+        button.innerHTML = originalText;
+        button.classList.remove('bg-gradient-to-r', 'from-neon-green', 'to-neon-cyan');
+      }, 3000);
     });
     
-    // Parallax Effect
+    // Enhanced Parallax Effect
     window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
       
-      // Add parallax to floating elements
-      document.querySelectorAll('.floating, .floating-delay-1, .floating-delay-2').forEach(el => {
-        el.style.transform = `translateY(${rate * 0.2}px)`;
+      // Parallax for floating elements
+      document.querySelectorAll('.floating, .float-3d, .floating-code').forEach((el, index) => {
+        const rate = scrolled * -0.5;
+        el.style.transform = `translateY(${rate * (0.2 + index * 0.05)}px)`;
       });
       
       // Navbar effect
@@ -1099,42 +1353,134 @@
       if (scrolled > 50) {
         nav.classList.add('glass-heavy');
         nav.classList.remove('glass');
+        nav.style.backdropFilter = 'blur(40px)';
       } else {
         nav.classList.remove('glass-heavy');
         nav.classList.add('glass');
+        nav.style.backdropFilter = 'blur(20px)';
       }
-    });
-    
-    // Typewriter effect restart
-    setInterval(() => {
-      const typewriter = document.querySelector('.typewriter');
-      if (typewriter) {
-        typewriter.style.animation = 'none';
-        setTimeout(() => {
-          typewriter.style.animation = 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite';
-        }, 10);
-      }
-    }, 7000);
-    
-    // Audio on interaction (optional)
-    const clickAudio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
-    
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('click', () => {
-        clickAudio.currentTime = 0;
-        // clickAudio.play(); // Uncomment if you want sound effects
+      
+      // Animate elements on scroll
+      document.querySelectorAll('.card-hover').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+          card.style.transform = `translateY(${Math.sin(scrolled * 0.01) * 5}px)`;
+        }
       });
     });
     
-    // Initialize with typing animation
+    // Typewriter effect restart with variation
+    setInterval(() => {
+      const typewriter = document.querySelector('.typewriter');
+      if (typewriter) {
+        const texts = [
+          "Code • Design • Innovation • Excellence",
+          "Frontend • Backend • UI/UX • DevOps",
+          "React • Laravel • Tailwind • Three.js",
+          "Creativity • Technology • Innovation"
+        ];
+        
+        const currentText = typewriter.textContent;
+        let nextText;
+        do {
+          nextText = texts[Math.floor(Math.random() * texts.length)];
+        } while (nextText === currentText && texts.length > 1);
+        
+        typewriter.style.animation = 'none';
+        typewriter.textContent = nextText;
+        
+        setTimeout(() => {
+          typewriter.style.animation = 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite';
+        }, 100);
+      }
+    }, 7000);
+    
+    // Initialize with enhanced animation
     window.addEventListener('load', () => {
-      document.body.style.opacity = 0;
-      document.body.style.transition = 'opacity 1s ease';
+      document.body.style.opacity = '0';
       
+      // Create loading animation
+      const loading = document.createElement('div');
+      loading.className = 'fixed inset-0 z-50 flex items-center justify-center bg-dark-bg';
+      loading.innerHTML = `
+        <div class="text-center">
+          <div class="w-20 h-20 border-4 border-neon-cyan/30 border-t-neon-cyan rounded-full animate-spin mb-4"></div>
+          <div class="text-neon-cyan font-mono">Loading Experience...</div>
+        </div>
+      `;
+      document.body.appendChild(loading);
+      
+      // Remove loading and fade in
       setTimeout(() => {
-        document.body.style.opacity = 1;
-      }, 100);
+        loading.style.opacity = '0';
+        loading.style.transition = 'opacity 0.5s ease';
+        
+        setTimeout(() => {
+          loading.remove();
+          document.body.style.opacity = '1';
+          document.body.style.transition = 'opacity 1s ease';
+          
+          // Initial animations
+          gsap.from('nav', {
+            y: -100,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+          });
+          
+          gsap.from('#hero h1', {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            delay: 0.3,
+            stagger: 0.2,
+            ease: "power3.out"
+          });
+        }, 500);
+      }, 1500);
     });
+    
+    // Add keyboard interaction
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // Close any open modals
+        const modals = document.querySelectorAll('.fixed.inset-0');
+        modals.forEach(modal => modal.remove());
+      }
+      
+      // Space bar for fun effect
+      if (e.code === 'Space') {
+        createParticleExplosion(mouseX, mouseY);
+      }
+    });
+    
+    function createParticleExplosion(x, y) {
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.width = `${Math.random() * 10 + 5}px`;
+        particle.style.height = particle.style.width;
+        particle.style.background = getRandomNeonColor();
+        particle.style.boxShadow = `0 0 20px ${getRandomNeonColor()}`;
+        
+        document.body.appendChild(particle);
+        
+        gsap.to(particle, {
+          x: (Math.random() - 0.5) * 400,
+          y: (Math.random() - 0.5) * 400,
+          opacity: 0,
+          scale: 0,
+          duration: 1.5,
+          ease: "power2.out",
+          onComplete: () => particle.remove()
+        });
+      }
+    }
   </script>
+  
+  <!-- GSAP for advanced animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </body>
 </html>
