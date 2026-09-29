@@ -3,1161 +3,3714 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hafiidh Yupiza • Creative Portfolio</title>
+
+    <title>Hafiidh Yupiza Ramadhani — Portfolio</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- GSAP & Icons -->
+
+    <!-- Editorial Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #0a0a0a;
-            color: #f4f4f5;
+        :root {
+            --paper: #f4f1e8;
+            --paper-dark: #ebe7dc;
+            --ink: #111111;
+            --muted: #5f5b54;
+            --line: #1b1b1b;
+            --soft-line: #bcb7ac;
+            --accent: #8f1835;
+            --accent-light: #c43d61;
+            --white: #fffdf7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(0,0,0,.025), transparent 25%),
+                radial-gradient(circle at 80% 80%, rgba(0,0,0,.02), transparent 25%),
+                var(--paper);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+        ::selection {
+            background: var(--ink);
+            color: var(--paper);
+        }
 
-        /* Custom Cursor */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--paper);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--ink);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .serif {
+            font-family: 'Libre Baskerville', Georgia, serif;
+        }
+
+        .mono {
+            font-family: 'DM Mono', monospace;
+        }
+
+        .paper {
+            background: var(--paper);
+        }
+
+        .paper-dark {
+            background: var(--paper-dark);
+        }
+
+        .ink {
+            color: var(--ink);
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .accent {
+            color: var(--accent);
+        }
+
+        .editorial-container {
+            width: min(1440px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .rule {
+            border-color: var(--line);
+        }
+
+        .soft-rule {
+            border-color: var(--soft-line);
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(35px);
+        }
+
+        /* =========================================
+           NEWSPAPER HEADER
+        ========================================= */
+
+        .masthead {
+            border-bottom: 4px double var(--line);
+        }
+
+        .masthead-title {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(3.2rem, 9vw, 9rem);
+            line-height: .86;
+            letter-spacing: -.075em;
+            font-weight: 700;
+        }
+
+        .masthead-sub {
+            letter-spacing: .22em;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color .2s ease;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width .25s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.65fr) minmax(280px, .8fr);
+            gap: 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-main {
+            padding: clamp(35px, 6vw, 90px) clamp(20px, 5vw, 75px) clamp(45px, 6vw, 90px) 0;
+            border-right: 1px solid var(--line);
+        }
+
+        .hero-side {
+            padding: clamp(30px, 5vw, 70px) 0 clamp(30px, 5vw, 70px) clamp(25px, 4vw, 55px);
+        }
+
+        .headline {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(3rem, 7vw, 7.6rem);
+            line-height: .94;
+            letter-spacing: -.065em;
+            max-width: 1050px;
+        }
+
+        .headline em {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.15);
+            border: 1px solid var(--line);
+            margin-top: 35px;
+        }
+
+        .news-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .news-label::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* =========================================
+           EDITORIAL COMPONENTS
+        ========================================= */
+
+        .section-heading {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(2rem, 4vw, 4.3rem);
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+
+        .kicker {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .22em;
+            font-weight: 800;
+        }
+
+        .editorial-card {
+            border: 1px solid var(--line);
+            background: rgba(255,253,247,.35);
+            transition:
+                transform .25s ease,
+                background .25s ease;
+        }
+
+        .editorial-card:hover {
+            transform: translateY(-3px);
+            background: var(--white);
+        }
+
+        .small-card {
+            padding: 22px;
+        }
+
+        .big-card {
+            padding: clamp(24px, 4vw, 45px);
+        }
+
+        .stamp {
+            display: inline-flex;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 5px 9px;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            transform: rotate(-2deg);
+        }
+
+        .tag {
+            border: 1px solid var(--soft-line);
+            padding: 5px 8px;
+            font-size: 9px;
+            font-family: 'DM Mono', monospace;
+            background: rgba(255,255,255,.25);
+        }
+
+        .dropcap:first-letter {
+            float: left;
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: 4.5rem;
+            line-height: .8;
+            padding-right: 8px;
+            color: var(--accent);
+        }
+
+        .quote {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(1.3rem, 2.2vw, 2rem);
+            line-height: 1.35;
+        }
+
+        /* =========================================
+           EXPERIENCE
+        ========================================= */
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 190px minmax(0, 1fr);
+            border-top: 1px solid var(--line);
+            padding: 25px 0;
+            gap: 35px;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .timeline-date {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            line-height: 1.7;
+            text-transform: uppercase;
+        }
+
+        .timeline-title {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(1.1rem, 2vw, 1.7rem);
+            line-height: 1.2;
+        }
+
+        /* =========================================
+           SKILLS
+        ========================================= */
+
+        .skill-list {
+            columns: 2;
+            column-gap: 35px;
+        }
+
+        .skill-list li {
+            break-inside: avoid;
+            border-bottom: 1px dotted var(--soft-line);
+            padding: 8px 0;
+            font-size: 12px;
+        }
+
+        /* =========================================
+           GALLERY / EMBEDS
+        ========================================= */
+
+        .window {
+            border: 1px solid var(--line);
+            background: var(--white);
+        }
+
+        .window-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 15px;
+            border-bottom: 1px solid var(--line);
+            background: var(--paper-dark);
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .window-dot {
+            width: 8px;
+            height: 8px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+        }
+
+        /* =========================================
+           GITHUB
+        ========================================= */
+
+        #projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0;
+        }
+
+        .repo-card {
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 25px;
+            min-width: 0;
+            transition: background .2s ease;
+        }
+
+        .repo-card:nth-child(3n) {
+            border-right: 0;
+        }
+
+        .repo-card:hover {
+            background: var(--white);
+        }
+
+        .repo-name {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: 1.25rem;
+            line-height: 1.2;
+        }
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .footer-title {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            line-height: .9;
+            letter-spacing: -.07em;
+        }
+
+        /* =========================================
+           CUSTOM CURSOR
+        ========================================= */
+
         .cursor-dot {
-            width: 8px; height: 8px; background: #3b82f6;
-            position: fixed; pointer-events: none; border-radius: 50%; z-index: 10000;
+            width: 7px;
+            height: 7px;
+            position: fixed;
+            pointer-events: none;
+            background: var(--accent);
+            border-radius: 50%;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
         }
+
         .cursor-outline {
-            width: 40px; height: 40px; border: 2px solid rgba(59, 130, 246, 0.5);
-            position: fixed; pointer-events: none; border-radius: 50%; z-index: 9999;
-            transition: transform 0.15s ease-out;
+            width: 34px;
+            height: 34px;
+            position: fixed;
+            pointer-events: none;
+            border: 1px solid var(--ink);
+            border-radius: 50%;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
         }
 
-        /* Glassmorphism */
-        .glass { 
-            background: rgba(23, 23, 23, 0.6); 
-            backdrop-filter: blur(12px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-        }
-        
-        .card-hover:hover {
-            border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        /* =========================================
+           MUSIC
+        ========================================= */
+
+        #musicToggle {
+            border: 1px solid var(--line);
+            background: var(--paper);
         }
 
-        .text-gradient {
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* =========================================
+           MODAL
+        ========================================= */
+
+        #modal {
+            backdrop-filter: blur(15px);
+            background: rgba(17,17,17,.92);
+            display: none;
         }
 
-        .section-reveal { opacity: 0; transform: translateY(50px); }
 
-        /* Modal Overlay */
-        #modal { backdrop-filter: blur(20px); display: none; }
+        .lang-btn {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .08em;
+            padding: 4px 5px;
+            border-bottom: 1px solid transparent;
+            transition: all .2s ease;
+        }
+        .lang-btn:hover, .active-lang { color: var(--accent); border-bottom-color: var(--accent); }
+        .profile-photo {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center 20%;
+            filter: grayscale(100%) contrast(1.05);
+            border: 1px solid var(--line);
+            display: block;
+            transition: filter .35s ease, transform .35s ease;
+        }
+        .profile-photo:hover { filter: grayscale(0%); transform: scale(1.01); }
+        .profile-photo { cursor: zoom-in; }
+        .photo-caption { border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; }
+        @media (max-width: 620px) {
+            .profile-photo { aspect-ratio: 1 / 1.12; }
+            .lang-btn { font-size: 8px; }
+        }
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .editorial-container {
+                width: min(100% - 28px, 760px);
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-main {
+                padding: 45px 0 35px;
+                border-right: 0;
+            }
+
+            .hero-side {
+                padding: 25px 0 40px;
+                border-top: 1px solid var(--line);
+            }
+
+            .hero-video {
+                height: 180px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 125px minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            #projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .repo-card:nth-child(3n) {
+                border-right: 1px solid var(--line);
+            }
+
+            .repo-card:nth-child(2n) {
+                border-right: 0;
+            }
+        }
+
+        @media (max-width: 620px) {
+
+            .editorial-container {
+                width: calc(100% - 22px);
+            }
+
+            .masthead-title {
+                font-size: clamp(3rem, 18vw, 5rem);
+            }
+
+            .headline {
+                font-size: clamp(2.7rem, 13vw, 4.5rem);
+            }
+
+            .hero-main {
+                padding-top: 32px;
+            }
+
+            .hero-video {
+                height: 145px;
+                margin-top: 25px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 18px 0;
+            }
+
+            .timeline-date {
+                color: var(--accent);
+            }
+
+            .skill-list {
+                columns: 2;
+                column-gap: 18px;
+            }
+
+            .skill-list li {
+                font-size: 10px;
+            }
+
+            #projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .repo-card {
+                padding: 16px;
+            }
+
+            .repo-name {
+                font-size: .95rem;
+            }
+
+            .repo-card p {
+                font-size: 10px !important;
+                line-height: 1.6;
+            }
+
+            .tag {
+                font-size: 8px;
+                padding: 4px 5px;
+            }
+
+            .window iframe {
+                height: 420px !important;
+            }
+
+            .footer-title {
+                font-size: clamp(3rem, 15vw, 5rem);
+            }
+
+            .cursor-dot,
+            .cursor-outline {
+                display: none;
+            }
+        }
+
+        @media (pointer: coarse) {
+            .cursor-dot,
+            .cursor-outline {
+                display: none;
+            }
+        }
+
+        /* =========================================
+           STABILITY / RESPONSIVE PATCH
+        ========================================= */
+        .editorial-container,
+        section,
+        header,
+        footer,
+        main,
+        .hero-grid,
+        .hero-main,
+        .hero-side,
+        .editorial-card,
+        .timeline-item,
+        #projects-grid {
+            min-width: 0;
+        }
+
+        .hero-main > *,
+        .hero-side > *,
+        .editorial-card > *,
+        .timeline-item > * {
+            min-width: 0;
+        }
+
+        .headline,
+        .section-heading,
+        .footer-title,
+        .timeline-title,
+        .repo-name {
+            overflow-wrap: anywhere;
+        }
+
+        .mobile-nav-scroll {
+            min-width: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            white-space: nowrap;
+            flex: 1 1 auto;
+        }
+
+        .mobile-nav-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .masthead {
+                padding-bottom: 18px;
+            }
+
+            header > nav {
+                align-items: flex-start;
+                flex-wrap: wrap;
+                row-gap: 12px;
+            }
+
+            header > nav .mobile-nav-scroll {
+                order: 1;
+                width: 100%;
+                flex-basis: 100%;
+                padding-bottom: 3px;
+            }
+
+            header > nav > .flex.items-center {
+                order: 2;
+                margin-left: 0 !important;
+            }
+
+            header > nav > a {
+                order: 3;
+                margin-left: auto;
+            }
+
+            .hero-grid {
+                overflow: hidden;
+            }
+
+            .hero-main,
+            .hero-side {
+                width: 100%;
+            }
+
+            .hero-main .grid,
+            #about .grid,
+            #skills .grid,
+            #design .grid,
+            #other .grid {
+                min-width: 0;
+            }
+
+            .hero-main p,
+            .hero-side p,
+            .editorial-card p {
+                overflow-wrap: anywhere;
+            }
+
+            #projects-grid {
+                width: 100%;
+            }
+
+            .repo-card {
+                min-width: 0;
+                overflow: hidden;
+            }
+
+            .repo-card .flex {
+                min-width: 0;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .editorial-container {
+                width: calc(100% - 20px);
+            }
+
+            .masthead-title {
+                font-size: clamp(2.7rem, 16vw, 4.8rem);
+            }
+
+            .headline {
+                font-size: clamp(2.45rem, 12.5vw, 4.2rem);
+                line-height: .96;
+            }
+
+            .hero-main {
+                padding-right: 0;
+            }
+
+            .hero-main .grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .hero-main .grid > .border-l {
+                border-left: 0;
+                border-top: 1px solid var(--line);
+                padding-left: 0;
+                padding-top: 22px;
+            }
+
+            .hero-video {
+                height: 150px;
+            }
+
+            #projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .repo-card {
+                padding: 14px;
+            }
+
+            .repo-name {
+                font-size: .9rem;
+                line-height: 1.25;
+            }
+
+            .repo-card .text-\[10px\],
+            .repo-card p {
+                overflow-wrap: anywhere;
+            }
+
+            .skill-list {
+                columns: 2;
+            }
+
+            .window iframe {
+                height: 380px !important;
+            }
+
+            .profile-photo {
+                width: 100%;
+                max-height: none;
+            }
+
+            .photo-caption {
+                flex-wrap: wrap;
+            }
+
+            footer .grid {
+                min-width: 0;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .editorial-container {
+                width: calc(100% - 16px);
+            }
+
+            #projects-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .repo-card {
+                padding: 11px;
+            }
+
+            .tag {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+            }
+        }
+
+    
+/* FINAL RESPONSIVE + ABOUT STABILITY PATCH */
+#about > .grid { align-items: start; }
+#about .profile-photo { max-width: 100%; height: auto; }
+#about .photo-caption { min-width: 0; }
+#about .grid > * { min-width: 0; }
+#about .grid.grid-cols-2 > * { min-width: 0; }
+
+@media (max-width: 900px) {
+  #about > .grid { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
+  #about > .grid > div { width: 100%; min-width: 0; }
+  #about .grid.md\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  #about .border-l { border-left: 0 !important; border-top: 1px solid var(--line); padding-left: 0 !important; padding-top: 24px; }
+  #about .profile-photo { width: min(100%, 520px); margin: 0 auto; }
+  #about .photo-caption { width: min(100%, 520px); margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 620px) {
+  body { overflow-x: clip; }
+  .editorial-container { width: calc(100% - 20px) !important; }
+  header.editorial-container { padding-top: 10px; }
+  header > nav { gap: 10px !important; }
+  header > nav .mobile-nav-scroll { order: 1; width: 100%; flex-basis: 100%; padding: 8px 0 4px; }
+  header > nav > .flex.items-center { order: 2; }
+  header > nav > a { order: 3; }
+  .masthead-title { font-size: clamp(2.65rem, 15.5vw, 4.5rem) !important; }
+  .hero-main { padding: 28px 0 24px !important; }
+  .headline { font-size: clamp(2.3rem, 11.8vw, 4rem) !important; line-height: .98 !important; }
+  .hero-main .grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .hero-main .grid > .border-l { border-left: 0 !important; border-top: 1px solid var(--line); padding: 20px 0 0 !important; }
+  .hero-video { height: 145px !important; margin-top: 22px !important; }
+  .hero-main > .grid.grid-cols-2 { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  .hero-main > .grid.grid-cols-2 a { min-width: 0; padding-left: 8px; padding-right: 8px; }
+
+  #about { padding-top: 56px !important; padding-bottom: 56px !important; }
+  #about > .grid { display: grid !important; grid-template-columns: 1fr !important; gap: 28px !important; padding-bottom: 38px; }
+  #about .profile-photo { width: 100%; aspect-ratio: 4/4.8; object-fit: cover; }
+  #about .photo-caption { display: flex; align-items: flex-start; }
+  #about .photo-caption span { max-width: 48%; line-height: 1.5; }
+  #about .section-heading { font-size: clamp(2rem, 10vw, 3.2rem); }
+  #about .grid.md\\:grid-cols-2 { grid-template-columns: 1fr !important; gap: 20px !important; }
+  #about .grid.md\\:grid-cols-2 > .border-l { border-top: 1px solid var(--line); padding-top: 20px !important; }
+  #about .grid.grid-cols-2 { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  #about .small-card { min-height: 145px; padding: 15px !important; }
+  #about .small-card h3 { font-size: 1rem; }
+  #about .small-card p { font-size: 10px !important; line-height: 1.55 !important; }
+
+  .timeline-item { grid-template-columns: 1fr !important; gap: 8px !important; }
+  .timeline-date { display: block; }
+  .timeline-title { overflow-wrap: anywhere; }
+
+  #projects .grid.md\\:grid-cols-2 { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  #projects .big-card { padding: 17px !important; min-width: 0; }
+  #projects .big-card h3 { font-size: 1.05rem; line-height: 1.25; overflow-wrap: anywhere; }
+  #projects .big-card p { font-size: 10px; line-height: 1.6; }
+  #projects .big-card.md\\:col-span-2 { grid-column: 1 / -1; }
+  #projects-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  .repo-card { padding: 13px !important; min-width: 0; overflow: hidden; }
+  .repo-name { font-size: .86rem !important; }
+  .repo-card p { min-height: 0 !important; font-size: 9px !important; line-height: 1.55 !important; }
+
+  #skills .grid.md\\:grid-cols-2 { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  #skills .big-card { padding: 15px !important; min-width: 0; }
+  #skills .skill-list { columns: 1 !important; }
+  #skills .skill-list li { font-size: 9px; overflow-wrap: anywhere; }
+
+  #design .window iframe { height: 390px !important; }
+  .window-bar { gap: 8px; min-width: 0; }
+  .window-bar > * { min-width: 0; }
+  .window-bar .mono { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  #other .grid.grid-cols-2 { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  #other .grid.grid-cols-2 > div:last-child { grid-column: 1 / -1; border-right: 0; }
+  #other .small-card { min-height: 130px; }
+  #other .window iframe { height: 390px !important; }
+  #certifications .grid.grid-cols-2 { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  #certifications .small-card { padding: 14px !important; min-width: 0; }
+  #certifications .small-card h3 { overflow-wrap: anywhere; }
+  #certifications .window iframe { height: 390px !important; }
+
+  footer .grid.grid-cols-2 { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  footer .col-span-2 { grid-column: 1 / -1; }
+  .footer-title { font-size: clamp(2.8rem, 14vw, 4.8rem) !important; }
+}
+
+@media (max-width: 390px) {
+  .editorial-container { width: calc(100% - 14px) !important; }
+  .hero-main > .grid.grid-cols-2 a { font-size: 8px; }
+  #about .small-card { min-height: 138px; padding: 12px !important; }
+  #projects .big-card { padding: 13px !important; }
+  #projects-grid .repo-card { padding: 11px !important; }
+  #projects-grid .repo-card .tag { font-size: 7px; }
+}
+
+
+        .editorial-card, .repo-card, .timeline-item, .tag { will-change: transform; }
+        .editorial-card, .repo-card { transform-origin: center; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+            .section-reveal { opacity: 1 !important; transform: none !important; }
+        }
     </style>
 </head>
 
 <body>
 
+<!-- =========================================
+     CUSTOM CURSOR
+========================================= -->
+
 <div class="cursor-dot" id="cursor-dot"></div>
 <div class="cursor-outline" id="cursor-outline"></div>
 
-<!-- NAVIGATION -->
-<nav class="fixed w-full z-50 top-0 px-6 py-4">
-    <div class="max-w-7xl mx-auto flex justify-between items-center glass px-6 py-3 rounded-full">
-        <span class="font-bold text-xl tracking-tighter flex items-center gap-2">
-            <!-- Mini Avatar (Opsional) -->
-            <div class="w-6 h-6 rounded-full bg-blue-500 overflow-hidden md:block hidden">
-                <img src="hyrprofile2.jpeg" alt="" class="object-cover w-full h-full">
+
+<!-- =========================================
+     MASTHEAD
+========================================= -->
+
+<header class="editorial-container pt-5">
+
+    <div class="flex flex-col md:flex-row justify-between items-center gap-3 border-b border-black pb-3 text-[9px] uppercase tracking-[.18em] font-bold">
+        <span>Tuesday Edition · 2026</span>
+        <span class="accent">Portfolio / Digital & Creative Technology</span>
+        <span>Mojokerto, Indonesia</span>
+    </div>
+
+    <div class="masthead py-7">
+
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+
+            <div>
+                <div class="masthead-title">
+                    HAFIIDH
+                </div>
+
+                <div class="masthead-title accent">
+                    YUPIZA RAMADHANI.
+                </div>
             </div>
-            Hafiidh Y. Rama<span class="text-blue-500">.</span>
-        </span>
-        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-            <a href="#about" class="hover:text-white transition">About</a>
-            <a href="#services" class="hover:text-white transition">Services</a> <!-- Added -->
-            <a href="#projects" class="hover:text-white transition">Work</a>
-            <a href="#design" class="hover:text-white transition">Design</a>
-            <a href="#other" class="hover:text-white transition">Other Projects</a>
-            <a href="#skills" class="hover:text-white transition">Skills</a>
-            <a href="#certifications" class="hover:text-white transition">Certifications</a>
-        </div>
-        <a href="mailto:hafiidhyrama@gmail.com" class="bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-blue-500 hover:text-white transition">Hire Me</a>
-    </div>
-</nav>
 
+            <div class="lg:max-w-sm lg:text-right">
+                <p class="serif text-xl leading-relaxed">
+                    Technology, design, data,
+                    and creative work assembled
+                    into practical digital solutions.
+                </p>
 
-<!-- HERO -->
-<section class="relative h-screen flex items-center justify-center overflow-hidden">
-    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover opacity-30">
-        <source src="hero.mp4" type="video/mp4">
-    </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a0a]"></div>
-    
-    <div class="relative z-10 text-center px-6">
-        <!-- Status Badge -->
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 text-[10px] font-bold mb-10 tracking-[0.2em] uppercase text-blue-400">
-            <span class="flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-blue-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-            </span>
-            Available for projects
-        </span>
-
-        <h1 class="text-6xl md:text-8xl font-extrabold mb-8 tracking-tighter text-gradient leading-[1.1]">
-            Hafiidh Yupiza<br> Ramadhani
-        </h1>
-
-        <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-12 leading-relaxed">
-           I design and develop interactive digital products by combining engineering, design thinking, and creative technology <span class="text-white font-medium"> — focused on delivering meaningful and user-centered experiences. </span> I design and develop digital products that solve real-world problems using data, engineering, and creativity.
-        </p>
-
-        <!-- Button Group: Berjejer 4 secara konsisten -->
-        <div class="grid grid-cols-2 md:flex md:flex-row gap-4 justify-center max-w-4xl mx-auto">
-            
-            <!-- Github -->
-            <a href="https://github.com/Fiidhanz" target="_blank" 
-               class="flex items-center justify-center gap-3 bg-white text-black px-6 py-4 rounded-2xl font-bold transition-all duration-300 hover:bg-blue-500 hover:text-white group border border-transparent">
-                <i data-lucide="github" class="w-5 h-5"></i>
-                <span class="text-sm">GitHub</span>
-            </a>
-
-            <!-- LinkedIn -->
-            <a href="https://linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" 
-               class="flex items-center justify-center gap-3 glass px-6 py-4 rounded-2xl font-bold transition-all duration-300 border border-white/10 hover:border-blue-500 group">
-                <i data-lucide="linkedin" class="w-5 h-5 text-blue-400 group-hover:scale-110 transition-transform"></i>
-                <span class="text-sm">LinkedIn</span>
-            </a>
-
-            <!-- Instagram -->
-            <a href="https://instagram.com/upza.sign_" target="_blank" 
-               class="flex items-center justify-center gap-3 glass px-6 py-4 rounded-2xl font-bold transition-all duration-300 border border-white/10 hover:border-pink-500 group">
-                <i data-lucide="instagram" class="w-5 h-5 text-pink-400 group-hover:scale-110 transition-transform"></i>
-                <span class="text-sm">Instagram</span>
-            </a>
-
-            <!-- Download CV -->
-            <a href="https://drive.google.com/file/d/167sd8Yh95deegFYgDUeb_FdW3GyJYUat/view?usp=sharing" target="_blank" 
-               class="flex items-center justify-center gap-3 glass px-6 py-4 rounded-2xl font-bold transition-all duration-300 border border-white/10 hover:bg-white/5 group">
-                <i data-lucide="file-text" class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"></i>
-                <span class="text-sm">Resume</span>
-            </a>
+                <p class="mono text-[9px] mt-4 tracking-[.15em] uppercase">
+                    Full-Stack Developer · UI/UX · Creative Technology
+                </p>
+            </div>
 
         </div>
+
     </div>
+
+
+    <!-- NAV -->
+
+    <nav class="py-3 border-b border-black flex items-center justify-between gap-4">
+
+        <div class="hidden md:flex flex-wrap gap-x-7 gap-y-2 text-[10px] uppercase font-bold tracking-wider">
+
+            <a href="#about" class="nav-link">About</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#design" class="nav-link">Design</a>
+            <a href="#certifications" class="nav-link">Credentials</a>
+
+        </div>
+
+        <div class="mobile-nav-scroll flex md:hidden gap-x-4 text-[9px] uppercase font-bold">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Work</a>
+            <a href="#skills">Skills</a>
+            <a href="#design">Design</a>
+            <a href="#certifications">Credentials</a>
+        </div>
+
+        <div class="flex items-center gap-2 ml-auto md:ml-0">
+            <button id="langID" type="button" class="lang-btn active-lang" aria-label="Bahasa Indonesia">ID</button>
+            <span class="mono text-[8px]">/</span>
+            <button id="langEN" type="button" class="lang-btn" aria-label="English">EN</button>
+        </div>
+
+        <a
+            href="mailto:hafiidhyrama@gmail.com"
+            class="shrink-0 bg-black text-white px-4 py-2 text-[9px] uppercase tracking-widest font-bold hover:bg-[#8f1835] transition"
+        >
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================================
+     HERO / FRONT PAGE
+========================================= -->
+
+<main>
+
+<section class="editorial-container">
+
+    <div class="hero-grid">
+
+        <!-- MAIN ARTICLE -->
+
+        <div class="hero-main">
+
+            <div class="news-label mb-6">
+                Professional Profile
+            </div>
+
+            <h1 class="headline">
+                Building digital
+                products where
+                <em>technology</em>
+                meets creativity.
+            </h1>
+
+            <div class="grid md:grid-cols-[1.4fr_.8fr] gap-8 mt-10">
+
+                <div>
+
+                    <p class="dropcap text-sm md:text-base leading-8 text-[#38352f]">
+                        Lulusan Teknik Informatika dengan ketertarikan pada teknologi,
+                        pengembangan produk digital, dan bidang kreatif. Memiliki
+                        pengalaman dalam pengembangan website dan aplikasi,
+                        pengolahan data, eksplorasi teknologi AI, UI/UX Design,
+                        desain grafis, ilustrasi digital, animasi, multimedia,
+                        dan game development.
+                    </p>
+
+                    <p class="text-sm leading-7 text-[#38352f] mt-5">
+                        Berpengalaman sebagai Full-Stack Developer dalam pengembangan
+                        sistem berbasis web, mengerjakan proyek freelance, serta
+                        terlibat dalam mentoring, koordinasi, teamwork, dan problem solving.
+                    </p>
+
+                </div>
+
+
+                <div class="border-l border-black pl-6">
+
+                    <div class="stamp mb-5">
+                        Available for opportunities
+                    </div>
+
+                    <p class="serif text-lg leading-7">
+                        Open to software development,
+                        frontend/backend, full-stack,
+                        UI/UX, data/AI, and creative
+                        technology opportunities.
+                    </p>
+
+                    <div class="mt-7 space-y-2 text-[10px] mono">
+                        <div>LOCATION — MOJOKERTO, EAST JAVA</div>
+                        <div>EDUCATION — INFORMATICS ENGINEERING</div>
+                        <div>GPA — 3.79 / 4.00</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <video
+                autoplay
+                muted
+                loop
+                playsinline
+                class="hero-video"
+            >
+                <source src="hero.mp4" type="video/mp4">
+            </video>
+
+
+            <div class="grid grid-cols-2 md:grid-cols-4 border-t border-black mt-6">
+
+                <a
+                    href="https://github.com/Fiidhanz"
+                    target="_blank"
+                    class="py-4 border-r border-black text-center text-[10px] font-bold uppercase hover:bg-black hover:text-white transition"
+                >
+                    GitHub
+                </a>
+
+                <a
+                    href="https://linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213"
+                    target="_blank"
+                    class="py-4 border-r md:border-r border-black text-center text-[10px] font-bold uppercase hover:bg-black hover:text-white transition"
+                >
+                    LinkedIn
+                </a>
+
+                <a
+                    href="https://instagram.com/upza.sign_"
+                    target="_blank"
+                    class="py-4 border-r border-black text-center text-[10px] font-bold uppercase hover:bg-black hover:text-white transition"
+                >
+                    Instagram
+                </a>
+
+                <a
+                    href="https://drive.google.com/file/d/167sd8Yh95deegFYgDUeb_FdW3GyJYUat/view?usp=sharing"
+                    target="_blank"
+                    class="py-4 text-center text-[10px] font-bold uppercase hover:bg-black hover:text-white transition"
+                >
+                    Resume
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- SIDE NEWS -->
+
+        <aside class="hero-side">
+
+            <div class="news-label mb-5">
+                At a glance
+            </div>
+
+            <div class="space-y-0">
+
+                <div class="pb-6 mb-6 border-b border-black">
+
+                    <span class="mono text-[9px] uppercase">
+                        Education
+                    </span>
+
+                    <h2 class="serif text-xl mt-2">
+                        S1 Teknik Informatika
+                    </h2>
+
+                    <p class="text-xs mt-2 muted">
+                        Institut Teknologi Nasional Malang
+                    </p>
+
+                    <p class="mono text-[9px] mt-3">
+                        GRADUATED · AUG 2026
+                    </p>
+
+                </div>
+
+
+                <div class="pb-6 mb-6 border-b border-black">
+
+                    <span class="mono text-[9px] uppercase">
+                        Academic Achievement
+                    </span>
+
+                    <h2 class="serif text-xl mt-2">
+                        IPK 3.79 / 4.00
+                    </h2>
+
+                    <p class="text-xs mt-2 muted leading-6">
+                        Peraih Insentif Program Kreativitas
+                        Mahasiswa — Artikel Ilmiah (PKM-AI),
+                        Kemendikbudristek.
+                    </p>
+
+                </div>
+
+
+                <div class="pb-6 mb-6 border-b border-black">
+
+                    <span class="mono text-[9px] uppercase">
+                        Core Areas
+                    </span>
+
+                    <div class="flex flex-wrap gap-2 mt-3">
+
+                        <span class="tag">FULL-STACK</span>
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">AI / NLP</span>
+                        <span class="tag">DATA</span>
+                        <span class="tag">ANIMATION</span>
+                        <span class="tag">GAME</span>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span class="mono text-[9px] uppercase">
+                        Language
+                    </span>
+
+                    <div class="flex justify-between mt-3 text-xs">
+                        <span>Bahasa Indonesia</span>
+                        <strong>Native</strong>
+                    </div>
+
+                    <div class="flex justify-between mt-2 text-xs">
+                        <span>Bahasa Inggris</span>
+                        <strong>TOEFL ITP 443</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="section-reveal py-32 px-6 max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div class="relative group">
-            <!-- Glow Effect -->
-            <div class="absolute -inset-4 bg-blue-500/20 blur-3xl rounded-full group-hover:bg-blue-500/30 transition duration-700"></div>
-            
-            <!-- Frame Foto -->
-            <div class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-                <img src="hyrprofile2.jpeg  " 
-                     alt="Hafiidh Yupiza" 
-                     class="w-full h-[550px] object-cover grayscale group-hover:grayscale-0 transition duration-700 group-hover:scale-105">
-                
-                <!-- Overlay Gradient -->
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60"></div>
-                
-                <!-- Floating Badge -->
-                <div class="absolute bottom-6 left-6 right-6 glass p-4 rounded-2xl border border-white/10 backdrop-blur-md">
-                    <p class="text-xs uppercase tracking-[0.2em] text-blue-400 font-bold">Based in Indonesia</p>
-                    <p class="text-white text-sm">Hafiidh Yupiza Ramadhani</p>
+
+<!-- =========================================
+     ABOUT / CAPABILITIES
+========================================= -->
+<section id="about" class="editorial-container section-reveal py-20 md:py-28">
+    <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-10 border-b border-black pb-16">
+        <div>
+            <div class="news-label" data-i18n="aboutLabel">About</div>
+            <div class="mt-5">
+                <img src="hyrprofile2.jpeg" alt="Hafiidh Yupiza Ramadhani" class="profile-photo" onclick="openModal(this)">
+                <div class="photo-caption flex justify-between gap-3">
+                    <span class="mono text-[8px] uppercase">Hafiidh Yupiza Ramadhani</span>
+                    <span class="mono text-[8px] uppercase accent">Mojokerto / Indonesia</span>
                 </div>
             </div>
         </div>
 
         <div>
-            <h2 class="text-blue-500 font-bold mb-4 uppercase tracking-widest text-sm italic">// About Me</h2>
-            <h3 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Building intelligent and creative digital experiences.</h3>
-            <p class="text-gray-400 leading-relaxed text-lg mb-8">
-I enjoy creating digital experiences where technology meets creativity. From building web applications to exploring UI/UX, animation, and multimedia, I’m constantly experimenting and learning new ways to bring ideas to life.
-I’m curious by nature, always driven to try new things, whether it's coding, designing interfaces, or creating visuals and music. I believe the best digital products are not only functional, but also engaging, expressive, and meaningful.
-My goal is to create digital solutions that are not only functional, but also scalable, engaging, and aligned with real user needs.
-            </p>
-            <div class="grid grid-cols-2 gap-6 border-t border-gray-800 pt-8">
-                <div class="group">
-                    <h4 class="font-bold text-white group-hover:text-blue-500 transition">Experience</h4>
-                    <p class="text-gray-500">2+ Years Developing</p>
+            <h2 class="section-heading" data-i18n="aboutHeading">A technical foundation with a creative side.</h2>
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <p class="text-sm leading-8 text-[#38352f] dropcap" data-i18n="aboutP1">Lulusan Teknik Informatika dengan pengalaman dalam pengembangan produk digital, Full-Stack Web Development, UI/UX Design, AI/NLP, dan creative technology.</p>
+                    <p class="text-sm leading-8 text-[#38352f] mt-5" data-i18n="aboutP2">Berpengalaman mengembangkan website dan aplikasi, menangani frontend, backend, database, REST API, deployment, serta merancang user flow, wireframe, prototype, dan interface menggunakan Figma.</p>
                 </div>
-                <div class="group">
-                    <h4 class="font-bold text-white group-hover:text-blue-500 transition">Focus</h4>
-                    <p class="text-gray-500">Web Development, UI/UX,  Creative Tech</p>
+                <div class="border-l border-black pl-7">
+                    <div class="quote" data-i18n="aboutQuote">“Functional products should also be understandable, usable, and meaningful.”</div>
+                    <div class="mono text-[9px] uppercase mt-6 accent" data-i18n="workingPrinciple">— Working principle</div>
+                    <div class="mt-7 grid grid-cols-2 gap-3">
+                        <div class="border-t border-black pt-3"><span class="mono text-[8px]">GPA</span><strong class="serif block text-lg">3.79 / 4.00</strong></div>
+                        <div class="border-t border-black pt-3"><span class="mono text-[8px]">TOEFL ITP</span><strong class="serif block text-lg">443</strong></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-
-
-<!-- SERVICES -->
-<section id="services" class="section-reveal py-32 px-6 bg-[#0a0a0a]">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-blue-500 font-bold mb-4 uppercase tracking-widest text-sm italic">// Capabilities</h2>
-            <h3 class="text-4xl md:text-5xl font-bold">What I Can Do.</h3>
-            <p class="text-gray-500 mt-4 max-w-xl mx-auto">I build digital experiences by combining development, design, and creativity—focusing on functionality, usability, and visual impact.</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass p-10 rounded-[2.5rem] card-hover transition duration-500 group relative overflow-hidden">
-                <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-500/10 blur-3xl group-hover:bg-blue-500/20 transition"></div>
-                <div class="bg-blue-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition duration-500">
-                    <i data-lucide="figma" class="w-8 h-8 text-blue-500"></i>
-                </div>
-                <h4 class="text-2xl font-bold mb-4 text-white">UI/UX Design</h4>
-<ul class="space-y-3 text-gray-400">
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-500"></i> Interface Design</li>
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-500"></i> Wireframing & Layout</li>
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-500"></i> Prototyping</li>
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-500"></i> User Experience Thinking</li>
-                </ul>
-            </div>
-
-            <div class="glass p-10 rounded-[2.5rem] card-hover transition duration-500 group relative overflow-hidden">
-                <div class="absolute -right-4 -top-4 w-24 h-24 bg-green-500/10 blur-3xl group-hover:bg-green-500/20 transition"></div>
-                <div class="bg-green-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition duration-500">
-                    <i data-lucide="code" class="w-8 h-8 text-green-500"></i>
-                </div>
-                <h4 class="text-2xl font-bold mb-4 text-white">Web Development</h4>
-                <ul class="space-y-3 text-gray-400">
-                     <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Frontend Development</li>
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Backend Development</li>
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> API Integration</li>
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Database Handling</li>
-                </ul>
-            </div>
-
-            <div class="glass p-10 rounded-[2.5rem] card-hover transition duration-500 group relative overflow-hidden">
-                <div class="absolute -right-4 -top-4 w-24 h-24 bg-purple-500/10 blur-3xl group-hover:bg-purple-500/20 transition"></div>
-                <div class="bg-purple-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition duration-500">
-                    <i data-lucide="palette" class="w-8 h-8 text-purple-500"></i>
-                </div>
-                <h4 class="text-2xl font-bold mb-4 text-white">Creative</h4>
-                <ul class="space-y-3 text-gray-400">
-                       <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-500"></i> Digital Illustration</li>
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-500"></i> Visual Design</li>
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-500"></i> Animation & Motion</li>
-    <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-500"></i> Multimedia Exploration</li>
-                </ul>
-            </div>
-        </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 border-b border-black">
+        <div class="small-card border-r border-b md:border-b-0 border-black"><div class="mono text-[9px] accent">01</div><h3 class="serif text-lg mt-3" data-i18n="cap1">Development</h3><p class="text-[11px] leading-6 mt-2 muted" data-i18n="cap1p">Frontend, backend, APIs, database, debugging.</p></div>
+        <div class="small-card border-r md:border-r border-b md:border-b-0 border-black"><div class="mono text-[9px] accent">02</div><h3 class="serif text-lg mt-3" data-i18n="cap2">UI / UX</h3><p class="text-[11px] leading-6 mt-2 muted" data-i18n="cap2p">Wireframe, user flow, prototype, interface.</p></div>
+        <div class="small-card border-r border-black"><div class="mono text-[9px] accent">03</div><h3 class="serif text-lg mt-3" data-i18n="cap3">Data / AI</h3><p class="text-[11px] leading-6 mt-2 muted" data-i18n="cap3p">NLP, similarity, data processing and analysis.</p></div>
+        <div class="small-card"><div class="mono text-[9px] accent">04</div><h3 class="serif text-lg mt-3" data-i18n="cap4">Creative</h3><p class="text-[11px] leading-6 mt-2 muted" data-i18n="cap4p">Graphic design, animation, multimedia and games.</p></div>
     </div>
 </section>
 
+<!-- =========================================
+     EXPERIENCE
+========================================= -->
 
-    
-<!-- PROJECTS GITHUB -->
-<section id="projects" class="section-reveal py-20 px-6 bg-[#0d0d0d]">
-    <div class="max-w-7xl mx-auto">
+<section id="experience" class="paper-dark section-reveal">
 
-        <!-- SKRIPSI -->
-        <div class="glass p-8 rounded-3xl border border-blue-500/30 bg-blue-500/5 mb-12">
-            <div class="flex justify-between items-start mb-6">
-                <i data-lucide="brain-circuit" class="text-blue-500 w-8 h-8"></i>
-                <span class="text-xs text-blue-400 font-bold uppercase">
-                    Final Project
-                </span>
-            </div>
+    <div class="editorial-container py-20 md:py-28">
 
-            <h3 class="font-bold text-2xl mb-3 text-white">
-                TrendReco — Content Recommendation System Based on Online Trends
-            </h3>
+        <div class="grid md:grid-cols-[.65fr_1.35fr] gap-12">
 
-            <p class="text-sm text-gray-400 leading-relaxed mb-6">
-                A data-driven recommendation system that helps content creators
-                identify high-opportunity topics by combining semantic similarity,
-                trend growth analysis, and content density — enabling more strategic
-                and relevant content planning.
-            </p>
-
-            <div class="flex flex-wrap gap-2 text-xs">
-                <span class="border border-gray-700 px-2 py-1 rounded">Python</span>
-                <span class="border border-gray-700 px-2 py-1 rounded">Flask</span>
-                <span class="border border-gray-700 px-2 py-1 rounded">SBERT</span>
-                <span class="border border-gray-700 px-2 py-1 rounded">
-                    Cosine Similarity
-                </span>
-                <span class="border border-gray-700 px-2 py-1 rounded">
-                    Google Trends
-                </span>
-            </div>
-        </div>
-
-        <!-- HEADER -->
-        <div class="flex justify-between items-end mb-12">
             <div>
-                <h2 class="text-3xl font-bold text-white">
-                    Featured Repositories
+
+                <div class="news-label">
+                    Work History
+                </div>
+
+                <h2 class="section-heading mt-5">
+                    Experience
                 </h2>
 
-                <p class="text-gray-500 mt-2">
-                    Selected projects that showcase how I build functional,
-                    scalable, and well-structured web applications.
+                <p class="text-xs leading-6 muted mt-6 max-w-sm">
+                    Pengalaman profesional, akademik, freelance,
+                    dan operasional yang membentuk kemampuan teknis
+                    sekaligus interpersonal.
                 </p>
+
+            </div>
+
+
+            <div>
+
+                <!-- EXPERIENCE 1 -->
+
+                <article class="timeline-item">
+
+                    <div class="timeline-date">
+                        Sep 2022<br>
+                        — Jun 2025
+                        <br><br>
+                        Malang
+                    </div>
+
+                    <div>
+
+                        <div class="news-label mb-3">
+                            ITN Malang
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Asisten Laboratorium /
+                            Koordinator Praktikum PCD
+                        </h3>
+
+                        <p class="text-xs font-bold mt-3">
+                            Laboratorium Multimedia dan PCD
+                        </p>
+
+                        <ul class="mt-4 text-xs leading-7 muted list-disc pl-4">
+                            <li>Membimbing mahasiswa dalam pelaksanaan praktikum dan membantu kendala teknis.</li>
+                            <li>Mengkoordinasikan pembagian tugas asisten dan pengaturan jadwal.</li>
+                            <li>Memantau hasil pekerjaan dan memastikan kegiatan berjalan sesuai prosedur.</li>
+                            <li>Memimpin dan mengarahkan tim asisten.</li>
+                        </ul>
+
+                    </div>
+
+                </article>
+
+
+                <!-- EXPERIENCE 2 -->
+
+                <article class="timeline-item">
+
+                    <div class="timeline-date">
+                        Feb 2025<br>
+                        — Mar 2025
+                        <br><br>
+                        Malang
+                    </div>
+
+                    <div>
+
+                        <div class="news-label mb-3">
+                            Internship
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Full-Stack Developer Intern
+                        </h3>
+
+                        <p class="text-xs font-bold mt-3">
+                            Toko Surya Elektrik
+                        </p>
+
+                        <ul class="mt-4 text-xs leading-7 muted list-disc pl-4">
+                            <li>Mengembangkan sistem CRM berbasis web.</li>
+                            <li>Menangani frontend, backend, dan integrasi database.</li>
+                            <li>Melakukan debugging, testing, dan perbaikan error.</li>
+                            <li>Berkolaborasi dalam implementasi fitur dan penyelesaian masalah teknis.</li>
+                        </ul>
+
+                    </div>
+
+                </article>
+
+
+                <!-- EXPERIENCE 3 -->
+
+                <article class="timeline-item">
+
+                    <div class="timeline-date">
+                        Sep 2024<br>
+                        — Present
+                        <br><br>
+                        Freelance
+                    </div>
+
+                    <div>
+
+                        <div class="news-label mb-3">
+                            Independent
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Freelance Developer
+                        </h3>
+
+                        <ul class="mt-4 text-xs leading-7 muted list-disc pl-4">
+                            <li>Mengerjakan proyek website, aplikasi, UI/UX, animasi, multimedia, dan game.</li>
+                            <li>Menganalisis kebutuhan dan menentukan solusi teknis.</li>
+                            <li>Menangani proses dari komunikasi, pengerjaan, revisi, hingga penyelesaian.</li>
+                            <li>Merancang user flow, wireframe, prototype, dan interface menggunakan Figma.</li>
+                        </ul>
+
+                    </div>
+
+                </article>
+
+
+                <!-- EXPERIENCE 4 -->
+
+                <article class="timeline-item">
+
+                    <div class="timeline-date">
+                        Sep 2025<br>
+                        — Jan 2026
+                        <br><br>
+                        Malang
+                    </div>
+
+                    <div>
+
+                        <div class="news-label mb-3">
+                            Mentoring
+                        </div>
+
+                        <h3 class="timeline-title">
+                            Pembimbing Capstone Project
+                        </h3>
+
+                        <p class="text-xs font-bold mt-3">
+                            Institut Teknologi Nasional Malang
+                        </p>
+
+                        <p class="text-xs leading-7 muted mt-4">
+                            Membimbing tim mahasiswa mulai dari perencanaan,
+                            perumusan kebutuhan, pengembangan solusi,
+                            penyelesaian kendala teknis, hingga evaluasi proyek.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- EXPERIENCE 5 -->
+
+                <article class="timeline-item">
+
+                    <div class="timeline-date">
+                        Jan 2024<br>
+                        — Mar 2024
+                    </div>
+
+                    <div>
+
+                        <h3 class="timeline-title">
+                            Crew Outlet
+                        </h3>
+
+                        <p class="text-xs font-bold mt-3">
+                            Pisang Keju 89
+                        </p>
+
+                        <p class="text-xs leading-7 muted mt-4">
+                            Menangani persiapan produk, pengemasan,
+                            pelayanan pelanggan, transaksi kasir,
+                            kebersihan area, dan kerja sama tim.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- EXPERIENCE 6 -->
+
+                <article class="timeline-item">
+
+                    <div class="timeline-date">
+                        Jul 2019<br>
+                        — Present
+                        <br><br>
+                        Mojokerto
+                    </div>
+
+                    <div>
+
+                        <h3 class="timeline-title">
+                            Asisten Operasional Usaha Keluarga
+                        </h3>
+
+                        <p class="text-xs font-bold mt-3">
+                            Warung RizYanti
+                        </p>
+
+                        <p class="text-xs leading-7 muted mt-4">
+                            Membantu operasional penjualan, pelayanan pelanggan,
+                            transaksi, persiapan produk, pengemasan, dan
+                            kelancaran aktivitas penjualan sehari-hari.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     EDUCATION
+========================================= -->
+
+<section class="editorial-container section-reveal py-20">
+
+    <div class="border-y-4 border-double border-black py-7">
+
+        <div class="grid md:grid-cols-[.5fr_1.5fr_.5fr] gap-6 items-center">
+
+            <div class="news-label">
+                Education
+            </div>
+
+            <div>
+                <h2 class="serif text-2xl md:text-4xl">
+                    Institut Teknologi Nasional Malang
+                </h2>
+
+                <p class="text-sm mt-2">
+                    S1 Teknik Informatika
+                </p>
+            </div>
+
+            <div class="md:text-right">
+
+                <div class="mono text-xs">
+                    GRADUATED
+                </div>
+
+                <div class="serif text-xl accent mt-1">
+                    Aug 2026
+                </div>
+
+                <div class="mono text-[9px] mt-2">
+                    GPA 3.79 / 4.00
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="mt-7 pt-5 border-t border-black flex flex-col md:flex-row justify-between gap-4">
+
+            <p class="text-xs muted">
+                Academic Achievement
+            </p>
+
+            <p class="text-xs font-bold md:text-right">
+                Peraih Insentif Program Kreativitas Mahasiswa –
+                Artikel Ilmiah (PKM-AI), Kemendikbudristek
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     PROJECTS
+========================================= -->
+
+<section id="projects" class="paper-dark section-reveal">
+
+    <div class="editorial-container py-20 md:py-28">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+
+            <div>
+
+                <div class="news-label">
+                    Selected Work
+                </div>
+
+                <h2 class="section-heading mt-5">
+                    Projects
+                </h2>
+
             </div>
 
             <a
                 href="https://github.com/Fiidhanz"
                 target="_blank"
-                rel="noopener noreferrer"
-                class="text-blue-500 hover:underline"
+                class="text-[10px] uppercase font-bold tracking-widest border-b border-black pb-1 hover:text-[#8f1835]"
             >
-                View all repos
+                View GitHub →
             </a>
+
         </div>
 
-        <!-- PROJECT GRID -->
-        <div
-            id="projects-grid"
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-            <!-- GitHub repositories loaded automatically -->
-        </div>
 
-        <!-- LOADING -->
-        <div
-            id="github-loading"
-            class="text-center py-10 text-gray-500"
-        >
-            Loading repositories...
-        </div>
+        <!-- CV PROJECTS -->
 
-        <!-- ERROR -->
-        <div
-            id="github-error"
-            class="hidden text-center py-10 text-red-400"
-        >
-            Failed to load GitHub repositories.
-        </div>
+        <div class="grid md:grid-cols-2 gap-0 border border-black">
 
-    </div>
-</section>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+            <!-- TrendReco -->
 
-    const username = "Fiidhanz";
-    const grid = document.getElementById("projects-grid");
-    const loading = document.getElementById("github-loading");
-    const errorBox = document.getElementById("github-error");
+            <article class="big-card border-b md:border-r border-black">
 
-    async function loadRepositories() {
+                <div class="flex justify-between items-start">
 
-        try {
+                    <span class="mono text-[9px] accent">
+                        PROJECT 01
+                    </span>
 
-            console.log("Loading GitHub repositories...");
+                    <span class="tag">
+                        AI / WEB
+                    </span>
 
-            const url =
-                `https://api.github.com/users/${username}/repos?sort=updated&direction=desc&per_page=100`;
+                </div>
 
-            const response = await fetch(url);
+                <h3 class="serif text-2xl md:text-3xl mt-7">
+                    Social Media Content
+                    Recommendation System
+                </h3>
 
-            console.log("GitHub response:", response.status);
+                <p class="text-xs leading-7 muted mt-5">
+                    Sistem rekomendasi berbasis web untuk membantu menghasilkan
+                    ide dan strategi perencanaan konten berdasarkan tren online
+                    dan data konten media sosial.
+                </p>
 
-            if (!response.ok) {
-                throw new Error(
-                    `GitHub API returned ${response.status}`
-                );
-            }
+                <p class="text-xs leading-7 muted mt-3">
+                    Mengimplementasikan pengolahan data, text embedding,
+                    similarity, trend analysis, scoring, dan ranking.
+                </p>
 
-            const repos = await response.json();
+                <div class="flex flex-wrap gap-2 mt-6">
+                    <span class="tag">PYTHON</span>
+                    <span class="tag">FLASK</span>
+                    <span class="tag">MYSQL</span>
+                    <span class="tag">SBERT</span>
+                    <span class="tag">COSINE SIMILARITY</span>
+                    <span class="tag">GOOGLE TRENDS</span>
+                </div>
 
-            console.log("Repositories:", repos);
+            </article>
 
-            grid.innerHTML = "";
 
-            const publicRepos = repos
-                .filter(repo => !repo.fork)
+            <!-- ERP -->
 
-            if (publicRepos.length === 0) {
+            <article class="big-card border-b border-black">
 
-                grid.innerHTML = `
-                    <div class="col-span-full text-center py-10">
-                        <p class="text-gray-500">
-                            No repositories found.
-                        </p>
+                <div class="flex justify-between items-start">
+
+                    <span class="mono text-[9px] accent">
+                        PROJECT 02
+                    </span>
+
+                    <span class="tag">
+                        WEB SYSTEM
+                    </span>
+
+                </div>
+
+                <h3 class="serif text-2xl md:text-3xl mt-7">
+                    ERP Web System
+                </h3>
+
+                <p class="text-xs leading-7 muted mt-5">
+                    Pengembangan dan penyesuaian fitur ERP berbasis web
+                    sesuai kebutuhan sistem dengan fokus pada frontend,
+                    backend, integrasi database, debugging, dan testing.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mt-6">
+                    <span class="tag">HTML</span>
+                    <span class="tag">TAILWIND</span>
+                    <span class="tag">PYTHON</span>
+                    <span class="tag">FLASK</span>
+                    <span class="tag">MYSQL</span>
+                </div>
+
+            </article>
+
+
+            <!-- Game -->
+
+            <article class="big-card md:border-r border-black">
+
+                <div class="flex justify-between items-start">
+
+                    <span class="mono text-[9px] accent">
+                        PROJECT 03
+                    </span>
+
+                    <span class="tag">
+                        GAME
+                    </span>
+
+                </div>
+
+                <h3 class="serif text-2xl mt-7">
+                    Pirates Puzzle Quest
+                </h3>
+
+                <p class="text-xs leading-7 muted mt-5">
+                    Game puzzle sederhana bertema bajak laut menggunakan Unity,
+                    termasuk implementasi gameplay dan elemen interaktif.
+                </p>
+
+                <p class="text-xs leading-7 muted mt-3">
+                    Aset 3D dibuat dan diolah menggunakan Blender untuk
+                    mendukung kebutuhan visual game.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mt-6">
+                    <span class="tag">UNITY</span>
+                    <span class="tag">BLENDER 3D</span>
+                    <span class="tag">GAMEPLAY</span>
+                </div>
+
+            </article>
+
+
+            <!-- Animation -->
+
+            <article class="big-card border-t md:border-t-0 border-black">
+
+                <div class="flex justify-between items-start">
+
+                    <span class="mono text-[9px] accent">
+                        PROJECT 04
+                    </span>
+
+                    <span class="tag">
+                        MOTION
+                    </span>
+
+                </div>
+
+                <h3 class="serif text-2xl mt-7">
+                    2D & 3D Animation Projects
+                </h3>
+
+                <p class="text-xs leading-7 muted mt-5">
+                    Proyek animasi dan materi iklan yang menggabungkan
+                    ilustrasi, animasi 2D, dan elemen 3D.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mt-6">
+                    <span class="tag">ILLUSTRATOR</span>
+                    <span class="tag">ADOBE ANIMATE</span>
+                    <span class="tag">BLENDER</span>
+                </div>
+
+            </article>
+
+
+            <!-- UIUX -->
+
+            <article class="big-card md:col-span-2 border-t border-black">
+
+                <div class="grid md:grid-cols-[.4fr_1.6fr] gap-7">
+
+                    <div>
+                        <span class="mono text-[9px] accent">
+                            PROJECT 05
+                        </span>
+
+                        <span class="tag inline-block mt-4">
+                            UI / UX
+                        </span>
                     </div>
-                `;
 
-            } else {
+                    <div>
 
-                publicRepos.forEach(repo => {
-
-                    const description =
-                        repo.description ||
-                        "No description available.";
-
-                    const language =
-                        repo.language ||
-                        "Project";
-
-                    const card = document.createElement("div");
-
-                    card.className = `
-                        group
-                        glass
-                        p-6
-                        rounded-3xl
-                        border
-                        border-white/10
-                        bg-white/[0.02]
-                        hover:border-blue-500/40
-                        transition-all
-                        duration-300
-                        hover:-translate-y-1
-                    `;
-
-                    card.innerHTML = `
-
-                        <div class="flex justify-between items-start mb-6">
-
-                            <div class="
-                                w-12 h-12
-                                rounded-xl
-                                flex items-center justify-center
-                                bg-blue-500/10
-                                border border-blue-500/20
-                            ">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="text-blue-400"
-                                >
-                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5
-                                    c3 0 6-1.5 6-5.5
-                                    a4.5 4.5 0 0 0-1-3
-                                    4.1 4.1 0 0 0-0.1-3
-                                    S17.5 2 15 3.5
-                                    a13.4 13.4 0 0 0-6 0
-                                    C6.5 2 4.6 2 4.6 2
-                                    a4.1 4.1 0 0 0-.1 3
-                                    4.5 4.5 0 0 0-1 3
-                                    c0 4 3 5.5 6 5.5
-                                    a4.8 4.8 0 0 0-1 3v4"/>
-                                    <path d="M9 18c-4.5 2-5-2-7-2"/>
-                                </svg>
-                            </div>
-
-                            <a
-                                href="${repo.html_url}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="
-                                    text-gray-500
-                                    hover:text-white
-                                    transition
-                                "
-                            >
-                                ↗
-                            </a>
-
-                        </div>
-
-                        <h3 class="
-                            text-xl
-                            font-bold
-                            text-white
-                            mb-3
-                            group-hover:text-blue-400
-                            transition
-                        ">
-                            ${escapeHTML(repo.name)}
+                        <h3 class="serif text-2xl">
+                            UI/UX Design Projects
                         </h3>
 
-                        <p class="
-                            text-sm
-                            text-gray-400
-                            leading-relaxed
-                            mb-6
-                            min-h-[72px]
-                        ">
-                            ${escapeHTML(description)}
+                        <p class="text-xs leading-7 muted mt-4">
+                            Merancang solusi UI/UX untuk studi kasus website
+                            dan aplikasi mobile menggunakan Figma,
+                            termasuk wireframe, user flow, prototype,
+                            struktur informasi, dan eksplorasi pendekatan
+                            desain berdasarkan kebutuhan pengguna.
                         </p>
 
-                        <div class="flex flex-wrap gap-2 mb-6">
-
-                            <span class="
-                                text-xs
-                                px-3 py-1
-                                rounded-lg
-                                border border-gray-700
-                                text-gray-300
-                            ">
-                                ${escapeHTML(language)}
-                            </span>
-
-                            <span class="
-                                text-xs
-                                px-3 py-1
-                                rounded-lg
-                                border border-gray-700
-                                text-gray-300
-                            ">
-                                ⭐ ${repo.stargazers_count}
-                            </span>
-
+                        <div class="flex flex-wrap gap-2 mt-5">
+                            <span class="tag">FIGMA</span>
+                            <span class="tag">WIREFRAME</span>
+                            <span class="tag">USER FLOW</span>
+                            <span class="tag">PROTOTYPING</span>
+                            <span class="tag">RESPONSIVE DESIGN</span>
                         </div>
 
-                        <div class="
-                            pt-4
-                            border-t border-white/5
-                        ">
+                    </div>
 
-                            <a
-                                href="${repo.html_url}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="
-                                    text-sm
-                                    text-blue-400
-                                    hover:text-blue-300
-                                "
-                            >
-                                View Repository →
-                            </a>
-
-                        </div>
-                    `;
-
-                    grid.appendChild(card);
-
-                });
-
-            }
-
-            // HILANGKAN LOADING
-            loading.style.display = "none";
-
-            console.log("GitHub repositories loaded successfully.");
-
-        } catch (err) {
-
-            console.error("GitHub ERROR:", err);
-
-            // HILANGKAN LOADING
-            loading.style.display = "none";
-
-            // TAMPILKAN ERROR
-            errorBox.classList.remove("hidden");
-
-            errorBox.innerHTML = `
-                Failed to load GitHub repositories.
-                <br>
-                <small class="text-gray-600">
-                    ${escapeHTML(err.message)}
-                </small>
-            `;
-        }
-    }
-
-
-    function escapeHTML(value) {
-
-        const div = document.createElement("div");
-
-        div.textContent = value;
-
-        return div.innerHTML;
-    }
-
-
-    loadRepositories();
-
-});
-</script>
-
-
-    
-
-<!-- FIGMA SHOWCASE -->
-<section id="figma-showcase" class="section-reveal py-20 px-6 bg-[#0d0d0d]">
-    <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold">UI/UX Design Showcase</h2>
-        <p class="text-gray-500 mt-3 max-w-2xl mx-auto">
-            A selected design project showcasing my approach to creating intuitive, user-centered interfaces and visual experiences.
-        </p>
-    </div>
-
-    <!-- Window Container -->
-    <div class="max-w-7xl mx-auto">
-        <div class="glass rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
-            
-            <!-- Window Header (Sync with other sections) -->
-            <div class="bg-[#1a1a1a] p-4 flex items-center justify-between border-b border-white/5">
-                <div class="flex gap-1.5">
-                    <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
                 </div>
-                <div class="text-[10px] text-gray-500 uppercase tracking-[0.3em] font-mono italic">project UI/UX.fig</div>
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                    <span class="text-[9px] text-blue-400 font-bold uppercase tracking-widest">Live Preview</span>
+
+            </article>
+
+        </div>
+
+
+        <!-- LIVE GITHUB -->
+
+        <div class="mt-16">
+
+            <div class="flex items-center justify-between border-b border-black pb-4">
+
+                <div>
+                    <div class="news-label">
+                        Live Repository Feed
+                    </div>
+
+                    <h3 class="serif text-2xl mt-3">
+                        Latest GitHub Repositories
+                    </h3>
                 </div>
+
+                <span class="mono text-[9px] hidden sm:block">
+                    API / GITHUB
+                </span>
+
             </div>
 
-            <!-- Figma Embed (Clean & Original Colors) -->
-            <div class="bg-[#1e1e1e] h-[650px]">
-                <iframe 
-                    class="w-full h-full border-none transition duration-700" 
-                    src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/deDLfdkCCeLX8fJDWRmqgZ/Herbari" 
+
+            <div
+                id="projects-grid"
+                class="border-l border-black border-t"
+            >
+            </div>
+
+
+            <div
+                id="github-loading"
+                class="py-10 text-center mono text-[10px]"
+            >
+                Loading repositories...
+            </div>
+
+
+            <div
+                id="github-error"
+                class="hidden py-10 text-center text-[#8f1835] mono text-[10px]"
+            >
+                Failed to load GitHub repositories.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SKILLS
+========================================= -->
+
+<section id="skills" class="editorial-container section-reveal py-20 md:py-28">
+
+    <div class="grid lg:grid-cols-[.6fr_1.4fr] gap-12">
+
+        <div>
+
+            <div class="news-label">
+                Competencies
+            </div>
+
+            <h2 class="section-heading mt-5">
+                Skills &
+                Capabilities
+            </h2>
+
+            <p class="text-xs leading-7 muted mt-6">
+                Technical, design, data, creative, dan interpersonal
+                capabilities berdasarkan CV.
+            </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-2 gap-0 border border-black">
+
+            <!-- PROGRAMMING -->
+
+            <div class="big-card border-b md:border-r border-black">
+
+                <div class="mono text-[9px] accent">
+                    01 / PROGRAMMING & WEB
+                </div>
+
+                <ul class="skill-list mt-5 list-none">
+
+                    <li>Python</li>
+                    <li>PHP</li>
+                    <li>JavaScript</li>
+                    <li>TypeScript</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>React</li>
+                    <li>Next.js</li>
+                    <li>Flask</li>
+                    <li>Laravel</li>
+                    <li>Tailwind CSS</li>
+                    <li>Full-Stack Development</li>
+                    <li>REST API</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- FRONTEND UIUX -->
+
+            <div class="big-card border-b border-black">
+
+                <div class="mono text-[9px] accent">
+                    02 / UI / UX & PRODUCT
+                </div>
+
+                <ul class="skill-list mt-5 list-none">
+
+                    <li>Figma</li>
+                    <li>UI Design</li>
+                    <li>UX Design</li>
+                    <li>Design Systems</li>
+                    <li>Component-Based Design</li>
+                    <li>Wireframing</li>
+                    <li>User Flow</li>
+                    <li>Prototyping</li>
+                    <li>Responsive Design</li>
+                    <li>Information Architecture</li>
+                    <li>Graphic Design</li>
+                    <li>Digital Illustration</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- BACKEND -->
+
+            <div class="big-card md:border-r border-black">
+
+                <div class="mono text-[9px] accent">
+                    03 / BACKEND & DATABASE
+                </div>
+
+                <ul class="skill-list mt-5 list-none">
+
+                    <li>MySQL</li>
+                    <li>SQL</li>
+                    <li>SQLAlchemy</li>
+                    <li>CRUD</li>
+                    <li>Database Integration</li>
+                    <li>REST API</li>
+                    <li>Cloudflare Workers</li>
+                    <li>Cloudflare D1</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- AI DATA -->
+
+            <div class="big-card">
+
+                <div class="mono text-[9px] accent">
+                    04 / AI, NLP & DATA
+                </div>
+
+                <ul class="skill-list mt-5 list-none">
+
+                    <li>Artificial Intelligence</li>
+                    <li>Natural Language Processing</li>
+                    <li>SBERT</li>
+                    <li>Cosine Similarity</li>
+                    <li>Pandas</li>
+                    <li>NumPy</li>
+                    <li>Data Processing</li>
+                    <li>Data Analysis</li>
+                    <li>Selenium</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- CREATIVE -->
+
+            <div class="big-card border-t md:border-r border-black">
+
+                <div class="mono text-[9px] accent">
+                    05 / CREATIVE & MULTIMEDIA
+                </div>
+
+                <ul class="skill-list mt-5 list-none">
+
+                    <li>Graphic Design</li>
+                    <li>Digital Illustration</li>
+                    <li>2D Animation</li>
+                    <li>3D Animation</li>
+                    <li>Multimedia</li>
+                    <li>Adobe Illustrator</li>
+                    <li>Adobe Animate</li>
+                    <li>Blender</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- TOOLS -->
+
+            <div class="big-card border-t border-black">
+
+                <div class="mono text-[9px] accent">
+                    06 / TOOLS & DEVELOPMENT
+                </div>
+
+                <ul class="skill-list mt-5 list-none">
+
+                    <li>Git</li>
+                    <li>GitHub</li>
+                    <li>Visual Studio Code</li>
+                    <li>Google Colab</li>
+                    <li>Microsoft Word</li>
+                    <li>Microsoft Excel</li>
+                    <li>Microsoft PowerPoint</li>
+                    <li>Unity</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SOFT SKILLS -->
+
+    <div class="mt-16 border-y border-black py-8">
+
+        <div class="flex flex-col md:flex-row gap-5 md:items-center">
+
+            <div class="mono text-[9px] accent md:w-40">
+                SOFT SKILLS
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+
+                <span class="tag">PROBLEM SOLVING</span>
+                <span class="tag">CRITICAL THINKING</span>
+                <span class="tag">COMMUNICATION</span>
+                <span class="tag">TEAMWORK</span>
+                <span class="tag">LEADERSHIP</span>
+                <span class="tag">COORDINATION</span>
+                <span class="tag">MENTORING</span>
+                <span class="tag">ADAPTABILITY</span>
+                <span class="tag">TIME MANAGEMENT</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     FIGMA SHOWCASE
+========================================= -->
+
+<section id="design" class="paper-dark section-reveal">
+
+    <div class="editorial-container py-20 md:py-28">
+
+        <div class="grid md:grid-cols-[.55fr_1.45fr] gap-10 mb-10">
+
+            <div>
+
+                <div class="news-label">
+                    Design Desk
+                </div>
+
+                <h2 class="section-heading mt-5">
+                    UI/UX
+                    Showcase
+                </h2>
+
+            </div>
+
+            <div>
+
+                <p class="text-sm leading-8 max-w-2xl">
+                    Studi desain UI/UX yang mengeksplorasi interface,
+                    struktur informasi, user flow, wireframe, dan prototype
+                    menggunakan Figma.
+                </p>
+
+                <p class="mono text-[9px] mt-5">
+                    LIVE FIGMA EMBED · HERBARI
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="window">
+
+            <div class="window-bar">
+
+                <div class="window-dots">
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                </div>
+
+                <span class="mono text-[9px] uppercase">
+                    project_ui_ux.fig
+                </span>
+
+                <span class="mono text-[8px] accent">
+                    LIVE PREVIEW
+                </span>
+
+            </div>
+
+
+            <div class="h-[650px] md:h-[720px] bg-white">
+
+                <iframe
+                    class="w-full h-full border-none"
+                    src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/deDLfdkCCeLX8fJDWRmqgZ/Herbari"
                     allowfullscreen>
                 </iframe>
+
             </div>
+
         </div>
-        
-        <p class="text-center text-[10px] text-gray-600 mt-6 uppercase tracking-[0.4em]">
-            Interactions and prototypes enabled
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CREATIVE GALLERY
+========================================= -->
+
+<section class="editorial-container section-reveal py-20 md:py-28">
+
+    <div class="flex flex-col md:flex-row justify-between md:items-end gap-5 border-b border-black pb-7">
+
+        <div>
+
+            <div class="news-label">
+                Creative Archive
+            </div>
+
+            <h2 class="section-heading mt-5">
+                Design &
+                Illustration
+            </h2>
+
+        </div>
+
+        <p class="text-xs muted max-w-sm leading-6">
+            Gallery visual, ilustrasi, animasi, dan karya multimedia
+            yang tersimpan pada Google Drive.
         </p>
+
     </div>
+
+
+    <div class="window mt-10">
+
+        <div class="window-bar">
+
+            <div class="window-dots">
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+            </div>
+
+            <span class="mono text-[9px]">
+                creative_archive
+            </span>
+
+            <span class="mono text-[8px]">
+                DRIVE
+            </span>
+
+        </div>
+
+
+        <div class="h-[600px] md:h-[650px] bg-white">
+
+            <iframe
+                src="https://drive.google.com/embeddedfolderview?id=1mPdE-c3OalzJskP9WBU0W_spjjCRubqR#grid"
+                class="w-full h-full border-none"
+                allow="autoplay">
+            </iframe>
+
+        </div>
+
+    </div>
+
+
+    <div class="mt-5 flex justify-between items-center gap-4">
+
+        <span class="mono text-[8px] uppercase">
+            New uploads appear automatically
+        </span>
+
+        <a
+            href="https://drive.google.com/drive/folders/1mPdE-c3OalzJskP9WBU0W_spjjCRubqR"
+            target="_blank"
+            class="text-[9px] uppercase font-bold border-b border-black"
+        >
+            Open Archive →
+        </a>
+
+    </div>
+
 </section>
 
 
-<!-- DESIGN GALLERY -->
-<section id="design" class="section-reveal py-20 px-6 bg-[#0d0d0d]">
-    <div class="max-w-7xl mx-auto text-center">
-        <div class="mb-12">
-            <h2 class="text-4xl font-bold mb-4">Design & Illustration</h2>
-            <p class="text-gray-500 max-w-2xl mx-auto italic">
-                Real-time gallery synced directly from my creative cloud storage.
-            </p>
-        </div>
-        
-        <!-- Mac-Style Window Container -->
-        <div class="max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-            <!-- Window Header -->
-            <div class="bg-[#1a1a1a] p-4 flex items-center gap-2 border-b border-white/5">
-                <div class="flex gap-1.5">
-                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                </div>
-                <div class="mx-auto text-[10px] text-gray-500 uppercase tracking-widest font-mono">cloud_storage_gallery.exe</div>
-            </div>
+<!-- =========================================
+     OTHER WORKS
+========================================= -->
 
-            <!-- Folder Embed (NO FILTER = ORIGINAL COLORS) -->
-            <div class="h-[650px] bg-white">
-                <iframe 
-                    src="https://drive.google.com/embeddedfolderview?id=1mPdE-c3OalzJskP9WBU0W_spjjCRubqR#grid" 
-                    class="w-full h-full border-none"
-                    allow="autoplay">
-                </iframe>
-            </div>
-        </div>
+<section id="other" class="paper-dark section-reveal">
 
-        <div class="mt-12">
-            <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-[0.2em]">New uploads appear automatically</p>
-            <a href="https://drive.google.com/drive/folders/1mPdE-c3OalzJskP9WBU0W_spjjCRubqR" target="_blank" 
-               class="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-500 transition duration-300 shadow-lg shadow-blue-500/20">
-                View on Google Drive <i data-lucide="external-link" class="w-4 h-4"></i>
-            </a>
-        </div>
-    </div>
-</section>
+    <div class="editorial-container py-20 md:py-28">
 
-
-
-<!-- SKILLS -->
-<section id="skills" class="section-reveal py-32 px-6">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20">
-            <h2 class="text-blue-500 font-bold mb-4 uppercase tracking-widest text-sm italic">// Proficiency</h2>
-            <h3 class="text-4xl md:text-5xl font-bold">Skills & Capabilities</h3>
-            <p class="text-gray-500 mt-4 max-w-2xl mx-auto">A combination of technical development skills and creative thinking, focused on building functional, user-friendly, and visually engaging digital products.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12">
-            <div>
-                <h4 class="flex items-center gap-3 text-xl font-bold mb-8 text-white">
-                    <i data-lucide="terminal" class="text-blue-500"></i> Hard Skills
-                </h4>
-                <div class="grid gap-4">
-                    <div class="glass p-6 rounded-2xl border border-white/5 hover:border-blue-500/50 transition-all group">
-                        <div class="flex justify-between items-start mb-3">
-                            <h5 class="font-bold text-lg">Frontend Development</h5>
-                            <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-1 rounded-md uppercase font-bold tracking-tighter">Advanced</span>
-                        </div>
-                        <p class="text-sm text-gray-400 leading-relaxed mb-4">  Building responsive and interactive user interfaces using React and Tailwind CSS, with a focus on performance, accessibility, and clean architecture.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-[10px] text-gray-500 border border-gray-800 px-2 py-1 rounded">React/Next.js</span>
-                            <span class="text-[10px] text-gray-500 border border-gray-800 px-2 py-1 rounded">Tailwind CSS</span>
-                            <span class="text-[10px] text-gray-500 border border-gray-800 px-2 py-1 rounded">Framer Motion</span>
-                        </div>
-                    </div>
-
-                    <div class="glass p-6 rounded-2xl border border-white/5 hover:border-green-500/50 transition-all group">
-                        <div class="flex justify-between items-start mb-3">
-                            <h5 class="font-bold text-lg">Backend & Logic</h5>
-                            <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-1 rounded-md uppercase font-bold tracking-tighter"><span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-1 rounded-md uppercase font-bold tracking-tighter">Intermediate</span>
-                        </div>
-                        <p class="text-sm text-gray-400 leading-relaxed mb-4">Developing scalable backend systems and APIs using Python (Flask) and Node.js, with a focus on efficient data processing, database optimization, and clean system architecture.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-[10px] text-gray-500 border border-gray-800 px-2 py-1 rounded">Flask</span>
-                            <span class="text-[10px] text-gray-500 border border-gray-800 px-2 py-1 rounded">MySQL/PostgreSQL</span>
-                            <span class="text-[10px] text-gray-500 border border-gray-800 px-2 py-1 rounded">REST API</span>
-                        </div>
-                    </div>
-                    <div class="glass p-6 rounded-2xl border border-white/5 hover:border-purple-500/50 transition-all group">
-    <div class="flex justify-between items-start mb-3">
-        <h5 class="font-bold text-lg">Computer Vision & Image Processing</h5>
-        <span class="text-[10px] bg-purple-500/20 text-purple-400 px-2 py-1 rounded-md uppercase font-bold tracking-tighter">Intermediate</span>
-    </div>
-    <p class="text-sm text-gray-400 leading-relaxed mb-4">
-        Processing and analyzing digital images using computer vision techniques, including feature extraction, image transformation, and pattern recognition, to support data-driven and intelligent system development.
-    </p>
-    <div class="flex flex-wrap gap-2">
-        <span class="text-[10px] text-gray-500 border border-gray-800 px-2 py-1 rounded">OpenCV</span>
-        <span class="text-[10px] text-gray-500 border border-gray-800 px-2 py-1 rounded">Image Processing</span>
-        <span class="text-[10px] text-gray-500 border border-gray-800 px-2 py-1 rounded">Computer Vision</span>
-    </div>
-</div>
-                </div>
-            </div>
+        <div class="grid md:grid-cols-[.6fr_1.4fr] gap-10">
 
             <div>
-                <h4 class="flex items-center gap-3 text-xl font-bold mb-8 text-white">
-                    <i data-lucide="brain-circuit" class="text-purple-500"></i> Soft Skills
-                </h4>
-                <div class="grid gap-6">
-                    <div class="flex gap-6 items-start group">
-                        <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center shrink-0 group-hover:bg-pink-500/20 transition">
-                            <i data-lucide="users" class="text-pink-500 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-white mb-1">User-Centric Mindset</h5>
-                            <p class="text-sm text-gray-500 leading-relaxed">Focused on understanding user needs to create intuitive and meaningful digital experiences.</p>
-                        </div>
-                    </div>
 
-                    <div class="flex gap-6 items-start group">
-                        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center shrink-0 group-hover:bg-yellow-500/20 transition">
-                            <i data-lucide="lightbulb" class="text-yellow-500 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-white mb-1">Analytical Problem Solving</h5>
-                            <p class="text-sm text-gray-500 leading-relaxed">Able to break down complex problems into simple and effective technical solutions.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-6 items-start group">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0 group-hover:bg-blue-500/20 transition">
-                            <i data-lucide="message-square" class="text-blue-500 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-white mb-1">Effective Communication</h5>
-                            <p class="text-sm text-gray-500 leading-relaxed">Bridging technical development with creative design to achieve clear and effective outcomes.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-6 items-start group">
-                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0 group-hover:bg-cyan-500/20 transition">
-                            <i data-lucide="zap" class="text-cyan-500 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-white mb-1">Fast Learner & Adaptability</h5>
-                            <p class="text-sm text-gray-500 leading-relaxed">Comfortable learning new tools and technologies, and adapting quickly to different project requirements.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-
-
-<!-- SECTION OTHER WORKS & DRIVE EMBED -->
-<section id="other" class="section-reveal py-32 px-6 bg-[#0a0a0a]">
-    <div class="max-w-7xl mx-auto">
-
-        <!-- HEADER -->
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Other Works</h2>
-            <p class="text-gray-500 max-w-2xl mx-auto text-sm md:text-base">
-                A collection of experimental and creative projects where I explore new ideas, tools, and digital mediums beyond my main focus.
-            </p>
-        </div>
-
-        <!-- CATEGORY CARDS -->
-        <div class="grid md:grid-cols-3 gap-8 mb-20">
-            
-            <div class="glass p-8 rounded-3xl text-center card-hover transition group border border-white/5">
-                <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-blue-500/10 group-hover:scale-110 transition">
-                    <i data-lucide="gamepad-2" class="w-8 h-8 text-blue-500"></i>
-                </div>
-                <h4 class="font-bold text-lg mb-2 text-white">Game Development</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">
-                    Exploring interactive experiences through simple game mechanics and creative gameplay design.
-                </p>
-            </div>
-
-            <div class="glass p-8 rounded-3xl text-center card-hover transition group border border-white/5">
-                <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-purple-500/10 group-hover:scale-110 transition">
-                    <i data-lucide="clapperboard" class="w-8 h-8 text-purple-500"></i>
-                </div>
-                <h4 class="font-bold text-lg mb-2 text-white">Animation</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">
-                    Creating motion, storytelling, and visual narratives through animation and multimedia.
-                </p>
-            </div>
-
-            <div class="glass p-8 rounded-3xl text-center card-hover transition group border border-white/5">
-                <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-green-500/10 group-hover:scale-110 transition">
-                    <i data-lucide="code-2" class="w-8 h-8 text-green-500"></i>
-                </div>
-                <h4 class="font-bold text-lg mb-2 text-white">Creative Coding</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">
-                    Experimenting with code as a medium for art, generative visuals, and interactive systems.
-                </p>
-            </div>
-
-        </div>
-
-        <!-- 🔥 FULL WIDTH DRIVE PREVIEW -->
-        <div class="max-w-6xl mx-auto">
-            <div class="rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
-
-                <!-- MAC-STYLE HEADER BAR -->
-                <div class="bg-[#1a1a1a] flex items-center justify-between px-6 py-4 border-b border-white/5">
-                    <div class="flex gap-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
-                    </div>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-[0.3em] font-mono">explorations_v2.0</p>
-                    <a href="https://drive.google.com/drive/folders/1DN-wQdftEG9LWqrNmA8lGIrxYRCGrZ5W" 
-                       target="_blank" 
-                       class="text-[10px] font-bold text-blue-400 hover:text-blue-300 transition uppercase tracking-widest">
-                        Source <i data-lucide="external-link" class="inline w-3 h-3 ml-1"></i>
-                    </a>
+                <div class="news-label">
+                    Other Works
                 </div>
 
-                <!-- FULLSCREEN IFRAME (Original Colors) -->
-                <div class="bg-white">
-                    <iframe 
-                        class="w-full h-[70vh] border-none"
-                        src="https://drive.google.com/embeddedfolderview?id=1DN-wQdftEG9LWqrNmA8lGIrxYRCGrZ5W#grid">
-                    </iframe>
-                </div>
-            </div>
-            
-            <p class="text-center text-gray-600 text-[10px] mt-8 uppercase tracking-[0.4em]">
-                &copy; 2026 Autostorage Sync System
-            </p>
-        </div>
-    </div>
-</section>
-
-
-
-<!-- CERTIFICATIONS -->
-<section id="certifications" class="section-reveal py-32 px-6 bg-[#0a0a0a]">
-    <div class="max-w-7xl mx-auto text-center">
-        <div class="mb-16">
-            <h2 class="text-blue-500 font-bold mb-4 uppercase tracking-widest text-sm italic">// Credentials</h2>
-            <h3 class="text-4xl md:text-5xl font-bold">Licenses & Certifications</h3>
-            <p class="text-gray-500 mt-4 text-sm">Kumpulan sertifikasi resmi saya yang tersimpan di Google Drive.</p>
-        </div>
-
-        <!-- Mac-Style Window Container -->
-        <div class="max-w-5xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10">
-            
-            <!-- Window Header -->
-            <div class="bg-[#1a1a1a] p-4 flex items-center justify-between border-b border-white/5">
-                <div class="flex gap-1.5">
-                    <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
-                </div>
-                <div class="text-[10px] text-gray-500 uppercase tracking-[0.3em] font-mono">official_credentials.pdf</div>
-                <div class="w-12"></div> <!-- Spacer biar teks tengah tetep di tengah -->
-            </div>
-
-            <!-- Folder Embed (NO FILTER = ORIGINAL COLORS) -->
-            <div class="h-[600px] bg-white">
-                <iframe 
-                    src="https://drive.google.com/embeddedfolderview?id=1rtJKsUKxb7JZPGgaANkOlA5xDCP1dcgK#grid" 
-                    class="w-full h-full border-none"
-                    allow="autoplay">
-                </iframe>
-            </div>
-        </div>
-        
-        <div class="mt-8">
-            <p class="text-[10px] text-gray-600 uppercase tracking-[0.4em]">
-                *Folder ini terhubung langsung dengan Google Drive saya
-            </p>
-        </div>
-    </div>
-</section>
-
-
-<!-- FOOTER -->
-<footer id="contact" class="pt-32 pb-12 px-6 border-t border-gray-900 bg-[#0a0a0a] relative overflow-hidden">
-    <!-- Subtle Background Glow -->
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
-
-    <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-end mb-24">
-            <div>
-                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-500 text-xs font-bold mb-6">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    Available for new opportunities
-                </span>
-                <h2 class="text-5xl md:text-8xl font-bold tracking-tighter leading-tight">
-                    Let’s collaborate on <br> <span class="text-blue-500">building meaningful digital products.</span>
+                <h2 class="section-heading mt-5">
+                    Beyond
+                    Software
                 </h2>
+
             </div>
-            
-            <div class="flex flex-col items-start md:items-end gap-6">
-                <p class="text-gray-500 text-lg md:text-right max-w-xs">
-                   Have an idea or just want to connect? I’m open to new opportunities and collaborations.
-                </p>
-                <a href="mailto:hafiidhyrama@gmail.com" class="group relative inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold transition overflow-hidden">
-                    <span class="relative z-10">Send Email</span>
-                    <i data-lucide="arrow-up-right" class="w-5 h-5 relative z-10 group-hover:rotate-45 transition duration-300"></i>
-                    <div class="absolute inset-0 bg-blue-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 border border-black">
+
+                <div class="small-card border-r border-b md:border-b-0 border-black">
+                    <span class="mono text-[9px] accent">01</span>
+                    <h3 class="serif mt-3 text-lg">Game</h3>
+                    <p class="text-[10px] muted leading-5 mt-2">
+                        Unity, gameplay, interactive elements.
+                    </p>
+                </div>
+
+                <div class="small-card border-r border-b md:border-b-0 border-black">
+                    <span class="mono text-[9px] accent">02</span>
+                    <h3 class="serif mt-3 text-lg">Animation</h3>
+                    <p class="text-[10px] muted leading-5 mt-2">
+                        2D, 3D, motion, visual storytelling.
+                    </p>
+                </div>
+
+                <div class="small-card border-b md:border-b-0 border-black">
+                    <span class="mono text-[9px] accent">03</span>
+                    <h3 class="serif mt-3 text-lg">Visual</h3>
+                    <p class="text-[10px] muted leading-5 mt-2">
+                        Illustration, graphic and multimedia.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="window mt-12">
+
+            <div class="window-bar">
+
+                <div class="window-dots">
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                </div>
+
+                <span class="mono text-[9px]">
+                    explorations_archive
+                </span>
+
+                <a
+                    href="https://drive.google.com/drive/folders/1DN-wQdftEG9LWqrNmA8lGIrxYRCGrZ5W"
+                    target="_blank"
+                    class="mono text-[8px] accent"
+                >
+                    SOURCE →
                 </a>
+
             </div>
+
+            <div class="bg-white">
+
+                <iframe
+                    class="w-full h-[500px] md:h-[620px] border-none"
+                    src="https://drive.google.com/embeddedfolderview?id=1DN-wQdftEG9LWqrNmA8lGIrxYRCGrZ5W#grid">
+                </iframe>
+
+            </div>
+
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-gray-900 pt-12">
-            <!-- Brand -->
-            <div class="col-span-2 md:col-span-1">
-                <span class="font-bold text-2xl tracking-tighter">Hafiidh Y. Rama<span class="text-blue-500">.</span></span>
-                <p class="text-gray-500 text-sm mt-4 leading-relaxed">
-                    UI/UX Designer & Full-stack Developer focused on building functional and visually engaging digital products.
-                </p>
-            </div>
-
-            <!-- Navigation -->
-            <div>
-                <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Navigasi</h4>
-                <ul class="space-y-4 text-gray-500 text-sm">
-                    <li><a href="#about" class="hover:text-blue-500 transition">About</a></li>
-                    <li><a href="#services" class="hover:text-blue-500 transition">Capabilities</a></li>
-                    <li><a href="#projects" class="hover:text-blue-500 transition">Projects</a></li>
-                    <li><a href="#design" class="hover:text-blue-500 transition">Design</a></li>
-                    <li><a href="#skills" class="hover:text-blue-500 transition">Skills</a></li>
-                    <li><a href="#certifications" class="hover:text-blue-500 transition">Certifications</a></li>
-                </ul>
-            </div>
-
-            <!-- Socials -->
-            <div>
-                <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Socials Media</h4>
-                <ul class="space-y-4 text-gray-500 text-sm">
-                    <li><a href="https://github.com/Fiidhanz" target="_blank" class="flex items-center gap-2 hover:text-white transition"><i data-lucide="github" class="w-4 h-4"></i> GitHub</a></li>
-                    <li><a href="https://linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213" target="_blank" class="flex items-center gap-2 hover:text-white transition"><i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn</a></li>
-                    <li><a href="https://instagram.com/upza.sign_" target="_blank" class="flex items-center gap-2 hover:text-white transition"><i data-lucide="instagram" class="w-4 h-4"></i> Instagram</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact Details -->
-            <div>
-                <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Contact</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">
-                    Malang, Jawa Timur<br>
-                    Indonesia<br>
-                    <span class="text-white block mt-2">hafiidhyrama@gmail.com</span>
-                </p>
-            </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row justify-between items-center mt-24 pt-8 border-t border-gray-900 gap-4">
-            <p class="text-xs text-gray-600 uppercase tracking-[0.2em]">
-                &copy; 2026 Hafiidh Yupiza Ramadhani Portofolio.
-            </p>
-            <div class="flex gap-8">
-                <span class="text-[10px] text-gray-700 uppercase tracking-widest">UI/UX Design</span>
-                <span class="text-[10px] text-gray-700 uppercase tracking-widest">Web Development</span>
-                <span class="text-[10px] text-gray-700 uppercase tracking-widest">Creative Technology</span>
-            </div>
-        </div>
     </div>
+
+</section>
+
+
+<!-- =========================================
+     CERTIFICATIONS
+========================================= -->
+
+<section id="certifications" class="editorial-container section-reveal py-20 md:py-28">
+
+    <div class="grid md:grid-cols-[.65fr_1.35fr] gap-10">
+
+        <div>
+
+            <div class="news-label">
+                Credentials
+            </div>
+
+            <h2 class="section-heading mt-5">
+                Certifications
+            </h2>
+
+            <p class="text-xs leading-7 muted mt-6">
+                Sertifikasi dan pelatihan yang tercantum
+                pada CV profesional.
+            </p>
+
+        </div>
+
+
+        <div class="border border-black">
+
+            <div class="grid grid-cols-2 md:grid-cols-3">
+
+                <div class="small-card border-r border-b border-black">
+                    <span class="mono text-[8px] accent">01</span>
+                    <h3 class="text-xs font-bold mt-3 leading-5">
+                        Belajar Dasar Pemrograman Web
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        Dicoding
+                    </p>
+                </div>
+
+                <div class="small-card border-r border-b border-black">
+                    <span class="mono text-[8px] accent">02</span>
+                    <h3 class="text-xs font-bold mt-3">
+                        Wireframing in UI/UX Design
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        MySkill
+                    </p>
+                </div>
+
+                <div class="small-card border-b md:border-b border-black">
+                    <span class="mono text-[8px] accent">03</span>
+                    <h3 class="text-xs font-bold mt-3">
+                        Google Cloud Built with AI
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        Google Developer Group
+                    </p>
+                </div>
+
+                <div class="small-card border-r border-b border-black">
+                    <span class="mono text-[8px] accent">04</span>
+                    <h3 class="text-xs font-bold mt-3">
+                        Python Programming
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        Indonesia AI
+                    </p>
+                </div>
+
+                <div class="small-card border-r border-b border-black">
+                    <span class="mono text-[8px] accent">05</span>
+                    <h3 class="text-xs font-bold mt-3">
+                        Public Speaking Training
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        B1GFAIR UMM
+                    </p>
+                </div>
+
+                <div class="small-card border-b border-black">
+                    <span class="mono text-[8px] accent">06</span>
+                    <h3 class="text-xs font-bold mt-3">
+                        Entrepreneurship Training
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        B1GFAIR UMM
+                    </p>
+                </div>
+
+                <div class="small-card border-r border-black">
+                    <span class="mono text-[8px] accent">07</span>
+                    <h3 class="text-xs font-bold mt-3">
+                        Career Preparation Training
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        B1GFAIR UMM
+                    </p>
+                </div>
+
+                <div class="small-card border-r border-black">
+                    <span class="mono text-[8px] accent">08</span>
+                    <h3 class="text-xs font-bold mt-3">
+                        Content Creator Seminar
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        B1GFAIR UMM
+                    </p>
+                </div>
+
+                <div class="small-card">
+                    <span class="mono text-[8px] accent">09</span>
+                    <h3 class="text-xs font-bold mt-3">
+                        International Youth Goals
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        B1GFAIR UMM
+                    </p>
+                </div>
+
+                <div class="small-card border-t border-r border-black">
+                    <span class="mono text-[8px] accent">10</span>
+                    <h3 class="text-xs font-bold mt-3">
+                        3D Animation Workshop
+                    </h3>
+                    <p class="text-[9px] muted mt-2">
+                        Himpunan Mahasiswa Informatika ITN Malang
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LIVE CERTIFICATE DRIVE -->
+
+    <div class="window mt-12">
+
+        <div class="window-bar">
+
+            <div class="window-dots">
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+            </div>
+
+            <span class="mono text-[9px]">
+                official_credentials
+            </span>
+
+            <span class="mono text-[8px]">
+                GOOGLE DRIVE
+            </span>
+
+        </div>
+
+        <div class="h-[500px] md:h-[600px] bg-white">
+
+            <iframe
+                src="https://drive.google.com/embeddedfolderview?id=1rtJKsUKxb7JZPGgaANkOlA5xDCP1dcgK#grid"
+                class="w-full h-full border-none"
+                allow="autoplay">
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CONTACT / FOOTER
+========================================= -->
+
+<footer id="contact" class="bg-black text-[#f4f1e8]">
+
+    <div class="editorial-container py-20 md:py-28">
+
+        <div class="grid lg:grid-cols-[1.5fr_.5fr] gap-14 border-b border-[#f4f1e8]/40 pb-20">
+
+            <div>
+
+                <div class="news-label text-[#c43d61]">
+                    Contact
+                </div>
+
+                <h2 class="footer-title mt-6">
+                    Let’s build
+                    something
+                    <span class="text-[#c43d61]">meaningful.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="flex flex-col justify-end">
+
+                <p class="text-sm leading-7 text-[#bcb7ac] mb-7">
+                    Open to opportunities involving software development,
+                    frontend/backend, full-stack, UI/UX, AI/data,
+                    and creative technology.
+                </p>
+
+                <a
+                    href="mailto:hafiidhyrama@gmail.com"
+                    class="inline-flex items-center justify-between border border-[#f4f1e8] px-5 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-[#f4f1e8] hover:text-black transition"
+                >
+                    Send Email
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-b border-[#f4f1e8]/40">
+
+            <div class="col-span-2 md:col-span-1">
+
+                <div class="serif text-xl">
+                    Hafiidh Yupiza Ramadhani
+                </div>
+
+                <p class="text-[10px] leading-6 text-[#8e8a81] mt-4">
+                    Informatics Engineering graduate focused on
+                    digital products, development, design,
+                    data, and creative technology.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4 class="mono text-[8px] tracking-widest mb-5">
+                    NAVIGATION
+                </h4>
+
+                <ul class="space-y-3 text-[10px] text-[#bcb7ac]">
+
+                    <li><a href="#about" class="hover:text-white">About</a></li>
+                    <li><a href="#experience" class="hover:text-white">Experience</a></li>
+                    <li><a href="#projects" class="hover:text-white">Projects</a></li>
+                    <li><a href="#skills" class="hover:text-white">Skills</a></li>
+                    <li><a href="#design" class="hover:text-white">Design</a></li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4 class="mono text-[8px] tracking-widest mb-5">
+                    SOCIAL
+                </h4>
+
+                <ul class="space-y-3 text-[10px] text-[#bcb7ac]">
+
+                    <li>
+                        <a
+                            href="https://github.com/Fiidhanz"
+                            target="_blank"
+                            class="hover:text-white"
+                        >
+                            GitHub
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="https://linkedin.com/in/hafiidh-yupiza-ramadhani-23506b213"
+                            target="_blank"
+                            class="hover:text-white"
+                        >
+                            LinkedIn
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="https://instagram.com/upza.sign_"
+                            target="_blank"
+                            class="hover:text-white"
+                        >
+                            Instagram
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4 class="mono text-[8px] tracking-widest mb-5">
+                    CONTACT
+                </h4>
+
+                <p class="text-[10px] text-[#bcb7ac] leading-6">
+                    Mojokerto, Jawa Timur<br>
+                    Indonesia<br>
+                    <span class="text-white">
+                        hafiidhyrama@gmail.com
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="flex flex-col md:flex-row justify-between gap-4 pt-7">
+
+            <p class="mono text-[8px] uppercase text-[#77736b]">
+                © 2026 Hafiidh Yupiza Ramadhani
+            </p>
+
+            <div class="flex flex-wrap gap-5 mono text-[8px] uppercase text-[#77736b]">
+                <span>Development</span>
+                <span>UI/UX</span>
+                <span>Data / AI</span>
+                <span>Creative Tech</span>
+            </div>
+
+        </div>
+
+    </div>
+
 </footer>
 
+</main>
 
 
-<!-- AUDIO ELEMENT -->
+<!-- =========================================
+     AUDIO
+========================================= -->
+
 <audio id="bgMusic" loop>
-    <source src="AKB48  どうしても君が好きだ (Doushitemo Kimiga Sukida)  [ INSTRUMENTAL ].mp3" type="audio/mpeg">
+    <source
+        src="AKB48  どうしても君が好きだ (Doushitemo Kimiga Sukida)  [ INSTRUMENTAL ].mp3"
+        type="audio/mpeg"
+    >
 </audio>
 
-<!-- FLOATING MUSIC CONTROL -->
-<div class="fixed bottom-8 left-8 z-[60] flex items-center gap-3">
-    <button id="musicToggle" class="w-12 h-12 rounded-full glass border border-white/10 flex items-center justify-center hover:scale-110 transition-all active:scale-95 group">
-        <i id="musicIcon" data-lucide="volume-x" class="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors"></i>
-    </button>
-    <div id="musicStatus" class="glass px-4 py-2 rounded-full border border-white/10 opacity-0 -translate-x-4 transition-all duration-500 pointer-events-none">
-        <p class="text-[10px] uppercase tracking-widest font-bold text-blue-500 animate-pulse">Now Playing</p>
+
+<!-- MUSIC CONTROL -->
+
+<div class="fixed bottom-5 left-5 z-[60]">
+
+    <div class="flex items-center gap-2">
+
+        <button
+            id="musicToggle"
+            class="w-11 h-11 flex items-center justify-center rounded-full shadow-lg"
+            aria-label="Toggle music"
+        >
+            <i
+                id="musicIcon"
+                data-lucide="volume-x"
+                class="w-4 h-4"
+            ></i>
+        </button>
+
+        <div
+            id="musicStatus"
+            class="bg-black text-white px-3 py-2 opacity-0 -translate-x-3 transition-all duration-500 pointer-events-none"
+        >
+            <p class="mono text-[8px] uppercase tracking-widest">
+                Now Playing
+            </p>
+        </div>
+
     </div>
+
 </div>
 
 
+<!-- =========================================
+     MODAL
+========================================= -->
 
+<div
+    class="fixed inset-0 z-[9999] items-center justify-center p-5"
+    id="modal"
+    onclick="closeModal()"
+>
 
-<!-- MODAL -->
-<div class="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-6" id="modal" onclick="closeModal()">
-    <img id="modalImg" class="max-w-full max-h-full rounded-xl shadow-2xl scale-95 transition duration-300" />
+    <img
+        id="modalImg"
+        class="max-w-full max-h-full scale-95 transition duration-300"
+        alt=""
+    >
+
 </div>
+
+
+<!-- =========================================
+     SCRIPTS
+========================================= -->
 
 <script>
+
+    /* =========================================
+       LUCIDE
+    ========================================= */
+
     lucide.createIcons();
 
-    // Custom Cursor
-    const cursorDot = document.getElementById("cursor-dot");
-    const cursorOutline = document.getElementById("cursor-outline");
 
-    window.addEventListener("mousemove", (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
+    /* =========================================
+       CUSTOM CURSOR
+    ========================================= */
+
+    const cursorDot =
+        document.getElementById("cursor-dot");
+
+    const cursorOutline =
+        document.getElementById("cursor-outline");
+
+    window.addEventListener("mousemove", (event) => {
+
+        if (!cursorDot || !cursorOutline) return;
+
+        const x = event.clientX;
+        const y = event.clientY;
+
+        cursorDot.style.left = `${x}px`;
+        cursorDot.style.top = `${y}px`;
+
+        cursorOutline.animate(
+            {
+                left: `${x}px`,
+                top: `${y}px`
+            },
+            {
+                duration: 450,
+                fill: "forwards"
+            }
+        );
+
     });
 
-    // GSAP Reveal
+
+    /* =========================================
+       GSAP REVEAL
+    ========================================= */
+
+    /* =========================================
+       EDITORIAL MOTION SYSTEM
+       Keeps the newspaper design but restores a lively,
+       intentional animation language.
+    ========================================= */
     gsap.registerPlugin(ScrollTrigger);
-    document.querySelectorAll('.section-reveal').forEach(el => {
-        gsap.to(el, {
-            scrollTrigger: { trigger: el, start: "top 85%" },
-            opacity: 1, y: 0, duration: 1.2, ease: "power4.out"
+
+    const revealSections = document.querySelectorAll('.section-reveal');
+    revealSections.forEach((section) => {
+        gsap.fromTo(section,
+            { opacity: 0, y: 42 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.9,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 86%',
+                    once: true
+                }
+            }
+        );
+    });
+
+    // Newspaper masthead entrance.
+    gsap.from('.masthead-title', {
+        y: 70,
+        opacity: 0,
+        duration: 1.05,
+        stagger: 0.12,
+        ease: 'power4.out'
+    });
+
+    gsap.from('.masthead-sub, .masthead p, .masthead .mono', {
+        y: 18,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.35,
+        stagger: 0.08,
+        ease: 'power2.out'
+    });
+
+    gsap.from('.hero-main > *, .hero-side > *', {
+        y: 28,
+        opacity: 0,
+        duration: 0.75,
+        delay: 0.25,
+        stagger: 0.08,
+        ease: 'power3.out'
+    });
+
+    // Editorial cards animate in as a compact stagger, not one-by-one full pages.
+    gsap.utils.toArray('.editorial-card, .repo-card, .timeline-item').forEach((group) => {
+        gsap.from(group, {
+            opacity: 0,
+            y: 24,
+            duration: 0.55,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: group,
+                start: 'top 94%',
+                once: true
+            }
         });
     });
 
-    // GitHub Fetch
-    async function loadProjects() {
-        try {
-            const res = await fetch("https://api.github.com/users/Fiidhanz/repos");
-            const data = await res.json();
-            const container = document.getElementById("projects-grid");
-            data.slice(0, 6).forEach(repo => {
-                const div = document.createElement("div");
-                div.className = "glass p-8 rounded-3xl card-hover transition duration-500 flex flex-col justify-between";
-                div.innerHTML = `
-                    <div>
-                        <div class="flex justify-between items-start mb-6">
-                            <i data-lucide="folder" class="text-blue-500 w-8 h-8"></i>
-                            <div class="flex gap-3 text-gray-500">
-                                <a href="${repo.html_url}" target="_blank"><i data-lucide="github" class="w-5 h-5 hover:text-white"></i></a>
-                                <i data-lucide="external-link" class="w-5 h-5"></i>
-                            </div>
-                        </div>
-                        <h3 class="font-bold text-xl mb-3 text-white">${repo.name}</h3>
-                        <p class="text-sm text-gray-500 leading-relaxed mb-6">${repo.description || "Crafting digital solution with modern technologies."}</p>
-                    </div>
-                    <div class="flex gap-4 text-xs font-mono text-blue-400">
-                        <span>${repo.language || 'Code'}</span>
-                        <span class="text-gray-700">|</span>
-                        <span>⭐ ${repo.stargazers_count}</span>
-                    </div>`;
-                container.appendChild(div);
-            });
-            lucide.createIcons();
-        } catch (e) { console.error(e); }
+    // Subtle image movement for the profile/photo area.
+    const profilePhoto = document.querySelector('.profile-photo');
+    if (profilePhoto) {
+        gsap.fromTo(profilePhoto,
+            { scale: 1.04 },
+            {
+                scale: 1,
+                duration: 1.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: profilePhoto,
+                    start: 'top 88%',
+                    once: true
+                }
+            }
+        );
     }
+
+    /* =========================================
+       GITHUB API
+       LOGIC DIPERTAHANKAN
+    ========================================= */
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const username = "Fiidhanz";
+
+        const grid =
+            document.getElementById("projects-grid");
+
+        const loading =
+            document.getElementById("github-loading");
+
+        const errorBox =
+            document.getElementById("github-error");
+
+
+        async function loadRepositories() {
+
+            try {
+
+                console.log(
+                    "Loading GitHub repositories..."
+                );
+
+
+                const url =
+                    `https://api.github.com/users/${username}/repos?sort=updated&direction=desc&per_page=100`;
+
+
+                const response =
+                    await fetch(url);
+
+
+                console.log(
+                    "GitHub response:",
+                    response.status
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `GitHub API returned ${response.status}`
+                    );
+
+                }
+
+
+                const repos =
+                    await response.json();
+
+
+                console.log(
+                    "Repositories:",
+                    repos
+                );
+
+
+                grid.innerHTML = "";
+
+
+                const publicRepos =
+                    repos.filter(
+                        repo => !repo.fork
+                    );
+
+
+                if (publicRepos.length === 0) {
+
+                    grid.innerHTML = `
+
+                        <div class="col-span-full py-10 text-center">
+
+                            <p class="mono text-[10px]">
+                                No repositories found.
+                            </p>
+
+                        </div>
+
+                    `;
+
+                } else {
+
+                    publicRepos.forEach(repo => {
+
+                        const description =
+                            repo.description ||
+                            "No description available.";
+
+
+                        const language =
+                            repo.language ||
+                            "Project";
+
+
+                        const card =
+                            document.createElement("article");
+
+
+                        card.className =
+                            "repo-card";
+
+
+                        card.innerHTML = `
+
+                            <div class="flex justify-between items-start gap-4 mb-5">
+
+                                <span class="mono text-[9px] accent">
+                                    ${currentLanguage === "en" ? "REPOSITORY" : "REPOSITORY"}
+                                </span>
+
+                                <a
+                                    href="${repo.html_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-[10px] font-bold"
+                                >
+                                    ↗
+                                </a>
+
+                            </div>
+
+
+                            <h3 class="repo-name mb-3">
+                                ${escapeHTML(repo.name)}
+                            </h3>
+
+
+                            <p class="text-[11px] leading-6 muted min-h-[72px]">
+                                ${escapeHTML(description)}
+                            </p>
+
+
+                            <div class="flex flex-wrap gap-2 mt-5">
+
+                                <span class="tag">
+                                    ${escapeHTML(language)}
+                                </span>
+
+                                <span class="tag">
+                                    ★ ${repo.stargazers_count}
+                                </span>
+
+                            </div>
+
+
+                            <div class="mt-6 pt-4 border-t border-black">
+
+                                <a
+                                    href="${repo.html_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-[9px] uppercase font-bold tracking-widest hover:text-[#8f1835]"
+                                >
+                                    ${currentLanguage === "en" ? "View Repository →" : "Lihat Repository →"}
+                                </a>
+
+                            </div>
+
+                        `;
+
+
+                        grid.appendChild(card);
+
+                    });
+
+                }
+
+
+                loading.style.display = "none";
+
+
+                console.log(
+                    "GitHub repositories loaded successfully."
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "GitHub ERROR:",
+                    error
+                );
+
+
+                loading.style.display =
+                    "none";
+
+
+                errorBox.classList.remove(
+                    "hidden"
+                );
+
+
+                errorBox.innerHTML = `
+
+                    Failed to load GitHub repositories.
+
+                    <br>
+
+                    <small>
+                        ${escapeHTML(error.message)}
+                    </small>
+
+                `;
+
+            }
+
+        }
+
+
+        function escapeHTML(value) {
+
+            const div =
+                document.createElement("div");
+
+            div.textContent = value;
+
+            return div.innerHTML;
+
+        }
+
+
+        loadRepositories();
+
+    });
+
+
+    /* =========================================
+       EXTRA LEGACY GITHUB LOGIC
+       tetap dipertahankan agar tidak
+       menghilangkan behavior lama
+    ========================================= */
+
+    async function loadProjects() {
+
+        try {
+
+            const res =
+                await fetch(
+                    "https://api.github.com/users/Fiidhanz/repos"
+                );
+
+
+            const data =
+                await res.json();
+
+
+            /*
+                Repository utama sudah ditangani
+                oleh loadRepositories() di atas.
+
+                Fungsi tetap tersedia supaya logic
+                lama tidak hilang.
+            */
+
+            console.log(
+                "Legacy GitHub loader:",
+                data.length,
+                "repositories"
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Legacy GitHub loader error:",
+                error
+            );
+
+        }
+
+    }
+
+
     loadProjects();
 
-    // Modal Logic
-    function openModal(img){
-        const modal = document.getElementById('modal');
-        const modalImg = document.getElementById('modalImg');
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-        setTimeout(() => modalImg.classList.add('scale-100'), 10);
+
+    /* =========================================
+       MODAL LOGIC
+       DIPERTAHANKAN
+    ========================================= */
+
+    function openModal(img) {
+
+        const modal =
+            document.getElementById("modal");
+
+        const modalImg =
+            document.getElementById("modalImg");
+
+
+        modal.style.display =
+            "flex";
+
+
+        modalImg.src =
+            img.src;
+
+
+        setTimeout(() => {
+
+            modalImg.classList.add(
+                "scale-100"
+            );
+
+        }, 10);
+
     }
-    function closeModal(){ 
-        document.getElementById('modal').style.display = 'none'; 
-        document.getElementById('modalImg').classList.remove('scale-100');
+
+
+    function closeModal() {
+
+        const modal =
+            document.getElementById("modal");
+
+        const modalImg =
+            document.getElementById("modalImg");
+
+
+        modal.style.display =
+            "none";
+
+
+        modalImg.classList.remove(
+            "scale-100"
+        );
+
     }
 
 
+    /* =========================================
+       MUSIC
+       LOGIC DIPERTAHANKAN
+    ========================================= */
+
+    const bgMusic =
+        document.getElementById("bgMusic");
+
+    const musicToggle =
+        document.getElementById("musicToggle");
+
+    const musicIcon =
+        document.getElementById("musicIcon");
+
+    const musicStatus =
+        document.getElementById("musicStatus");
 
 
-//MUSIC
-const bgMusic = document.getElementById('bgMusic');
-const musicToggle = document.getElementById('musicToggle');
-const musicIcon = document.getElementById('musicIcon');
-const musicStatus = document.getElementById('musicStatus');
+    let isPlaying = false;
 
-let isPlaying = false;
 
-musicToggle.addEventListener('click', () => {
+    musicToggle.addEventListener(
+        "click",
+        () => {
 
-    if (isPlaying) {
-        bgMusic.pause();
+            if (isPlaying) {
 
-        // ICON
-        musicIcon.setAttribute("data-lucide", "volume-x");
-        musicIcon.classList.remove("text-blue-500");
-        musicIcon.classList.add("text-gray-400");
+                bgMusic.pause();
 
-        // UI
-        musicStatus.style.opacity = '0';
-        musicStatus.style.transform = 'translateX(-20px)';
 
-    } else {
-        // 🔥 START DARI 0 (biar smooth)
-        bgMusic.volume = 0;
-        bgMusic.play().then(() => {
-    console.log("Music started");
-}).catch(err => {
-    console.log("Autoplay blocked:", err);
-});
+                musicIcon.setAttribute(
+                    "data-lucide",
+                    "volume-x"
+                );
 
-        // FADE IN
-        let vol = 0;
-        const fade = setInterval(() => {
-            if (vol < 0.5) {
-                vol += 0.05;
-                bgMusic.volume = vol;
+
+                musicStatus.style.opacity =
+                    "0";
+
+
+                musicStatus.style.transform =
+                    "translateX(-12px)";
+
+
             } else {
-                clearInterval(fade);
+
+                bgMusic.volume = 0;
+
+
+                bgMusic
+                    .play()
+                    .then(() => {
+
+                        console.log(
+                            "Music started"
+                        );
+
+                    })
+                    .catch((error) => {
+
+                        console.log(
+                            "Autoplay blocked:",
+                            error
+                        );
+
+                    });
+
+
+                let volume = 0;
+
+
+                const fade =
+                    setInterval(() => {
+
+                        if (volume < 0.5) {
+
+                            volume += 0.05;
+
+                            bgMusic.volume =
+                                volume;
+
+                        } else {
+
+                            clearInterval(fade);
+
+                        }
+
+                    }, 100);
+
+
+                musicIcon.setAttribute(
+                    "data-lucide",
+                    "volume-2"
+                );
+
+
+                musicStatus.style.opacity =
+                    "1";
+
+
+                musicStatus.style.transform =
+                    "translateX(0)";
+
             }
-        }, 100);
 
-        // ICON
-        musicIcon.setAttribute("data-lucide", "volume-2");
-        musicIcon.classList.remove("text-gray-400");
-        musicIcon.classList.add("text-blue-500");
 
-        // UI
-        musicStatus.style.opacity = '1';
-        musicStatus.style.transform = 'translateX(0)';
+            isPlaying =
+                !isPlaying;
+
+
+            lucide.createIcons();
+
+        }
+    );
+
+
+
+    /* =========================================
+       FULL BILINGUAL SYSTEM — ID / EN
+       Every static text node has a stable original
+       value, so switching never depends on the
+       previous language or on partial text matches.
+    ========================================= */
+    const TEXT_EN = {
+      "Tuesday Edition · 2026":"Tuesday Edition · 2026",
+      "Portfolio / Digital & Creative Technology":"Portfolio / Digital & Creative Technology",
+      "Mojokerto, Indonesia":"Mojokerto, Indonesia",
+      "Technology, design, data, and creative work assembled into practical digital solutions.":"Technology, design, data, and creative work assembled into practical digital solutions.",
+      "Full-Stack Developer · UI/UX · Creative Technology":"Full-Stack Developer · UI/UX · Creative Technology",
+      "About":"About","Tentang":"About","Experience":"Experience","Pengalaman":"Experience","Projects":"Projects","Proyek":"Projects","Work":"Work","Skills":"Skills","Keahlian":"Skills","Design":"Design","Desain":"Design","Credentials":"Credentials","Sertifikasi":"Credentials","Contact":"Contact","Kontak":"Contact",
+      "Professional Profile":"Professional Profile",
+      "Building digital products where":"Building digital products where",
+      "technology":"technology",
+      "meets creativity.":"meets creativity.",
+      "Lulusan Teknik Informatika dengan ketertarikan pada teknologi, pengembangan produk digital, dan bidang kreatif. Memiliki pengalaman dalam pengembangan website dan aplikasi, pengolahan data, eksplorasi teknologi AI, UI/UX Design, desain grafis, ilustrasi digital, animasi, multimedia, dan game development.":"Informatics Engineering graduate with an interest in technology, digital product development, and creative fields. Experienced in website and application development, data processing, AI technology exploration, UI/UX design, graphic design, digital illustration, animation, multimedia, and game development.",
+      "Berpengalaman sebagai Full-Stack Developer dalam pengembangan sistem berbasis web, mengerjakan proyek freelance, serta terlibat dalam mentoring, koordinasi, teamwork, dan problem solving.":"Experienced as a Full-Stack Developer in web-based system development, freelance projects, mentoring, coordination, teamwork, and problem solving.",
+      "Available for opportunities":"Available for opportunities",
+      "Open to software development, frontend/backend, full-stack, UI/UX, data/AI, and creative technology opportunities.":"Open to software development, frontend/backend, full-stack, UI/UX, data/AI, and creative technology opportunities.",
+      "LOCATION — MOJOKERTO, EAST JAVA":"LOCATION — MOJOKERTO, EAST JAVA",
+      "EDUCATION — INFORMATICS ENGINEERING":"EDUCATION — INFORMATICS ENGINEERING",
+      "GPA — 3.79 / 4.00":"GPA — 3.79 / 4.00",
+      "GitHub":"GitHub","LinkedIn":"LinkedIn","Instagram":"Instagram","Resume":"Resume","CV":"Resume",
+      "At a glance":"At a glance","Sekilas":"At a glance","Education":"Education","Pendidikan":"Education","S1 Teknik Informatika":"B.Sc. in Informatics Engineering","Institut Teknologi Nasional Malang":"Institut Teknologi Nasional Malang","GRADUATED · AUG 2026":"GRADUATED · AUG 2026","LULUS · AGUSTUS 2026":"GRADUATED · AUGUST 2026","Academic Achievement":"Academic Achievement","Prestasi Akademik":"Academic Achievement","IPK 3.79 / 4.00":"GPA 3.79 / 4.00","Peraih Insentif Program Kreativitas Mahasiswa — Artikel Ilmiah (PKM-AI), Kemendikbudristek.":"Recipient of the Student Creativity Program Incentive — Scientific Article (PKM-AI), Ministry of Education, Culture, Research, and Technology.","Peraih Insentif Program Kreativitas Mahasiswa – Artikel Ilmiah (PKM-AI), Kemendikbudristek":"Recipient of the Student Creativity Program Incentive — Scientific Article (PKM-AI), Ministry of Education, Culture, Research, and Technology.",
+      "Core Areas":"Core Areas","Bidang Utama":"Core Areas","Language":"Language","Bahasa":"Language","Bahasa Indonesia":"Indonesian","Native":"Native","Bahasa Inggris":"English","TOEFL ITP 443":"TOEFL ITP 443",
+      "A technical foundation with a creative side.":"A technical foundation with a creative side.","Fondasi teknis dengan sisi kreatif.":"A technical foundation with a creative side.","— Working principle":"— Working principle","— Prinsip kerja":"— Working principle",
+      "Lulusan Teknik Informatika dengan pengalaman dalam pengembangan produk digital, Full-Stack Web Development, UI/UX Design, AI/NLP, dan creative technology.":"Informatics Engineering graduate with experience in digital product development, Full-Stack Web Development, UI/UX Design, AI/NLP, and creative technology.",
+      "Berpengalaman mengembangkan website dan aplikasi, menangani frontend, backend, database, REST API, deployment, serta merancang user flow, wireframe, prototype, dan interface menggunakan Figma.":"Experienced in developing websites and applications, handling frontend, backend, databases, REST APIs, deployment, and designing user flows, wireframes, prototypes, and interfaces using Figma.",
+      "“Functional products should also be understandable, usable, and meaningful.”":"“Functional products should also be understandable, usable, and meaningful.”",
+      "Development":"Development","Frontend, backend, APIs, database, debugging.":"Frontend, backend, APIs, databases, and debugging.","UI / UX":"UI / UX","Wireframe, user flow, prototype, interface.":"Wireframes, user flows, prototypes, and interfaces.","Data / AI":"Data / AI","NLP, similarity, data processing and analysis.":"NLP, similarity, data processing, and analysis.","Creative":"Creative","Graphic design, animation, multimedia and games.":"Graphic design, animation, multimedia, and games.",
+      "Work History":"Work History","Pengalaman profesional, akademik, freelance, dan operasional yang membentuk kemampuan teknis sekaligus interpersonal.":"Professional, academic, freelance, and operational experience that shaped both technical and interpersonal capabilities.",
+      "Asisten Laboratorium / Koordinator Praktikum PCD":"Multimedia & PCD Laboratory Assistant / Practicum Coordinator","Laboratorium Multimedia dan PCD":"Multimedia and PCD Laboratory","Membimbing mahasiswa dalam pelaksanaan praktikum dan membantu kendala teknis.":"Guided students during practical sessions and assisted with technical issues.","Mengkoordinasikan pembagian tugas asisten dan pengaturan jadwal.":"Coordinated assistant assignments and scheduling.","Memantau hasil pekerjaan dan memastikan kegiatan berjalan sesuai prosedur.":"Monitored work results and ensured activities followed procedures.","Memimpin dan mengarahkan tim asisten.":"Led and directed the assistant team.",
+      "Internship":"Internship","Full-Stack Developer Intern":"Full-Stack Developer Intern","Toko Surya Elektrik":"Toko Surya Elektrik","Meningkatkan sistem CRM berbasis web.":"Developed a web-based CRM system.","Mengembangkan sistem CRM berbasis web.":"Developed a web-based CRM system.","Menangani frontend, backend, dan integrasi database.":"Handled frontend, backend, and database integration.","Melakukan debugging, testing, dan perbaikan error.":"Performed debugging, testing, and error fixing.","Berkolaborasi dalam implementasi fitur dan penyelesaian masalah teknis.":"Collaborated on feature implementation and technical problem solving.",
+      "Freelance":"Freelance","Independent":"Independent","Freelance Developer":"Freelance Developer","Mengerjakan proyek website, aplikasi, UI/UX, animasi, multimedia, dan game.":"Worked on website, application, UI/UX, animation, multimedia, and game projects.","Menganalisis kebutuhan dan menentukan solusi teknis.":"Analyzed requirements and determined technical solutions.","Menangani proses dari komunikasi, pengerjaan, revisi, hingga penyelesaian.":"Handled the process from communication and development through revisions and completion.","Merancang user flow, wireframe, prototype, dan interface menggunakan Figma.":"Designed user flows, wireframes, prototypes, and interfaces using Figma.",
+      "Mentoring":"Mentoring","Pembimbing Capstone Project":"Capstone Project Mentor","Membimbing tim mahasiswa mulai dari perencanaan, perumusan kebutuhan, pengembangan solusi, penyelesaian kendala teknis, hingga evaluasi proyek.":"Mentored student teams from planning and requirements definition through solution development, technical problem solving, and project evaluation.",
+      "Crew Outlet":"Outlet Crew","Pisang Keju 89":"Pisang Keju 89","Menangani persiapan produk, pengemasan, pelayanan pelanggan, transaksi kasir, kebersihan area, dan kerja sama tim.":"Handled product preparation, packaging, customer service, cashier transactions, area cleanliness, and teamwork.",
+      "Asisten Operasional Usaha Keluarga":"Family Business Operations Assistant","Warung RizYanti":"Warung RizYanti","Membantu operasional penjualan, pelayanan pelanggan, transaksi, persiapan produk, pengemasan, dan kelancaran aktivitas penjualan sehari-hari.":"Supported sales operations, customer service, transactions, product preparation, packaging, and daily sales activities.",
+      "Selected Work":"Selected Work","Karya Pilihan":"Selected Work","View GitHub →":"View GitHub →","Lihat GitHub →":"View GitHub →",
+      "Social Media Content Recommendation System":"Social Media Content Recommendation System","Sistem rekomendasi berbasis web untuk membantu menghasilkan ide dan strategi perencanaan konten berdasarkan tren online dan data konten media sosial.":"A web-based recommendation system that helps generate content ideas and planning strategies based on online trends and social media content data.","Mengimplementasikan pengolahan data, text embedding, similarity, trend analysis, scoring, dan ranking.":"Implemented data processing, text embedding, similarity, trend analysis, scoring, and ranking.",
+      "ERP Web System":"ERP Web System","Pengembangan dan penyesuaian fitur ERP berbasis web sesuai kebutuhan sistem dengan fokus pada frontend, backend, integrasi database, debugging, dan testing.":"Developed and customized web-based ERP features according to system requirements, focusing on frontend, backend, database integration, debugging, and testing.",
+      "Pirates Puzzle Quest":"Pirates Puzzle Quest","Game puzzle sederhana bertema bajak laut menggunakan Unity, termasuk implementasi gameplay dan elemen interaktif.":"A simple pirate-themed puzzle game built with Unity, including gameplay and interactive elements.","Aset 3D dibuat dan diolah menggunakan Blender untuk mendukung kebutuhan visual game.":"Created and processed 3D assets with Blender to support the game's visual requirements.",
+      "2D & 3D Animation Projects":"2D & 3D Animation Projects","Proyek animasi dan materi iklan yang menggabungkan ilustrasi, animasi 2D, dan elemen 3D.":"Animation and advertising projects combining illustration, 2D animation, and 3D elements.",
+      "UI/UX Design Projects":"UI/UX Design Projects","Merancang solusi UI/UX untuk studi kasus website dan aplikasi mobile menggunakan Figma, termasuk wireframe, user flow, prototype, struktur informasi, dan eksplorasi pendekatan desain berdasarkan kebutuhan pengguna.":"Designed UI/UX solutions for website and mobile application case studies using Figma, including wireframes, user flows, prototypes, information architecture, and user-centered design exploration.",
+      "Live Repository Feed":"Live Repository Feed","Latest GitHub Repositories":"Latest GitHub Repositories","Loading repositories...":"Loading repositories...","Failed to load GitHub repositories.":"Failed to load GitHub repositories.","No repositories found.":"No repositories found.","View Repository →":"View Repository →","REPOSITORY":"REPOSITORY",
+      "Competencies":"Competencies","Skills & Capabilities":"Skills & Capabilities","Technical, design, data, creative, dan interpersonal capabilities berdasarkan CV.":"Technical, design, data, creative, and interpersonal capabilities based on the CV.",
+      "PROGRAMMING":"PROGRAMMING & WEB","FRONTEND UIUX":"UI / UX & PRODUCT","BACKEND":"BACKEND & DATABASE","AI DATA":"AI, NLP & DATA","CREATIVE":"CREATIVE & MULTIMEDIA","TOOLS":"TOOLS & DEVELOPMENT","SOFT SKILLS":"SOFT SKILLS",
+      "Design Desk":"Design Desk","UI/UX Showcase":"UI/UX Showcase","Studi desain UI/UX yang mengeksplorasi interface, struktur informasi, user flow, wireframe, dan prototype menggunakan Figma.":"A UI/UX design study exploring interfaces, information architecture, user flows, wireframes, and prototypes using Figma.","LIVE FIGMA EMBED · HERBARI":"LIVE FIGMA EMBED · HERBARI","LIVE PREVIEW":"LIVE PREVIEW",
+      "Creative Archive":"Creative Archive","Design & Illustration":"Design & Illustration","Gallery visual, ilustrasi, animasi, dan karya multimedia yang tersimpan pada Google Drive.":"A visual, illustration, animation, and multimedia gallery stored on Google Drive.","New uploads appear automatically":"New uploads appear automatically","Open Archive →":"Open Archive →",
+      "Other Works":"Other Works","Beyond Software":"Beyond Software","Game":"Game","Unity, gameplay, interactive elements.":"Unity, gameplay, and interactive elements.","Animation":"Animation","2D, 3D, motion, visual storytelling.":"2D, 3D, motion, and visual storytelling.","Visual":"Visual","Illustration, graphic and multimedia.":"Illustration, graphic design, and multimedia.","SOURCE →":"SOURCE →",
+      "Credentials":"Credentials","Certifications":"Certifications","Sertifikasi dan pelatihan yang tercantum pada CV profesional.":"Certifications and training listed in the professional CV.","Belajar Dasar Pemrograman Web":"Web Programming Basics","Wireframing in UI/UX Design":"Wireframing in UI/UX Design","Google Cloud Built with AI":"Google Cloud Built with AI","Python Programming":"Python Programming","Public Speaking Training":"Public Speaking Training","Entrepreneurship Training":"Entrepreneurship Training","Career Preparation Training":"Career Preparation Training","Content Creator Seminar":"Content Creator Seminar","International Youth Goals":"International Youth Goals","3D Animation Workshop":"3D Animation Workshop","LIVE CERTIFICATE DRIVE":"LIVE CERTIFICATE ARCHIVE",
+      "Contact":"Contact","Let’s build something":"Let’s build something","meaningful.":"meaningful.","Open to opportunities involving software development, frontend/backend, full-stack, UI/UX, AI/data, and creative technology.":"Open to opportunities involving software development, frontend/backend, full-stack, UI/UX, AI/data, and creative technology.","Send Email":"Send Email","Kirim Email":"Send Email","Informatics Engineering graduate focused on digital products, development, design, data, and creative technology.":"Informatics Engineering graduate focused on digital products, development, design, data, and creative technology.","NAVIGATION":"NAVIGATION","NAVIGASI":"NAVIGATION","SOCIAL":"SOCIAL","SOSIAL":"SOCIAL","CONTACT":"CONTACT","KONTAK":"CONTACT","Mojokerto, Jawa Timur":"Mojokerto, East Java","Indonesia":"Indonesia","Development":"Development","UI/UX":"UI/UX","Data / AI":"Data / AI","Creative Tech":"Creative Tech","Now Playing":"Now Playing","Sedang Diputar":"Now Playing"
+    };
+
+    // Stable UI keys used by explicit data-i18n attributes.
+    // These keys are intentionally separate from the text dictionaries so
+    // switching ID <-> EN never replaces visible copy with a key name.
+    const UI_I18N = {
+      aboutLabel: { id: 'Tentang', en: 'About' },
+      aboutHeading: { id: 'Fondasi teknis dengan sisi kreatif.', en: 'A technical foundation with a creative side.' },
+      aboutP1: { id: 'Lulusan Teknik Informatika dengan pengalaman dalam pengembangan produk digital, Full-Stack Web Development, UI/UX Design, AI/NLP, dan creative technology.', en: 'Informatics Engineering graduate with experience in digital product development, Full-Stack Web Development, UI/UX Design, AI/NLP, and creative technology.' },
+      aboutP2: { id: 'Berpengalaman mengembangkan website dan aplikasi, menangani frontend, backend, database, REST API, deployment, serta merancang user flow, wireframe, prototype, dan interface menggunakan Figma.', en: 'Experienced in developing websites and applications, handling frontend, backend, databases, REST APIs, deployment, and designing user flows, wireframes, prototypes, and interfaces using Figma.' },
+      aboutQuote: { id: '“Produk yang fungsional juga harus mudah dipahami, digunakan, dan bermakna.”', en: '“Functional products should also be understandable, usable, and meaningful.”' },
+      workingPrinciple: { id: '— Prinsip kerja', en: '— Working principle' },
+      cap1: { id: 'Pengembangan', en: 'Development' },
+      cap1p: { id: 'Frontend, backend, API, database, debugging.', en: 'Frontend, backend, APIs, databases, and debugging.' },
+      cap2: { id: 'UI / UX', en: 'UI / UX' },
+      cap2p: { id: 'Wireframe, user flow, prototype, interface.', en: 'Wireframes, user flows, prototypes, and interfaces.' },
+      cap3: { id: 'Data / AI', en: 'Data / AI' },
+      cap3p: { id: 'NLP, similarity, pengolahan dan analisis data.', en: 'NLP, similarity, data processing, and analysis.' },
+      cap4: { id: 'Kreatif', en: 'Creative' },
+      cap4p: { id: 'Desain grafis, animasi, multimedia, dan game.', en: 'Graphic design, animation, multimedia, and games.' }
+    };
+
+    const TEXT_ID = {
+      "Tuesday Edition · 2026":"Edisi Selasa · 2026",
+      "Portfolio / Digital & Creative Technology":"Portofolio / Teknologi Digital & Kreatif",
+      "Mojokerto, Indonesia":"Mojokerto, Indonesia",
+      "Technology, design, data, and creative work assembled into practical digital solutions.":"Teknologi, desain, data, dan karya kreatif dirangkai menjadi solusi digital yang praktis.",
+      "Full-Stack Developer · UI/UX · Creative Technology":"Full-Stack Developer · UI/UX · Teknologi Kreatif",
+      "About":"Tentang","Experience":"Pengalaman","Projects":"Proyek","Work":"Karya","Skills":"Keahlian","Design":"Desain","Credentials":"Sertifikasi","Contact":"Kontak",
+      "Professional Profile":"Profil Profesional","Building digital products where":"Membangun produk digital saat","technology":"teknologi","meets creativity.":"bertemu kreativitas.",
+      "Available for opportunities":"Terbuka untuk peluang","Open to software development, frontend/backend, full-stack, UI/UX, data/AI, and creative technology opportunities.":"Terbuka untuk peluang software development, frontend/backend, full-stack, UI/UX, data/AI, dan teknologi kreatif.","LOCATION — MOJOKERTO, EAST JAVA":"LOKASI — MOJOKERTO, JAWA TIMUR","EDUCATION — INFORMATICS ENGINEERING":"PENDIDIKAN — TEKNIK INFORMATIKA","GPA — 3.79 / 4.00":"IPK — 3.79 / 4.00","Resume":"CV",
+      "At a glance":"Sekilas","Education":"Pendidikan","B.Sc. in Informatics Engineering":"S1 Teknik Informatika","GRADUATED · AUG 2026":"LULUS · AGUSTUS 2026","Academic Achievement":"Prestasi Akademik","GPA 3.79 / 4.00":"IPK 3.79 / 4.00","Recipient of the Student Creativity Program Incentive — Scientific Article (PKM-AI), Ministry of Education, Culture, Research, and Technology.":"Peraih Insentif Program Kreativitas Mahasiswa — Artikel Ilmiah (PKM-AI), Kemendikbudristek.","Core Areas":"Bidang Utama","Language":"Bahasa","Indonesian":"Bahasa Indonesia","Native":"Bahasa Ibu","English":"Bahasa Inggris","TOEFL ITP 443":"TOEFL ITP 443",
+      "A technical foundation with a creative side.":"Fondasi teknis dengan sisi kreatif.","— Working principle":"— Prinsip kerja","Informatics Engineering graduate with experience in digital product development, Full-Stack Web Development, UI/UX Design, AI/NLP, and creative technology.":"Lulusan Teknik Informatika dengan pengalaman dalam pengembangan produk digital, Full-Stack Web Development, UI/UX Design, AI/NLP, dan creative technology.","Experienced in developing websites and applications, handling frontend, backend, databases, REST APIs, deployment, and designing user flows, wireframes, prototypes, and interfaces using Figma.":"Berpengalaman mengembangkan website dan aplikasi, menangani frontend, backend, database, REST API, deployment, serta merancang user flow, wireframe, prototype, dan interface menggunakan Figma.","“Functional products should also be understandable, usable, and meaningful.”":"“Produk yang fungsional juga harus mudah dipahami, digunakan, dan bermakna.”",
+      "Development":"Pengembangan","Frontend, backend, APIs, databases, and debugging.":"Frontend, backend, API, database, debugging.","UI / UX":"UI / UX","Wireframes, user flows, prototypes, and interfaces.":"Wireframe, user flow, prototype, interface.","Data / AI":"Data / AI","NLP, similarity, data processing, and analysis.":"NLP, similarity, pengolahan dan analisis data.","Creative":"Kreatif","Graphic design, animation, multimedia, and games.":"Desain grafis, animasi, multimedia, dan game.",
+      "Work History":"Riwayat Pengalaman","Professional, academic, freelance, and operational experience that shaped both technical and interpersonal capabilities.":"Pengalaman profesional, akademik, freelance, dan operasional yang membentuk kemampuan teknis sekaligus interpersonal.",
+      "Multimedia & PCD Laboratory Assistant / Practicum Coordinator":"Asisten Laboratorium / Koordinator Praktikum PCD","Multimedia and PCD Laboratory":"Laboratorium Multimedia dan PCD","Guided students during practical sessions and assisted with technical issues.":"Membimbing mahasiswa dalam pelaksanaan praktikum dan membantu kendala teknis.","Coordinated assistant assignments and scheduling.":"Mengkoordinasikan pembagian tugas asisten dan pengaturan jadwal.","Monitored work results and ensured activities followed procedures.":"Memantau hasil pekerjaan dan memastikan kegiatan berjalan sesuai prosedur.","Led and directed the assistant team.":"Memimpin dan mengarahkan tim asisten.",
+      "Developed a web-based CRM system.":"Mengembangkan sistem CRM berbasis web.","Handled frontend, backend, and database integration.":"Menangani frontend, backend, dan integrasi database.","Performed debugging, testing, and error fixing.":"Melakukan debugging, testing, dan perbaikan error.","Collaborated on feature implementation and technical problem solving.":"Berkolaborasi dalam implementasi fitur dan penyelesaian masalah teknis.",
+      "Independent":"Independen","Freelance Developer":"Developer Freelance","Worked on website, application, UI/UX, animation, multimedia, and game projects.":"Mengerjakan proyek website, aplikasi, UI/UX, animasi, multimedia, dan game.","Analyzed requirements and determined technical solutions.":"Menganalisis kebutuhan dan menentukan solusi teknis.","Handled the process from communication and development through revisions and completion.":"Menangani proses dari komunikasi, pengerjaan, revisi, hingga penyelesaian.","Designed user flows, wireframes, prototypes, and interfaces using Figma.":"Merancang user flow, wireframe, prototype, dan interface menggunakan Figma.",
+      "Mentoring":"Mentoring","Capstone Project Mentor":"Pembimbing Capstone Project","Mentored student teams from planning and requirements definition through solution development, technical problem solving, and project evaluation.":"Membimbing tim mahasiswa mulai dari perencanaan, perumusan kebutuhan, pengembangan solusi, penyelesaian kendala teknis, hingga evaluasi proyek.",
+      "Outlet Crew":"Crew Outlet","Handled product preparation, packaging, customer service, cashier transactions, area cleanliness, and teamwork.":"Menangani persiapan produk, pengemasan, pelayanan pelanggan, transaksi kasir, kebersihan area, dan kerja sama tim.","Family Business Operations Assistant":"Asisten Operasional Usaha Keluarga","Supported sales operations, customer service, transactions, product preparation, packaging, and daily sales activities.":"Membantu operasional penjualan, pelayanan pelanggan, transaksi, persiapan produk, pengemasan, dan kelancaran aktivitas penjualan sehari-hari.",
+      "Selected Work":"Karya Pilihan","View GitHub →":"Lihat GitHub →","Social Media Content Recommendation System":"Sistem Rekomendasi Konten Media Sosial","A web-based recommendation system that helps generate content ideas and planning strategies based on online trends and social media content data.":"Sistem rekomendasi berbasis web untuk membantu menghasilkan ide dan strategi perencanaan konten berdasarkan tren online dan data konten media sosial.","Implemented data processing, text embedding, similarity, trend analysis, scoring, and ranking.":"Mengimplementasikan pengolahan data, text embedding, similarity, trend analysis, scoring, dan ranking.","ERP Web System":"Sistem ERP Berbasis Web","Developed and customized web-based ERP features according to system requirements, focusing on frontend, backend, database integration, debugging, and testing.":"Pengembangan dan penyesuaian fitur ERP berbasis web sesuai kebutuhan sistem dengan fokus pada frontend, backend, integrasi database, debugging, dan testing.","A simple pirate-themed puzzle game built with Unity, including gameplay and interactive elements.":"Game puzzle sederhana bertema bajak laut menggunakan Unity, termasuk implementasi gameplay dan elemen interaktif.","Created and processed 3D assets with Blender to support the game's visual requirements.":"Aset 3D dibuat dan diolah menggunakan Blender untuk mendukung kebutuhan visual game.","Animation and advertising projects combining illustration, 2D animation, and 3D elements.":"Proyek animasi dan materi iklan yang menggabungkan ilustrasi, animasi 2D, dan elemen 3D.","UI/UX Design Projects":"Proyek Desain UI/UX","Designed UI/UX solutions for website and mobile application case studies using Figma, including wireframes, user flows, prototypes, information architecture, and user-centered design exploration.":"Merancang solusi UI/UX untuk studi kasus website dan aplikasi mobile menggunakan Figma, termasuk wireframe, user flow, prototype, struktur informasi, dan eksplorasi pendekatan desain berdasarkan kebutuhan pengguna.",
+      "Live Repository Feed":"Feed Repository Langsung","Latest GitHub Repositories":"Repository GitHub Terbaru","Loading repositories...":"Memuat repository...","Failed to load GitHub repositories.":"Gagal memuat repository GitHub.","No repositories found.":"Repository tidak ditemukan.","View Repository →":"Lihat Repository →","REPOSITORY":"REPOSITORY",
+      "Competencies":"Kompetensi","Skills & Capabilities":"Keahlian & Kemampuan","Technical, design, data, creative, and interpersonal capabilities based on the CV.":"Kemampuan teknis, desain, data, kreatif, dan interpersonal berdasarkan CV.",
+      "PROGRAMMING & WEB":"PEMROGRAMAN & WEB","UI / UX & PRODUCT":"UI / UX & PRODUK","BACKEND & DATABASE":"BACKEND & DATABASE","AI, NLP & DATA":"AI, NLP & DATA","CREATIVE & MULTIMEDIA":"KREATIF & MULTIMEDIA","TOOLS & DEVELOPMENT":"TOOLS & PENGEMBANGAN",
+      "Design Desk":"Meja Desain","UI/UX Showcase":"Showcase UI/UX","A UI/UX design study exploring interfaces, information architecture, user flows, wireframes, and prototypes using Figma.":"Studi desain UI/UX yang mengeksplorasi interface, struktur informasi, user flow, wireframe, dan prototype menggunakan Figma.","LIVE FIGMA EMBED · HERBARI":"LIVE FIGMA EMBED · HERBARI","LIVE PREVIEW":"PRATINJAU LANGSUNG","Creative Archive":"Arsip Kreatif","Design & Illustration":"Desain & Ilustrasi","A visual, illustration, animation, and multimedia gallery stored on Google Drive.":"Galeri visual, ilustrasi, animasi, dan karya multimedia yang tersimpan pada Google Drive.","New uploads appear automatically":"Unggahan baru muncul otomatis","Open Archive →":"Buka Arsip →",
+      "Other Works":"Karya Lainnya","Beyond Software":"Di Luar Software","Unity, gameplay, and interactive elements.":"Unity, gameplay, dan elemen interaktif.","2D, 3D, motion, and visual storytelling.":"2D, 3D, motion, dan visual storytelling.","Illustration, graphic design, and multimedia.":"Ilustrasi, grafis, dan multimedia.","SOURCE →":"SUMBER →",
+      "Certifications":"Sertifikasi","Certifications and training listed in the professional CV.":"Sertifikasi dan pelatihan yang tercantum pada CV profesional.","Web Programming Basics":"Belajar Dasar Pemrograman Web","LIVE CERTIFICATE ARCHIVE":"ARSIP SERTIFIKAT LANGSUNG",
+      "Let’s build something":"Mari membangun sesuatu yang","meaningful.":"bermakna.","Open to opportunities involving software development, frontend/backend, full-stack, UI/UX, AI/data, and creative technology.":"Terbuka untuk peluang di software development, frontend/backend, full-stack, UI/UX, AI/data, dan creative technology.","Send Email":"Kirim Email","Informatics Engineering graduate focused on digital products, development, design, data, and creative technology.":"Lulusan Teknik Informatika yang berfokus pada produk digital, development, desain, data, dan creative technology.","NAVIGATION":"NAVIGASI","SOCIAL":"SOSIAL","CONTACT":"KONTAK","Mojokerto, East Java":"Mojokerto, Jawa Timur","Now Playing":"Sedang Diputar"
+    };
+
+    /* =========================================
+       ROBUST BILINGUAL ENGINE — ID / EN
+       Uses the original source text as the stable key,
+       supports text nodes split by inline markup, and
+       also translates dynamically-rendered GitHub UI.
+    ========================================= */
+    const sourceTextNodes = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+            const parent = node.parentElement;
+            if (!parent || parent.closest('script,style,noscript,template')) {
+                return NodeFilter.FILTER_REJECT;
+            }
+            if (!node.nodeValue || !node.nodeValue.trim()) {
+                return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+        }
+    });
+
+    let sourceNode;
+    while ((sourceNode = walker.nextNode())) {
+        sourceTextNodes.push({
+            node: sourceNode,
+            original: sourceNode.nodeValue
+        });
     }
 
-    isPlaying = !isPlaying;
+    // Build a stable bidirectional dictionary from both existing dictionaries.
+    // This avoids translating based on whatever language was previously visible.
+    const ID_TO_EN = Object.create(null);
+    const EN_TO_ID = Object.create(null);
 
-    lucide.createIcons();
-});
+    Object.entries(TEXT_EN).forEach(([source, target]) => {
+        if (source && target && source !== target) {
+            ID_TO_EN[source] = target;
+        }
+    });
+
+    Object.entries(TEXT_ID).forEach(([source, target]) => {
+        if (source && target && source !== target) {
+            EN_TO_ID[source] = target;
+        }
+    });
+
+    // Merge reverse pairs where one dictionary contains the complementary side.
+    Object.entries(ID_TO_EN).forEach(([id, en]) => {
+        if (!EN_TO_ID[en]) EN_TO_ID[en] = id;
+    });
+    Object.entries(EN_TO_ID).forEach(([en, id]) => {
+        if (!ID_TO_EN[id]) ID_TO_EN[id] = en;
+    });
+
+    const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    function translateString(value, lang) {
+        if (!value || !value.trim()) return value;
+
+        const dictionary = lang === 'en' ? ID_TO_EN : EN_TO_ID;
+        let result = value;
+
+        // Longest phrases first prevents short terms from breaking larger phrases.
+        const keys = Object.keys(dictionary)
+            .filter(key => key && key.trim().length > 1)
+            .sort((a, b) => b.length - a.length);
+
+        for (const key of keys) {
+            if (!result.includes(key)) continue;
+            result = result.split(key).join(dictionary[key]);
+        }
+
+        return result;
+    }
+
+    function translateElementAttributes(lang) {
+        // Translate common accessibility/UI attributes as well.
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+            const id = el.getAttribute('data-i18n-title');
+            const value = lang === 'en' ? ID_TO_EN[id] || id : EN_TO_ID[id] || id;
+            el.setAttribute('title', value);
+        });
+    }
+
+    function translateDynamicGitHub(lang) {
+        document.querySelectorAll('#projects-grid [data-i18n-dynamic]').forEach(el => {
+            const id = el.getAttribute('data-i18n-dynamic');
+            if (!id) return;
+            const translated = lang === 'en'
+                ? ID_TO_EN[id] || id
+                : EN_TO_ID[id] || id;
+            el.textContent = translated;
+        });
+    }
+
+    function applyLanguage(lang) {
+        const nextLang = lang === 'en' ? 'en' : 'id';
+        const dictionary = nextLang === 'en' ? ID_TO_EN : EN_TO_ID;
+
+        // Restore from the immutable original text, then translate.
+        sourceTextNodes.forEach(({ node, original }) => {
+            if (!node.isConnected) return;
+            node.nodeValue = translateString(original, nextLang);
+        });
+
+        // Explicit data-i18n nodes are always translated from their ID key.
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (!key) return;
+
+            // Prefer explicit UI_I18N keys. Fall back to dictionary entries.
+            const entry = UI_I18N[key];
+            const translated = entry
+                ? entry[nextLang]
+                : (dictionary[key] || el.textContent);
+
+            // About/capability copy is plain text, so replacing textContent is safe.
+            // For future elements containing markup, preserve their child structure.
+            if (el.children.length === 0) {
+                el.textContent = translated;
+            } else {
+                const childWalker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+                const firstText = childWalker.nextNode();
+                if (firstText) firstText.nodeValue = translated;
+            }
+        });
+
+        translateDynamicGitHub(nextLang);
+        translateElementAttributes(nextLang);
+
+        document.documentElement.lang = nextLang;
+        document.getElementById('langID')?.classList.toggle('active-lang', nextLang === 'id');
+        document.getElementById('langEN')?.classList.toggle('active-lang', nextLang === 'en');
+        document.getElementById('langID')?.setAttribute('aria-pressed', String(nextLang === 'id'));
+        document.getElementById('langEN')?.setAttribute('aria-pressed', String(nextLang === 'en'));
+        localStorage.setItem('portfolioLanguage', nextLang);
+        window.currentLanguage = nextLang;
+    }
+
+    window.applyPortfolioLanguage = applyLanguage;
+    document.getElementById('langID')?.addEventListener('click', () => applyLanguage('id'));
+    document.getElementById('langEN')?.addEventListener('click', () => applyLanguage('en'));
+
+    const savedLanguage = localStorage.getItem('portfolioLanguage') === 'en' ? 'en' : 'id';
+    window.currentLanguage = savedLanguage;
+    requestAnimationFrame(() => applyLanguage(savedLanguage));
+
+    // GitHub cards are created asynchronously. Re-apply the selected language
+    // whenever new repository nodes enter the DOM.
+    const dynamicObserver = new MutationObserver((mutations) => {
+        if (!window.currentLanguage) return;
+        const added = mutations.some(m => m.addedNodes && m.addedNodes.length);
+        if (!added) return;
+        clearTimeout(window.__portfolioTranslateTimer);
+        window.__portfolioTranslateTimer = setTimeout(() => {
+            translateDynamicGitHub(window.currentLanguage);
+        }, 20);
+    });
+    const projectsGridForObserver = document.getElementById('projects-grid');
+    if (projectsGridForObserver) {
+        dynamicObserver.observe(projectsGridForObserver, { childList: true, subtree: true });
+    }
+
+    /* =========================================
+       NEWSPAPER MOTION SYSTEM
+       Safe, independent of the translation engine.
+    ========================================= */
+    function initNewspaperAnimations() {
+        if (!window.gsap) return;
+        if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) {
+            document.querySelectorAll('.section-reveal, .hero-animate, .stagger-item').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+            return;
+        }
+
+        // Prevent hidden content if a previous animation class/style exists.
+        gsap.set('.hero-animate', { opacity: 0, y: 28 });
+        gsap.to('.hero-animate', {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            stagger: 0.09,
+            ease: 'power3.out',
+            clearProps: 'transform'
+        });
+
+        const revealItems = document.querySelectorAll('.section-reveal');
+        revealItems.forEach((el, index) => {
+            gsap.set(el, { opacity: 0, y: 34 });
+            if (window.ScrollTrigger) {
+                gsap.to(el, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: Math.min(index * 0.03, 0.18),
+                    ease: 'power3.out',
+                    clearProps: 'transform',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 88%',
+                        once: true
+                    }
+                });
+            } else {
+                gsap.to(el, { opacity: 1, y: 0, duration: 0.8, clearProps: 'transform' });
+            }
+        });
+
+        // Editorial cards: small stagger, not excessive movement.
+        document.querySelectorAll('.newspaper-grid, .projects-grid, #projects-grid').forEach(grid => {
+            const cards = grid.querySelectorAll('.project-card, .repo-card, .skill-card, .work-card, .archive-card, .cert-card, .card-hover');
+            if (!cards.length || !window.ScrollTrigger) return;
+            gsap.from(cards, {
+                opacity: 0,
+                y: 18,
+                duration: 0.55,
+                stagger: 0.055,
+                ease: 'power2.out',
+                clearProps: 'transform',
+                scrollTrigger: { trigger: grid, start: 'top 90%', once: true }
+            });
+        });
+
+        // Photo entrance — keep the existing photo/layout untouched.
+        const profile = document.querySelector('img[src*="hyrprofile2"]');
+        if (profile) {
+            gsap.fromTo(profile,
+                { opacity: 0, scale: 0.97 },
+                { opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out', clearProps: 'transform' }
+            );
+        }
+
+        // Subtle editorial line motion.
+        document.querySelectorAll('.rule-animate').forEach(line => {
+            gsap.fromTo(line, { scaleX: 0, transformOrigin: 'left center' }, {
+                scaleX: 1,
+                duration: 0.75,
+                ease: 'power2.out',
+                scrollTrigger: window.ScrollTrigger ? { trigger: line, start: 'top 92%', once: true } : undefined
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initNewspaperAnimations, { once: true });
+    } else {
+        initNewspaperAnimations();
+    }
+
+    /* =========================================
+       CLOSE MODAL WITH ESC
+    ========================================= */
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (event.key === "Escape") {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
 </script>
+
 </body>
 </html>
